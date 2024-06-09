@@ -1188,6 +1188,9 @@ if response.status_code == 200:
     print("Request successful. Status code:", response.status_code)
     # Print the content received
     print("Content received:\n", response.text)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    print(soup)
 else:
     # Print the status code and an error message if the request failed
     print("Request failed. Status code:", response.status_code)
