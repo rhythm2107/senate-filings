@@ -1106,9 +1106,82 @@ urls = [
 "https://efdsearch.senate.gov/search/view/ptr/ffd3260f-deaa-4a66-b243-378892ec790c/"
 ]
 
-url = "https://efdsearch.senate.gov/search/view/ptr/0068462f-ee01-4550-98c9-b4437019d615/"
+# Start a session and send first request to receive cookies & csrftoken
+session = requests.Session()
+initial_url = 'https://efdsearch.senate.gov/search/home/'
+initial_response = session.get(initial_url)
 
-response = requests.get(url)
+# Assign csrftoken and number_token to variables
+if 'csrftoken' in initial_response.cookies:
+    csrftoken = initial_response.cookies['csrftoken']
+    number_token = initial_response.cookies['33a5c6d97f299a223cb6fc3925909ef7']
+    
+    # Extract csrf_middlewaretoken from HTML response
+    soup = BeautifulSoup(initial_response.text, 'html.parser')
+    csrf_middlewaretoken = soup.find('input', attrs={'name': 'csrfmiddlewaretoken'})['value']
+
+# Prepare and send a request to accept disclaimer
+disclaimer_url = 'https://efdsearch.senate.gov/search/home/'
+
+disclaimer_headers = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br, zstd',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
+    'Content-Length': '108',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cookie': f'csrftoken={csrftoken}; 33a5c6d97f299a223cb6fc3925909ef7={number_token}',
+    'Host': 'efdsearch.senate.gov',
+    'Origin': 'https://efdsearch.senate.gov',
+    'Referer': 'https://efdsearch.senate.gov/search/home/',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+}
+
+disclaimer_payload = {
+    'prohibition_agreement': 1,
+    'csrfmiddlewaretoken': csrf_middlewaretoken,
+}
+
+disclaimer_post_response = session.post(disclaimer_url, data=disclaimer_payload, headers=disclaimer_headers, allow_redirects=False)
+
+if disclaimer_post_response.status_code == 302:
+    print("Disclaimer accepted. Session established successfully.")
+    if 'Set-Cookie' in disclaimer_post_response.headers:
+        set_cookie_header = disclaimer_post_response.headers['Set-Cookie']
+        session_id = set_cookie_header.split(';')[0].lstrip('sessionId=')
+else:
+    print("Failed to accept disclaimer. Status code:", disclaimer_post_response.status_code)
+
+# Prepare and send a request to view a periodic transaction
+ptr_url = "https://efdsearch.senate.gov/search/view/ptr/0068462f-ee01-4550-98c9-b4437019d615/"
+
+ptr_headers = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br, zstd',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
+    'Content-Length': '108',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cookie': f'csrftoken={csrftoken}; sessionid={session_id}; 33a5c6d97f299a223cb6fc3925909ef7={number_token}',
+    'Host': 'efdsearch.senate.gov',
+    'Origin': 'https://efdsearch.senate.gov',
+    'Referer': 'https://efdsearch.senate.gov/search/home/',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+}
+
+response = session.get(ptr_url, headers=ptr_headers)
 
 if response.status_code == 200:
     # Print the status code
