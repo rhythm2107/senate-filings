@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import os
+import time
 
 ptr_urls = [
 "https://efdsearch.senate.gov/search/view/ptr/0068462f-ee01-4550-98c9-b4437019d615/",
@@ -1187,7 +1188,11 @@ ptr_headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
 }
 
+total_urls = len(ptr_urls)
+current_url = 0
+
 for ptr_url in ptr_urls:
+    current_url += 1
     response = session.get(ptr_url, headers=ptr_headers, proxies=proxy)
 
     if response.status_code == 200:
@@ -1195,7 +1200,6 @@ for ptr_url in ptr_urls:
 
         pd.set_option('display.max_columns', None)
         tables = pd.read_html(response.text)
-        print(tables[0])
 
         file_path = r'C:\Users\Rhythm\Desktop\senate-filings\transaction_data.csv'
         file_exists = os.path.isfile(file_path)
@@ -1210,7 +1214,11 @@ for ptr_url in ptr_urls:
                     file.write(f" -> This URL contains more tables than just one! -> {ptr_url}\n")
         except:
             pass
+        print(f"Scraping URL {current_url} of {total_urls}.")
+        time.sleep(1)
 
     else:
         # Print the status code and an error message if the request failed
         print("Request failed. Status code:", response.status_code)
+        with open ('response_status_error.txt', 'a') as file:
+            file.write(f" -> This URL didn't return response status code 200. -> {ptr_url}")
