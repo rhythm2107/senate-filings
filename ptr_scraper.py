@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os
 
 ptr_urls = [
 "https://efdsearch.senate.gov/search/view/ptr/0068462f-ee01-4550-98c9-b4437019d615/",
@@ -1107,10 +1108,14 @@ ptr_urls = [
 "https://efdsearch.senate.gov/search/view/ptr/ffd3260f-deaa-4a66-b243-378892ec790c/"
 ]
 
+proxy = {
+"http:": "http://104.167.24.170:3128"
+}
+
 # Start a session and send first request to receive cookies & csrftoken
 session = requests.Session()
 initial_url = 'https://efdsearch.senate.gov/search/home/'
-initial_response = session.get(initial_url)
+initial_response = session.get(initial_url, proxies=proxy)
 
 # Assign csrftoken and number_token to variables
 if 'csrftoken' in initial_response.cookies:
@@ -1149,7 +1154,7 @@ disclaimer_payload = {
     'csrfmiddlewaretoken': csrf_middlewaretoken,
 }
 
-disclaimer_post_response = session.post(disclaimer_url, data=disclaimer_payload, headers=disclaimer_headers, allow_redirects=False)
+disclaimer_post_response = session.post(disclaimer_url, data=disclaimer_payload, headers=disclaimer_headers, allow_redirects=False, proxies=proxy)
 
 if disclaimer_post_response.status_code == 302:
     print("Disclaimer accepted. Session established successfully.")
@@ -1183,31 +1188,29 @@ ptr_headers = {
 }
 
 for ptr_url in ptr_urls:
+    response = session.get(ptr_url, headers=ptr_headers, proxies=proxy)
 
-response = session.get(ptr_url, headers=ptr_headers)
+    if response.status_code == 200:
+        print("Request successful. Status code:", response.status_code)
 
-if response.status_code == 200:
-    # Print the status code
-    print("Request successful. Status code:", response.status_code)
-    # Print the content received
-    print("Content received:\n", response.text)
+        pd.set_option('display.max_columns', None)
+        tables = pd.read_html(response.text)
+        print(tables[0])
 
-    # soup = BeautifulSoup(response.text, 'html.parser')
-    # print(soup)
-    pd.set_option('display.max_columns', None)
-    tables = pd.read_html(response.text)
-    print(tables[0])
+        file_path = r'C:\Users\Rhythm\Desktop\senate-filings\transaction_data.csv'
+        file_exists = os.path.isfile(file_path)
 
-    file_path = r'C:\Users\Rhythm\Desktop\senate-filings\transaction_data.csv'
+        tables[0].insert(0, 'URL', f"{ptr_url}")
+        tables[0].to_csv(file_path, mode='a', index=False, header=not file_exists)
 
-    tables[0].insert(0, 'URL', f"{ptr_url}")
-    tables[0].to_csv(file_path, index=False)
+        # Check for edge cases of more than one table existing on page
+        try:
+            if len(tables) > 1:
+                with open('more_tables.txt', 'a') as file:
+                    file.write(f" -> This URL contains more tables than just one! -> {ptr_url}\n")
+        except:
+            pass
 
-    if tables[1]:
-        print('tables 1 exist')
     else:
-        print('tables 1 doesnt exist')
-
-else:
-    # Print the status code and an error message if the request failed
-    print("Request failed. Status code:", response.status_code)
+        # Print the status code and an error message if the request failed
+        print("Request failed. Status code:", response.status_code)
