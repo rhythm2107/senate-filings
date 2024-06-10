@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 import time
+from io import StringIO
 
 ptr_urls = [
 "https://efdsearch.senate.gov/search/view/ptr/0068462f-ee01-4550-98c9-b4437019d615/",
@@ -1198,8 +1199,9 @@ for ptr_url in ptr_urls:
     if response.status_code == 200:
         print("Request successful. Status code:", response.status_code)
 
+        html_content = StringIO(response.text)
         pd.set_option('display.max_columns', None)
-        tables = pd.read_html(response.text)
+        tables = pd.read_html(html_content)
 
         file_path = r'C:\Users\Rhythm\Desktop\senate-filings\transaction_data.csv'
         file_exists = os.path.isfile(file_path)
