@@ -44,52 +44,56 @@ def insert_filing(conn, filing):
     ''', filing)
     conn.commit()
 
+def fetch_page(session, headers, payload, start, expected_length, url):
+    payload['start'] = str(start)
+    retries = 0
+    while retries < 3:
+        response = session.post(url, data=payload, headers=headers)
+        if response.status_code == 200:
+            response_json = response.json()
+            page_data = response_json.get('data', [])
+            total_records = int(response_json.get('recordsTotal', 0))
+            print(f"[DEBUG] Page start: {start}, Expected rows: {expected_length}, Received rows: {len(page_data)}")
+            if page_data:
+                print(f"[DEBUG] First row: {page_data[0]}")
+                print(f"[DEBUG] Last row: {page_data[-1]}")
+            # If not the last page and we received fewer rows than expected, retry.
+            if len(page_data) < expected_length and (start + expected_length) < total_records:
+                print(f"[DEBUG] Incomplete data at start {start}. Retrying (attempt {retries + 1})...")
+                retries += 1
+                time.sleep(2)
+            else:
+                return page_data
+        else:
+            print(f"[DEBUG] HTTP error {response.status_code} at start {start}; retrying (attempt {retries + 1})...")
+            retries += 1
+            time.sleep(2)
+    print(f"[DEBUG] Failed to fetch complete data for page starting at {start} after 3 attempts.")
+    return []
 
-
-def fetch_filings(session, headers, payload_base):
+def fetch_filings(session, headers, payload_base, expected_length=100):
     url = "https://efdsearch.senate.gov/search/report/data/"
-
-    # Configure retries with exponential backoff for specific HTTP status codes.
-    retries = Retry(
-        total=5,               # Retry up to 5 times
-        backoff_factor=2,      # Wait 2^n seconds between retries
-        status_forcelist=[429, 500, 502, 503, 504],
-        raise_on_status=False
-    )
-    adapter = HTTPAdapter(max_retries=retries)
-    session.mount('https://', adapter)
-
-    # Get the total number of records using the initial page.
+    # Get initial data to determine the total record count.
     payload = payload_base.copy()
     payload['start'] = '0'
     response = session.post(url, data=payload, headers=headers)
     if response.status_code != 200:
-        print("Failed to retrieve initial data, status:", response.status_code)
+        print("[DEBUG] Failed to retrieve initial data, status:", response.status_code)
         return []
     data = response.json()
     total_records = int(data.get('recordsTotal', 0))
+    print(f"[DEBUG] Total records according to first response: {total_records}")
     filings = []
 
-    start = 0
-    length = int(payload_base.get('length', '25'))
-    while start < total_records:
-        payload['start'] = str(start)
-        print(f"Fetching records starting at {start}...")
-        try:
-            response = session.post(url, data=payload, headers=headers)
-            if response.status_code == 200:
-                page_data = response.json()
-                filings.extend(page_data.get('data', []))
-            else:
-                print(f"Error at start {start}: HTTP {response.status_code}")
-        except Exception as e:
-            print(f"Exception at start {start}: {e}")
-
-        start += length
-        time.sleep(2)  # Increase delay to reduce potential rate limiting
+    # Loop through pages based on the captured total record count.
+    for start in range(0, total_records, expected_length):
+        print(f"[DEBUG] Fetching records starting at {start}...")
+        page_data = fetch_page(session, headers, payload, start, expected_length, url)
+        filings.extend(page_data)
+        print(f"[DEBUG] Total filings collected so far: {len(filings)}")
+        time.sleep(2)  # delay to avoid rate limits
 
     return filings
-
 
 def main():
     # Set up the session and headers
@@ -117,6 +121,8 @@ def main():
     headers = get_csrf_token(session, headers)
     
     # Define the base payload (do not change the key authentication/payload parts)
+    # IMPORTANT: The 'order[0][column]' is set to '4' to force sorting by filing date.
+    # This value must remain '4' in future revisions to maintain a consistent sort order and successful scraping.
     payload_base = {
         'draw': '1',
         'columns[0][data]': '0',
@@ -149,7 +155,7 @@ def main():
         'columns[4][orderable]': 'true',
         'columns[4][search][value]': '',
         'columns[4][search][regex]': 'false',
-        'order[0][column]': '1',
+        'order[0][column]': '4',   # DO NOT CHANGE THIS VALUE. Must remain '4' to ensure correct sorting.
         'order[0][dir]': 'desc',
         'start': '0',
         'length': '100',
