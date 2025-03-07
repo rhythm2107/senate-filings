@@ -7,7 +7,7 @@ import time
 import datetime
 
 # === Configuration Section ===
-USE_DATE_FILTER = True    # Set to False if you want to disable the date filter
+USE_DATE_FILTER = False    # Set to False if you want to disable the date filter
 DATE_FILTER_DAYS = 7      # Number of days in the past to filter filings
 
 if USE_DATE_FILTER:
@@ -33,6 +33,7 @@ def extract_ptr_id(link_html):
 def init_db(db_name="filings.db"):
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
+    # Added filing_type column to record whether it's "Online" or "Paper"
     c.execute('''
         CREATE TABLE IF NOT EXISTS filings (
             ptr_id TEXT PRIMARY KEY,
@@ -40,7 +41,8 @@ def init_db(db_name="filings.db"):
             last_name TEXT,
             filing_info TEXT,
             filing_url TEXT,
-            filing_date TEXT
+            filing_date TEXT,
+            filing_type TEXT
         )
     ''')
     conn.commit()
@@ -50,8 +52,8 @@ def init_db(db_name="filings.db"):
 def insert_filing(conn, filing):
     c = conn.cursor()
     c.execute('''
-        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', filing)
     conn.commit()
 
@@ -204,9 +206,18 @@ def main():
         link_match = re.search(r'href="([^"]+)"', link_html)
         filing_url = link_match.group(1) if link_match else ""
         
-        filing_tuple = (ptr_id, first_name, last_name, filing_info, filing_url, filing_date)
+        # Determine filing type based on the URL.
+        # If the URL contains "ptr", it's an online filing; if it contains "paper", it's a paper filing.
+        if "ptr" in filing_url.lower():
+            filing_type = "Online"
+        elif "paper" in filing_url.lower():
+            filing_type = "Paper"
+        else:
+            filing_type = "Unknown"
+        
+        filing_tuple = (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
         insert_filing(conn, filing_tuple)
-        print(f"Inserted filing {ptr_id} for {first_name} {last_name}")
+        print(f"Inserted filing {ptr_id} for {first_name} {last_name} with type {filing_type}")
     
     conn.close()
     print("Data insertion complete.")
