@@ -4,14 +4,84 @@ import re
 import time
 from bs4 import BeautifulSoup
 
-# Base URL for PTR details
-BASE_PTR_URL = "https://efdsearch.senate.gov/search/view/ptr/"
+# --- Helper Functions ---
 
-#############################################
-# Database helper functions
+def get_csrf_token(session, headers):
+    """
+    Gets the CSRF token from a basic request and updates the headers.
+    """
+    url = 'https://efdsearch.senate.gov/search/'
+    response = session.get(url)
+    if 'csrftoken' in response.cookies:
+        headers['X-Csrftoken'] = response.cookies['csrftoken']
+    return headers
+
+def accept_disclaimer(session, proxy=None):
+    """
+    Accepts the disclaimer on the home page and returns necessary tokens.
+    """
+    initial_url = 'https://efdsearch.senate.gov/search/home/'
+    initial_response = session.get(initial_url, proxies=proxy)
+    
+    # Get tokens from cookies
+    if 'csrftoken' in initial_response.cookies:
+        csrftoken = initial_response.cookies['csrftoken']
+        number_token = initial_response.cookies.get('33a5c6d97f299a223cb6fc3925909ef7', '')
+    else:
+        csrftoken = ''
+        number_token = ''
+    
+    # Extract CSRF middleware token from the HTML
+    soup = BeautifulSoup(initial_response.text, 'html.parser')
+    csrf_input = soup.find('input', attrs={'name': 'csrfmiddlewaretoken'})
+    csrf_middlewaretoken = csrf_input['value'] if csrf_input else ''
+    
+    # Prepare headers for the disclaimer POST request
+    disclaimer_headers = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br, zstd',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'Content-Length': '108',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': f'csrftoken={csrftoken}; 33a5c6d97f299a223cb6fc3925909ef7={number_token}',
+        'Host': 'efdsearch.senate.gov',
+        'Origin': 'https://efdsearch.senate.gov',
+        'Referer': 'https://efdsearch.senate.gov/search/home/',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-User': '?1',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+    }
+    
+    disclaimer_payload = {
+        'prohibition_agreement': 1,
+        'csrfmiddlewaretoken': csrf_middlewaretoken,
+    }
+    
+    disclaimer_post_response = session.post(initial_url, data=disclaimer_payload, headers=disclaimer_headers, 
+                                              allow_redirects=False, proxies=proxy)
+    
+    if disclaimer_post_response.status_code == 302:
+        print("Disclaimer accepted. Session established successfully.")
+        # Try to extract a session id from the response headers if available.
+        if 'Set-Cookie' in disclaimer_post_response.headers:
+            set_cookie_header = disclaimer_post_response.headers['Set-Cookie']
+            # Adjust parsing based on how the cookie is formatted.
+            session_id = set_cookie_header.split(';')[0].replace('sessionid=', '')
+        else:
+            session_id = ''
+        return csrftoken, session_id, number_token
+    else:
+        print("Failed to accept disclaimer. Status code:", disclaimer_post_response.status_code)
+        return csrftoken, '', number_token
+
+# --- Database Helper Functions ---
 
 def init_db(db_name="filings.db"):
-    """Initialize the filings database with filings table if not exists."""
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
     c.execute('''
@@ -21,16 +91,14 @@ def init_db(db_name="filings.db"):
             last_name TEXT,
             filing_info TEXT,
             filing_url TEXT,
-            filing_date TEXT
+            filing_date TEXT,
+            filing_type TEXT
         )
     ''')
     conn.commit()
     return conn
 
 def init_transactions_table(conn):
-    """Initialize the transactions table to store transaction details.
-    We use a composite primary key on (ptr_id, transaction_number) to avoid duplicate inserts.
-    """
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS transactions (
@@ -51,23 +119,17 @@ def init_transactions_table(conn):
     conn.commit()
 
 def get_filing_ptr_ids(conn):
-    """Retrieve ptr_ids from filings table that have not been processed.
-    Here, we assume a filing is 'processed' if it already has at least one transaction record.
+    """
+    Retrieve ptr_ids from filings table that have not been processed and are marked as Online.
     """
     c = conn.cursor()
-    # Select all ptr_ids from filings
-    c.execute("SELECT ptr_id FROM filings")
+    c.execute("SELECT ptr_id FROM filings WHERE filing_type = 'Online'")
     all_ptr_ids = {row[0] for row in c.fetchall()}
-    
-    # Select ptr_ids that already have transactions scraped
     c.execute("SELECT DISTINCT ptr_id FROM transactions")
     processed_ptr_ids = {row[0] for row in c.fetchall()}
-    
-    # Return only new ones
     return list(all_ptr_ids - processed_ptr_ids)
 
 def insert_transaction(conn, transaction):
-    """Insert a single transaction record into the transactions table."""
     c = conn.cursor()
     c.execute('''
         INSERT OR IGNORE INTO transactions (
@@ -77,69 +139,66 @@ def insert_transaction(conn, transaction):
     ''', transaction)
     conn.commit()
 
-#############################################
-# Scraping functions
+# --- Scraping Function ---
 
-def scrape_transactions_for_ptr(ptr_id):
-    """Given a ptr_id, scrape the corresponding page for transaction details.
-    Returns a list of transaction tuples.
-    """
-    url = f"{BASE_PTR_URL}{ptr_id}/"
+def scrape_transactions_for_ptr(session, headers, ptr_id):
+    url = f"https://efdsearch.senate.gov/search/view/ptr/{ptr_id}/"
     print(f"Scraping transactions from: {url}")
-    response = requests.get(url)
+    
+    response = session.get(url, headers=headers)
     if response.status_code != 200:
         print(f"Failed to retrieve {url}, status code {response.status_code}")
         return []
     
     soup = BeautifulSoup(response.text, "html.parser")
     transactions = []
-
-    # Find the table in the transactions div
-    table = soup.find("div", class_="table-responsive")
-    if table is None:
-        print(f"No transaction table found for ptr_id {ptr_id}")
+    
+    table_div = soup.find("div", class_="table-responsive")
+    if not table_div:
+        print(f"No table-responsive div found for ptr_id {ptr_id}")
         return transactions
-
-    table = table.find("table", class_="table")
-    if table is None:
-        print(f"No transaction table element found for ptr_id {ptr_id}")
+    
+    table = table_div.find("table", class_="table")
+    if not table:
+        print(f"No table found in table-responsive div for ptr_id {ptr_id}")
         return transactions
-
+    
     tbody = table.find("tbody")
-    if tbody is None:
+    if not tbody:
         print(f"No tbody found for ptr_id {ptr_id}")
         return transactions
-
-    # Iterate over each row in the table body
+    
     rows = tbody.find_all("tr")
     for row in rows:
         cols = row.find_all("td")
         if len(cols) < 9:
-            # If there are fewer columns than expected, skip this row.
-            continue
-
-        # Extract text and strip whitespace
+            continue  # Skip rows that don't have enough columns.
+        
         transaction_number = cols[0].get_text(strip=True)
         transaction_date   = cols[1].get_text(strip=True)
         owner              = cols[2].get_text(strip=True)
         ticker             = cols[3].get_text(strip=True)
         asset_cell         = cols[4]
-        # The asset cell may contain extra info in a nested <div>
-        asset_name = asset_cell.get_text(separator=" ", strip=True)
-        # Optionally, try to extract additional info (like Rate/Coupon and Matures) separately
-        additional_div = asset_cell.find("div", class_="text-muted")
-        additional_info = additional_div.get_text(separator=" ", strip=True) if additional_div else ""
+        additional_div     = asset_cell.find("div", class_="text-muted")
+        
+        if additional_div:
+            additional_info = additional_div.get_text(separator=" ", strip=True)
+            additional_div.extract()  # Remove the additional info from asset_cell.
+        else:
+            additional_info = ""
+
+        asset_name         = asset_cell.get_text(separator=" ", strip=True)
+        additional_info    = additional_div.get_text(separator=" ", strip=True) if additional_div else ""
         asset_type         = cols[5].get_text(strip=True)
         txn_type           = cols[6].get_text(strip=True)
         amount             = cols[7].get_text(strip=True)
         comment            = cols[8].get_text(strip=True)
-
-        # Build a tuple; cast transaction_number to integer if possible.
+        
         try:
             txn_num_int = int(transaction_number)
         except ValueError:
             txn_num_int = None
-
+        
         transaction_tuple = (
             ptr_id,
             txn_num_int,
@@ -154,29 +213,66 @@ def scrape_transactions_for_ptr(ptr_id):
             comment
         )
         transactions.append(transaction_tuple)
-
+    
     return transactions
 
-#############################################
-# Main processing
+# --- Main Function ---
 
 def main():
+    # Optional: set proxy if needed
+    proxy = {"http": "http://104.167.24.170:3128"}
+    
+    # Create a persistent session.
+    session = requests.Session()
+    
+    # Prepare initial headers.
+    headers = {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate, br, zstd',
+        'Accept-Language': 'en-US,en;q=0.9,pl;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '1385',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Host': 'efdsearch.senate.gov',
+        'Origin': 'https://efdsearch.senate.gov',
+        'Referer': 'https://efdsearch.senate.gov/search/',
+        'Sec-Ch-Ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+        'Sec-Ch-Ua-Mobile': '?0',
+        'Sec-Ch-Ua-Platform': '"Windows"',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+        'X-Csrftoken': 'placeholder'
+    }
+    headers = get_csrf_token(session, headers)
+    
+    # Accept the disclaimer to establish a valid session.
+    csrftoken, session_id, number_token = accept_disclaimer(session, proxy=proxy)
+    
+    # Prepare headers for PTR scraping using our established tokens.
+    ptr_headers = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent': headers['User-Agent'],
+        'Cookie': f'csrftoken={csrftoken}; sessionid={session_id}; 33a5c6d97f299a223cb6fc3925909ef7={number_token}'
+    }
+    
+    # Initialize the database and tables.
     conn = init_db()
     init_transactions_table(conn)
     
-    # Get all ptr_ids from filings that haven't been processed yet.
+    # Get the list of ptr_ids to process (only Online filings).
     ptr_ids_to_scrape = get_filing_ptr_ids(conn)
     print(f"Found {len(ptr_ids_to_scrape)} new filings to process.")
-
+    
     total_new_transactions = 0
     for ptr_id in ptr_ids_to_scrape:
-        transactions = scrape_transactions_for_ptr(ptr_id)
+        transactions = scrape_transactions_for_ptr(session, ptr_headers, ptr_id)
         print(f"Found {len(transactions)} transactions for ptr_id {ptr_id}")
         for txn in transactions:
             insert_transaction(conn, txn)
             total_new_transactions += 1
-        # Optional: add a short delay to be respectful of the server.
-        time.sleep(2)
+        time.sleep(2)  # Be respectful to the server.
     
     print(f"Inserted a total of {total_new_transactions} new transaction records.")
     conn.close()
