@@ -4,6 +4,17 @@ import re
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import time
+import datetime
+
+# === Configuration Section ===
+USE_DATE_FILTER = True    # Set to False if you want to disable the date filter
+DATE_FILTER_DAYS = 7      # Number of days in the past to filter filings
+
+if USE_DATE_FILTER:
+    submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
+else:
+    # When not filtering, you could use an earlier date or an empty string.
+    submitted_start_date = '01/01/2012 00:00:00'
 
 # Retrieve CSRF token from the initial GET request and update headers.
 def get_csrf_token(session, headers):
@@ -163,7 +174,7 @@ def main():
         'search[regex]': 'false',
         'report_types': '[11]',
         'filer_types': '[]',
-        'submitted_start_date': '01/01/2012 00:00:00',
+        'submitted_start_date': submitted_start_date, # Scraper will only look at filings from seven days ago
         'submitted_end_date': '',
         'candidate_state': '',
         'senator_state': '',
