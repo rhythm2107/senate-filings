@@ -66,32 +66,37 @@ def log_notification(conn, ptr_id, transaction_number, notified_at, status_code,
 
 def send_discord_notification(transaction):
     """
-    Send a notification to Discord using the webhook.
+    Send a Discord notification using an embed.
+    
     The transaction tuple is expected to contain:
-      (ptr_id, transaction_number, transaction_date, owner, ticker, asset_name,
-       additional_info, asset_type, type, amount, comment, filing_date)
+      (ptr_id, transaction_number, transaction_date, owner, ticker,
+       asset_name, additional_info, asset_type, txn_type, amount, comment, filing_date)
     """
-    # Unpack transaction tuple for clarity:
     (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
      additional_info, asset_type, txn_type, amount, comment, filing_date) = transaction
 
-    # Construct a message string – feel free to adjust formatting as desired.
-    message = (
-        f"**New Transaction Notification**\n"
-        f"**Filing Date:** {filing_date}\n"
-        f"**Transaction Number:** {txn_num}\n"
-        f"**Transaction Date:** {txn_date}\n"
-        f"**Owner:** {owner}\n"
-        f"**Ticker:** {ticker}\n"
-        f"**Asset Name:** {asset_name}\n"
-        f"**Additional Info:** {additional_info}\n"
-        f"**Asset Type:** {asset_type}\n"
-        f"**Type:** {txn_type}\n"
-        f"**Amount:** {amount}\n"
-        f"**Comment:** {comment}"
-    )
+    # Build an embed payload
+    embed = {
+        "title": "New Transaction Notification",
+        "color": 3447003,  # A blue color; you can change this value as desired.
+        "fields": [
+            {"name": "Filing Date", "value": filing_date, "inline": True},
+            {"name": "Transaction Number", "value": str(txn_num), "inline": True},
+            {"name": "Transaction Date", "value": txn_date, "inline": True},
+            {"name": "Owner", "value": owner, "inline": True},
+            {"name": "Ticker", "value": ticker, "inline": True},
+            {"name": "Asset Name", "value": asset_name, "inline": False},
+            {"name": "Additional Info", "value": additional_info if additional_info else "N/A", "inline": False},
+            {"name": "Asset Type", "value": asset_type, "inline": True},
+            {"name": "Type", "value": txn_type, "inline": True},
+            {"name": "Amount", "value": amount, "inline": True},
+            {"name": "Comment", "value": comment, "inline": False}
+        ],
+        "timestamp": datetime.datetime.utcnow().isoformat(),
+        "footer": {"text": "Your Application Name"}
+    }
 
-    payload = {"content": message}
+    payload = {"embeds": [embed]}
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
     return response
 
