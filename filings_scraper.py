@@ -29,7 +29,7 @@ def extract_ptr_id(link_html):
     match = re.search(r'([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})', link_html)
     return match.group(1) if match else None
 
-# Initialize (or create) a SQLite database and the filings table.
+# Initialize (or create) the SQLite database and the filings table.
 def init_db(db_name="filings.db"):
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
@@ -48,13 +48,34 @@ def init_db(db_name="filings.db"):
     conn.commit()
     return conn
 
-# Insert a filing record into the database.
+# Create or update the filing scrape log table.
+def init_filing_scrape_log(conn):
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS filing_scrape_log (
+            ptr_id TEXT PRIMARY KEY,
+            scraped_at TEXT
+        )
+    ''')
+    conn.commit()
+
+# Insert a filing record into the filings table.
 def insert_filing(conn, filing):
     c = conn.cursor()
     c.execute('''
         INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', filing)
+    conn.commit()
+
+# Log the scraping event for a given filing (using ptr_id).
+def insert_filing_scrape_log(conn, ptr_id):
+    c = conn.cursor()
+    scraped_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    c.execute('''
+        INSERT OR IGNORE INTO filing_scrape_log (ptr_id, scraped_at)
+        VALUES (?, ?)
+    ''', (ptr_id, scraped_at))
     conn.commit()
 
 def fetch_page(session, headers, payload, start, expected_length, url):
@@ -189,8 +210,11 @@ def main():
     filings_data = fetch_filings(session, headers, payload_base)
     print(f"Fetched a total of {len(filings_data)} filings.")
 
-    # Initialize database and insert filings data
+    # Initialize database, filings table, and the filing scrape log table.
     conn = init_db()
+    init_filing_scrape_log(conn)
+    
+    # Insert filings and log the scrape event.
     for item in filings_data:
         # Each item is expected to be in the form:
         # [first_name, last_name, filing_info, link_html, filing_date]
@@ -217,7 +241,10 @@ def main():
         
         filing_tuple = (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
         insert_filing(conn, filing_tuple)
-        print(f"Inserted filing {ptr_id} for {first_name} {last_name} with type {filing_type}")
+        # Log the scraping event for this filing.
+        insert_filing_scrape_log(conn, ptr_id)
+        
+        print(f"Inserted filing {ptr_id} for {first_name} {last_name} with type {filing_type} and logged scrape time.")
     
     conn.close()
     print("Data insertion complete.")
