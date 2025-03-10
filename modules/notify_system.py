@@ -3,63 +3,7 @@ import sqlite3
 import datetime
 import time
 from modules.config import DISCORD_WEBHOOK_URL, DB_NAME
-
-# --- Database Setup Functions ---
-
-def init_notification_log(conn):
-    """
-    Create a notification_log table if it doesn't already exist.
-    This table stores records of sent notifications using the composite key (ptr_id, transaction_number).
-    """
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS notification_log (
-            ptr_id TEXT,
-            transaction_number INTEGER,
-            notified_at TEXT,
-            status_code INTEGER,
-            error_message TEXT,
-            PRIMARY KEY (ptr_id, transaction_number)
-        )
-    ''')
-    conn.commit()
-
-def get_unnotified_transactions(conn):
-    """
-    Retrieve transactions (with joined filing data) that have not yet been notified.
-    This uses a subquery to ensure that only transactions not present in the notification_log are returned.
-    Returns a list of tuples with the following order:
-        (ptr_id, transaction_number, transaction_date, owner, ticker,
-         asset_name, additional_info, asset_type, type, amount, comment, filing_date, name)
-    """
-    c = conn.cursor()
-    query = '''
-        SELECT t.ptr_id, t.transaction_number, t.transaction_date, t.owner, t.ticker, 
-               t.asset_name, t.additional_info, t.asset_type, t.type, t.amount, t.comment,
-               f.filing_date,
-               f.first_name || ' ' || f.last_name AS name
-        FROM transactions t
-        JOIN filings f ON t.ptr_id = f.ptr_id
-        WHERE NOT EXISTS (
-            SELECT 1 FROM notification_log n
-            WHERE n.ptr_id = t.ptr_id AND n.transaction_number = t.transaction_number
-        )
-        ORDER BY f.filing_date DESC, t.transaction_date DESC;
-    '''
-    c.execute(query)
-    return c.fetchall()
-
-
-def log_notification(conn, ptr_id, transaction_number, notified_at, status_code, error_message=""):
-    """
-    Insert a record into the notification_log table indicating that a notification for this transaction was attempted.
-    """
-    c = conn.cursor()
-    c.execute('''
-        INSERT OR IGNORE INTO notification_log (ptr_id, transaction_number, notified_at, status_code, error_message)
-        VALUES (?, ?, ?, ?, ?)
-    ''', (ptr_id, transaction_number, notified_at, status_code, error_message))
-    conn.commit()
+from modules.db_helper import init_notification_log, get_unnotified_transactions, log_notification
 
 # --- Notification Function ---
 
@@ -119,58 +63,6 @@ def send_discord_notification(transaction):
     }
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
     return response
-
-
-if __name__ == "__main__":
-    # Example transaction tuple:
-    sample_transaction_1 = (
-        "41868f55-ad42-4855-9aca-1764a05fb956",  # ptr_id
-        4,                                      # Transaction Number
-        "12/22/2021",                           # Transaction Date
-        "Spouse",                               # Owner
-        "--",                                   # Ticker
-        "JPM Contingent Autocall on Gilead",          # Asset Name
-        "Rate/Coupon: 8.65% Matures: 09/20/2024",   # Additional Info
-        "Corporate Bond",                       # Asset Type
-        "Sale (Full)",                          # Type
-        "$15,001 - $50,000",                      # Amount
-        "--",                                   # Comment
-        "01/04/2022",                            # Filing Date
-        "Thomas R Carper",                            # Filing Date
-    )
-
-    sample_transaction_2 = (
-        "8d87d0d9-8094-4891-a29c-c0e0435acb1a",  # ptr_id
-        24,                                      # Transaction Number
-        "02/14/2020",                           # Transaction Date
-        "Joint",                               # Owner
-        "XOM",                                   # Ticker
-        "Exxon Mobil Corporation",          # Asset Name
-        "",   # Additional Info
-        "Stock",                       # Asset Type
-        "Sale (Full)",                          # Type
-        "$250,001 - $500,000",                      # Amount
-        "--",                                   # Comment
-        "05/01/2020",                            # Filing Date
-        "Kelly Loeffler",                            # Filing Date
-    )
-
-    sample_transaction_3 = (
-        "41868f55-ad42-4855-9aca-1764a05fb956",  # ptr_id
-        4,                                      # Transaction Number
-        "12/22/2021",                           # Transaction Date
-        "Spouse",                               # Owner
-        "--",                                   # Ticker
-        "JPM Contingent Autocall on Gilead",          # Asset Name
-        "Rate/Coupon: 8.65% Matures: 09/20/2024",   # Additional Info
-        "Corporate Bond",                       # Asset Type
-        "Sale (Full)",                          # Type
-        "$15,001 - $50,000",                      # Amount
-        "--",                                   # Comment
-        "01/04/2022",                            # Filing Date
-        "xd",                            # Filing Date
-    )
-    # send_discord_notification(sample_transaction_1)
 
 # --- Main Process ---
 
