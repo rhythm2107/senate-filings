@@ -3,6 +3,7 @@ import sqlite3
 import re
 import time
 from bs4 import BeautifulSoup
+from modules.config import PROXY
 
 # --- Helper Functions ---
 
@@ -220,7 +221,7 @@ def scrape_transactions_for_ptr(session, headers, ptr_id):
 
 def main():
     # Optional: set proxy if needed
-    proxy = {"http": "http://104.167.24.170:3128"}
+    proxy = {"http": PROXY}
     
     # Create a persistent session.
     session = requests.Session()
