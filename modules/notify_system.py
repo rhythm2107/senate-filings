@@ -33,13 +33,14 @@ def get_unnotified_transactions(conn):
     This uses a subquery to ensure that only transactions not present in the notification_log are returned.
     Returns a list of tuples with the following order:
         (ptr_id, transaction_number, transaction_date, owner, ticker,
-         asset_name, additional_info, asset_type, type, amount, comment, filing_date)
+         asset_name, additional_info, asset_type, type, amount, comment, filing_date, name)
     """
     c = conn.cursor()
     query = '''
         SELECT t.ptr_id, t.transaction_number, t.transaction_date, t.owner, t.ticker, 
                t.asset_name, t.additional_info, t.asset_type, t.type, t.amount, t.comment,
-               f.filing_date
+               f.filing_date,
+               f.first_name || ' ' || f.last_name AS name
         FROM transactions t
         JOIN filings f ON t.ptr_id = f.ptr_id
         WHERE NOT EXISTS (
@@ -50,6 +51,7 @@ def get_unnotified_transactions(conn):
     '''
     c.execute(query)
     return c.fetchall()
+
 
 def log_notification(conn, ptr_id, transaction_number, notified_at, status_code, error_message=""):
     """
@@ -84,8 +86,8 @@ def send_discord_notification(transaction):
     embed = {
         "title": f"Senator {name}",
         "description": (
-            f"A new transaction from Senator {name} has been detected!\n"
-            f"For analytics, please <#1348693301607530526> to our <@&1348695007778967614> role.\n"
+            f"A new transaction from Senator {name}!\n"
+            f"For detailed analytics, please <#1348693301607530526> to our <@&1348695007778967614> role.\n"
         ),
         "color": color,
         "timestamp": datetime.datetime.utcnow().isoformat(),
@@ -171,15 +173,11 @@ if __name__ == "__main__":
         "01/04/2022",                            # Filing Date
         "xd",                            # Filing Date
     )
-    send_discord_notification(sample_transaction_1)
-
-
-
-
+    # send_discord_notification(sample_transaction_1)
 
 # --- Main Process ---
 
-def main():
+def send_discord_notifications():
     # Open the database connection
     conn = sqlite3.connect(DB_NAME)
     init_notification_log(conn)
@@ -208,5 +206,5 @@ def main():
     print(f"Total new notifications sent: {total_new_notifications}")
     conn.close()
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    send_discord_notifications()
