@@ -126,8 +126,7 @@ def test_discord_embed(transaction):
     embed1 = {
         "description": (
             f"A new transaction from Senator {name} has been detected!\n"
-            f"For analytics, please <#1348693301607530526> and head here <#1348693338328403998>\n"
-            f"Consider using our <@&1348695007778967614> role."
+            f"For analytics, please <#1348693301607530526> to our <@&1348695007778967614> role.\n"
         ),
         "color": 1538847,
         "timestamp": datetime.datetime.utcnow().isoformat(),
