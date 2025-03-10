@@ -1,3 +1,4 @@
+import logging
 from modules.scraper_filings import scrape_filings
 from modules.scraper_transactions import scrape_transactions
 from modules.notify_system import send_unnotified_discord_notifications
