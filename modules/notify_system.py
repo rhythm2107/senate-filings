@@ -77,7 +77,7 @@ def send_unnotified_discord_notifications():
     
     # Retrieve transactions that haven't been notified yet.
     unnotified_transactions = get_unnotified_transactions(conn)
-    print(f"Found {len(unnotified_transactions)} unnotified transactions.")
+    logger.info(f"Found {len(unnotified_transactions)} unnotified transactions.")
     
     total_new_notifications = 0
     for transaction in unnotified_transactions:
@@ -86,15 +86,15 @@ def send_unnotified_discord_notifications():
         notified_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if response.status_code in (200, 204):  # Discord returns 204 on success sometimes
             log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code)
-            print(f"Notification sent for ptr_id {transaction[0]}, transaction {transaction[1]}.")
+            logger.info(f"Notification sent for ptr_id {transaction[0]}, transaction {transaction[1]}.")
             total_new_notifications += 1
         else:
             error_msg = response.text
             log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code, error_msg)
-            print(f"Failed to send notification for ptr_id {transaction[0]}, transaction {transaction[1]}. Status: {response.status_code}")
+            logger.info(f"Failed to send notification for ptr_id {transaction[0]}, transaction {transaction[1]}. Status: {response.status_code}")
         
         # Wait briefly between notifications.
         time.sleep(1)
     
-    print(f"Total new notifications sent: {total_new_notifications}")
+    logger.info(f"Total new notifications sent: {total_new_notifications}")
     conn.close()
