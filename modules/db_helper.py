@@ -1,3 +1,68 @@
+import sqlite3
+# Basic DB Functions
+
+def init_db(db_name="filings.db"):
+    conn = sqlite3.connect(db_name)
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS filings (
+            ptr_id TEXT PRIMARY KEY,
+            first_name TEXT,
+            last_name TEXT,
+            filing_info TEXT,
+            filing_url TEXT,
+            filing_date TEXT,
+            filing_type TEXT
+        )
+    ''')
+    conn.commit()
+    return conn
+
+def init_transactions_table(conn):
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS transactions (
+            ptr_id TEXT,
+            transaction_number INTEGER,
+            transaction_date TEXT,
+            owner TEXT,
+            ticker TEXT,
+            asset_name TEXT,
+            additional_info TEXT,
+            asset_type TEXT,
+            type TEXT,
+            amount TEXT,
+            comment TEXT,
+            PRIMARY KEY (ptr_id, transaction_number)
+        )
+    ''')
+    conn.commit()
+
+def insert_transaction(conn, transaction):
+    c = conn.cursor()
+    c.execute('''
+        INSERT OR IGNORE INTO transactions (
+            ptr_id, transaction_number, transaction_date, owner, ticker, asset_name, additional_info, asset_type, type, amount, comment
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', transaction)
+    conn.commit()
+
+# Scraping Module DB Functions
+
+def get_filing_ptr_ids(conn):
+    """
+    Retrieve ptr_ids from filings table that have not been processed and are marked as Online.
+    """
+    c = conn.cursor()
+    c.execute("SELECT ptr_id FROM filings WHERE filing_type = 'Online'")
+    all_ptr_ids = {row[0] for row in c.fetchall()}
+    c.execute("SELECT DISTINCT ptr_id FROM transactions")
+    processed_ptr_ids = {row[0] for row in c.fetchall()}
+    return list(all_ptr_ids - processed_ptr_ids)
+
+# Notification System DB Functions
+
 def init_notification_log(conn):
     """
     Create a notification_log table if it doesn't already exist.
