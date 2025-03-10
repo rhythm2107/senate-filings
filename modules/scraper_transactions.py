@@ -15,11 +15,11 @@ logger = logging.getLogger("main_logger")
 
 def scrape_transactions_for_ptr(session, headers, ptr_id):
     url = f"https://efdsearch.senate.gov/search/view/ptr/{ptr_id}/"
-    print(f"Scraping transactions from: {url}")
+    logger.debug(f"Scraping transactions from: {url}")
     
     response = session.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to retrieve {url}, status code {response.status_code}")
+        logger.error(f"Failed to retrieve {url}, status code {response.status_code}")
         return []
     
     soup = BeautifulSoup(response.text, "html.parser")
@@ -27,17 +27,17 @@ def scrape_transactions_for_ptr(session, headers, ptr_id):
     
     table_div = soup.find("div", class_="table-responsive")
     if not table_div:
-        print(f"No table-responsive div found for ptr_id {ptr_id}")
+        logger.error(f"No table-responsive div found for ptr_id {ptr_id}")
         return transactions
     
     table = table_div.find("table", class_="table")
     if not table:
-        print(f"No table found in table-responsive div for ptr_id {ptr_id}")
+        logger.error(f"No table found in table-responsive div for ptr_id {ptr_id}")
         return transactions
     
     tbody = table.find("tbody")
     if not tbody:
-        print(f"No tbody found for ptr_id {ptr_id}")
+        logger.error(f"No tbody found for ptr_id {ptr_id}")
         return transactions
     
     rows = tbody.find_all("tr")
@@ -135,16 +135,16 @@ def scrape_transactions():
     
     # Get the list of ptr_ids to process (only Online filings).
     ptr_ids_to_scrape = get_filing_ptr_ids(conn)
-    print(f"Found {len(ptr_ids_to_scrape)} new filings to process.")
+    logger.info(f"Found {len(ptr_ids_to_scrape)} new filings to process.")
     
     total_new_transactions = 0
     for ptr_id in ptr_ids_to_scrape:
         transactions = scrape_transactions_for_ptr(session, ptr_headers, ptr_id)
-        print(f"Found {len(transactions)} transactions for ptr_id {ptr_id}")
+        logger.info(f"Found {len(transactions)} transactions for ptr_id {ptr_id}")
         for txn in transactions:
             insert_transaction(conn, txn)
             total_new_transactions += 1
         time.sleep(2)  # Be respectful to the server.
     
-    print(f"Inserted a total of {total_new_transactions} new transaction records.")
+    logger.info(f"Inserted a total of {total_new_transactions} new transaction records.")
     conn.close()
