@@ -1,6 +1,10 @@
 import sqlite3
 import datetime
+import logging
 from modules.config import DB_NAME
+
+# Get the main_logger object
+logger = logging.getLogger("main_logger")
 
 # Basic DB Functions
 

@@ -2,10 +2,14 @@ import requests
 import sqlite3
 import re
 import time
+import logging
 from bs4 import BeautifulSoup
 from modules.config import PROXY
 from modules.db_helper import init_db, init_transactions_table, get_filing_ptr_ids, insert_transaction
 from modules.session_utilis import get_csrf_token, accept_disclaimer
+
+# Get the main_logger object
+logger = logging.getLogger("main_logger")
 
 # --- Scraping Function ---
 

@@ -2,8 +2,12 @@ import requests
 import sqlite3
 import datetime
 import time
+import logging
 from modules.config import DISCORD_WEBHOOK_URL, DB_NAME
 from modules.db_helper import init_notification_log, get_unnotified_transactions, log_notification
+
+# Get the main_logger object
+logger = logging.getLogger("main_logger")
 
 # --- Notification Function ---
 

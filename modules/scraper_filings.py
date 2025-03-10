@@ -5,9 +5,13 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import time
 import datetime
+import logging
 from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
 from modules.session_utilis import get_csrf_token
 from modules.db_helper import init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log
+
+# Get the main_logger object
+logger = logging.getLogger("main_logger")
 
 if USE_DATE_FILTER:
     submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
