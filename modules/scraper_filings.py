@@ -71,7 +71,7 @@ def fetch_filings(session, headers, payload_base, expected_length=100):
 
     return filings
 
-def main():
+def scrape_filings():
     # Set up the session and headers
     session = requests.Session()
     headers = {
@@ -190,6 +190,3 @@ def main():
     
     conn.close()
     print("Data insertion complete.")
-
-if __name__ == "__main__":
-    main()

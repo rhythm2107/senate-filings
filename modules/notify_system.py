@@ -7,7 +7,7 @@ from modules.db_helper import init_notification_log, get_unnotified_transactions
 
 # --- Notification Function ---
 
-def send_discord_notification(transaction):
+def send_single_discord_notification(transaction):
     """
     Send a Discord notification using an embed.
     
@@ -66,7 +66,7 @@ def send_discord_notification(transaction):
 
 # --- Main Process ---
 
-def send_discord_notifications():
+def send_unnotified_discord_notifications():
     # Open the database connection
     conn = sqlite3.connect(DB_NAME)
     init_notification_log(conn)
@@ -78,7 +78,7 @@ def send_discord_notifications():
     total_new_notifications = 0
     for transaction in unnotified_transactions:
         # Send the notification to Discord.
-        response = send_discord_notification(transaction)
+        response = send_single_discord_notification(transaction)
         notified_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if response.status_code in (200, 204):  # Discord returns 204 on success sometimes
             log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code)
@@ -94,6 +94,3 @@ def send_discord_notifications():
     
     print(f"Total new notifications sent: {total_new_notifications}")
     conn.close()
-
-if __name__ == "__main__":
-    send_discord_notifications()
