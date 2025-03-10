@@ -2,10 +2,7 @@ import requests
 import sqlite3
 import datetime
 import time
-
-# --- Configuration ---
-DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1348414232160505949/PRpkAqUYve11F7v8GROeVn95f9umtH-4trMPhLtAob8or-6RtukO2TeS8Vrf3WaWbKzM'  # Replace with your webhook URL
-DB_NAME = 'filings.db'
+from modules.config import DISCORD_WEBHOOK_URL, DB_NAME
 
 # --- Database Setup Functions ---
 

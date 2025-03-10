@@ -5,10 +5,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import time
 import datetime
-
-# === Configuration Section ===
-USE_DATE_FILTER = False    # Set to False if you want to disable the date filter
-DATE_FILTER_DAYS = 7      # Number of days in the past to filter filings
+from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS
 
 if USE_DATE_FILTER:
     submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
