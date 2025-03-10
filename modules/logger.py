@@ -21,10 +21,10 @@ def setup_logger(name, log_filename="my_script.log"):
     console_formatter = logging.Formatter(log_format, "%H:%M:%S")
     file_formatter = logging.Formatter(log_format, "%Y-%m-%d %H:%M:%S")
 
-    # -- Filter to ONLY include INFO messages (used for console)
-    class OnlyInfoFilter(logging.Filter):
-        def filter(self, record):
-            return record.levelno == logging.INFO
+    # # -- Filter to ONLY include INFO messages (used for console)
+    # class OnlyInfoFilter(logging.Filter):
+    #     def filter(self, record):
+    #         return record.levelno == logging.INFO
 
     # -- Filter to EXCLUDE INFO messages (used for file)
     class ExcludeInfoFilter(logging.Filter):
@@ -34,10 +34,10 @@ def setup_logger(name, log_filename="my_script.log"):
     # -----------------------
     # Console Handler
     # -----------------------
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)  # We'll handle all levels, then filter
-    console_handler.setFormatter(console_formatter)
-    console_handler.addFilter(OnlyInfoFilter())  # Only pass INFO to console
+    # console_handler = logging.StreamHandler()
+    # console_handler.setLevel(logging.DEBUG)  # We'll handle all levels, then filter
+    # console_handler.setFormatter(console_formatter)
+    # console_handler.addFilter(OnlyInfoFilter())  # Only pass INFO to console
 
     # -----------------------
     # File Handler
@@ -54,7 +54,7 @@ def setup_logger(name, log_filename="my_script.log"):
     if logger.hasHandlers():
         logger.handlers.clear()
 
-    logger.addHandler(console_handler)
+    # logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
     # Prevent logs from propagating to the root logger

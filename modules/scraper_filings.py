@@ -33,22 +33,22 @@ def fetch_page(session, headers, payload, start, expected_length, url):
             response_json = response.json()
             page_data = response_json.get('data', [])
             total_records = int(response_json.get('recordsTotal', 0))
-            print(f"[DEBUG] Page start: {start}, Expected rows: {expected_length}, Received rows: {len(page_data)}")
+            logger.debug(f"[DEBUG] Page start: {start}, Expected rows: {expected_length}, Received rows: {len(page_data)}")
             if page_data:
-                print(f"[DEBUG] First row: {page_data[0]}")
-                print(f"[DEBUG] Last row: {page_data[-1]}")
+                logger.debug(f"[DEBUG] First row: {page_data[0]}")
+                logger.debug(f"[DEBUG] Last row: {page_data[-1]}")
             # If not the last page and we received fewer rows than expected, retry.
             if len(page_data) < expected_length and (start + expected_length) < total_records:
-                print(f"[DEBUG] Incomplete data at start {start}. Retrying (attempt {retries + 1})...")
+                logger.debug(f"[DEBUG] Incomplete data at start {start}. Retrying (attempt {retries + 1})...")
                 retries += 1
                 time.sleep(2)
             else:
                 return page_data
         else:
-            print(f"[DEBUG] HTTP error {response.status_code} at start {start}; retrying (attempt {retries + 1})...")
+            logger.debug(f"[DEBUG] HTTP error {response.status_code} at start {start}; retrying (attempt {retries + 1})...")
             retries += 1
             time.sleep(2)
-    print(f"[DEBUG] Failed to fetch complete data for page starting at {start} after 3 attempts.")
+    logger.debug(f"[DEBUG] Failed to fetch complete data for page starting at {start} after 3 attempts.")
     return []
 
 def fetch_filings(session, headers, payload_base, expected_length=100):
@@ -58,19 +58,19 @@ def fetch_filings(session, headers, payload_base, expected_length=100):
     payload['start'] = '0'
     response = session.post(url, data=payload, headers=headers)
     if response.status_code != 200:
-        print("[DEBUG] Failed to retrieve initial data, status:", response.status_code)
+        logger.debug(f"[DEBUG] Failed to retrieve initial data, status: {response.status_code}")
         return []
     data = response.json()
     total_records = int(data.get('recordsTotal', 0))
-    print(f"[DEBUG] Total records according to first response: {total_records}")
+    logger.debug(f"[DEBUG] Total records according to first response: {total_records}")
     filings = []
 
     # Loop through pages based on the captured total record count.
     for start in range(0, total_records, expected_length):
-        print(f"[DEBUG] Fetching records starting at {start}...")
+        logger.debug(f"[DEBUG] Fetching records starting at {start}...")
         page_data = fetch_page(session, headers, payload, start, expected_length, url)
         filings.extend(page_data)
-        print(f"[DEBUG] Total filings collected so far: {len(filings)}")
+        logger.debug(f"[DEBUG] Total filings collected so far: {len(filings)}")
         time.sleep(2)  # delay to avoid rate limits
 
     return filings
@@ -152,9 +152,9 @@ def scrape_filings():
         'last_name': ''
     }
     
-    print("Starting data fetch...")
+    logger.info("Starting data fetch...")
     filings_data = fetch_filings(session, headers, payload_base)
-    print(f"Fetched a total of {len(filings_data)} filings.")
+    logger.info(f"Fetched a total of {len(filings_data)} filings.")
 
     # Initialize database, filings table, and the filing scrape log table.
     conn = init_db()
@@ -190,7 +190,7 @@ def scrape_filings():
         # Log the scraping event for this filing.
         insert_filing_scrape_log(conn, ptr_id)
         
-        print(f"Inserted filing {ptr_id} for {first_name} {last_name} with type {filing_type} and logged scrape time.")
+        logger.debug(f"Inserted filing {ptr_id} for {first_name} {last_name} with type {filing_type} and logged scrape time.")
     
     conn.close()
-    print("Data insertion complete.")
+    logger.info("Data insertion complete.")

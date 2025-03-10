@@ -26,34 +26,49 @@ def init_db(db_name=DB_NAME):
     return conn
 
 def init_transactions_table(conn):
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS transactions (
-            ptr_id TEXT,
-            transaction_number INTEGER,
-            transaction_date TEXT,
-            owner TEXT,
-            ticker TEXT,
-            asset_name TEXT,
-            additional_info TEXT,
-            asset_type TEXT,
-            type TEXT,
-            amount TEXT,
-            comment TEXT,
-            PRIMARY KEY (ptr_id, transaction_number)
-        )
-    ''')
-    conn.commit()
+    logger.debug(f"Init_transaction_table has been called.")
+    try:
+        c = conn.cursor()
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS transactions (
+                ptr_id TEXT,
+                transaction_number INTEGER,
+                transaction_date TEXT,
+                owner TEXT,
+                ticker TEXT,
+                asset_name TEXT,
+                additional_info TEXT,
+                asset_type TEXT,
+                type TEXT,
+                amount TEXT,
+                comment TEXT,
+                PRIMARY KEY (ptr_id, transaction_number)
+            )
+        ''')
+        conn.commit()
+        logger.debug(f"Init_transaction_table succeeded.")
+    except Exception as e:
+        logger.exception(f"Init_transaction_table failed: {e}")
 
 def insert_transaction(conn, transaction):
-    c = conn.cursor()
-    c.execute('''
-        INSERT OR IGNORE INTO transactions (
-            ptr_id, transaction_number, transaction_date, owner, ticker, asset_name, additional_info, asset_type, type, amount, comment
+    logger.debug(f"insert_transaction called with {transaction}")
+    try:
+        c = conn.cursor()
+        c.execute(
+            '''
+            INSERT OR IGNORE INTO transactions (
+                ptr_id, transaction_number, transaction_date, owner, ticker,
+                asset_name, additional_info, asset_type, type, amount, comment
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''',
+            transaction
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ''', transaction)
-    conn.commit()
+        conn.commit()
+        logger.debug(f"insert_transaction succeeded for ptr_id={transaction[0]}")
+    except Exception as e:
+        logger.exception(f"insert_transaction failed: {e}")
+        raise
 
 # Scraping Module DB Functions
 
