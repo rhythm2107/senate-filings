@@ -112,63 +112,56 @@ import requests
 def test_discord_embed(transaction):
     """
     Sends a test Discord embed notification using dynamic transaction data.
-    The embed format is inspired by the provided example, with:
+    The embed format is inspired by your example, with:
       - Apple Inc. as the author (with image)
       - A colorful layout with a two-part embed:
           * The first embed contains detailed transaction information in fields.
           * The second embed displays transaction date and filing date separately.
+    The message includes a VIP role reference without pinging it.
     """
     # Unpack transaction tuple:
     (ptr_id, txn_num, txn_date, owner, ticker, asset_name, additional_info,
-     asset_type, txn_type, amount, comment, filing_date) = transaction
+     asset_type, txn_type, amount, comment, filing_date, name) = transaction
 
-    # Embed 1: Detailed Notification with rich formatting
     embed1 = {
-        # "title": "title ~~(did you know you can have markdown here too?)~~",
-        "description": "This is a new transaction from Senator Lamar Alexander. It seems that if i spread the text it sizes to the content amount so maybe its more readable this way.",
-        "url": "https://discordapp.com",
+        "description": (
+            f"A new transaction from Senator {name} has been detected!\n"
+            f"For analytics, please <#1348693301607530526> and head here <#1348693338328403998>\n"
+            f"Consider using our <@&1348695007778967614> role."
+        ),
         "color": 1538847,
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "footer": {
             "icon_url": "https://i.imgur.com/J01MSXf.jpeg",
-            "text": "footer text"
+            "text": "House of Data"
         },
         "thumbnail": {
             "url": "https://i.imgur.com/J01MSXf.jpeg"
         },
-        "image": {
-            # "url": "https://cdn.discordapp.com/embed/avatars/0.png"
-        },
         "author": {
-            "name": "Senator Lamar Alexander",
-            "url": "https://discordapp.com",
-            # "icon_url": "https://assets-netstorage.groww.in/intl-stocks/logos/AAPL.png"
+            "name": f"Senator {name}"
         },
         "fields": [
-            # {"name": "Transaction #", "value": str(txn_num), "inline": True},
             {"name": "Ticker", "value": ticker, "inline": False},
             {"name": "Owner", "value": owner, "inline": False},
             {"name": "Asset Name", "value": asset_name, "inline": True},
             {"name": "Asset Type", "value": asset_type, "inline": True},
             {"name": "Transaction Type", "value": txn_type, "inline": True},
             {"name": "Amount", "value": amount, "inline": True},
-            # {"name": "Additional Info", "value": additional_info if additional_info else "N/A", "inline": False},
-            # {"name": "Comment", "value": comment, "inline": False},
             {"name": "Filing Date", "value": filing_date, "inline": True},
-            {"name": "Transaction Date", "value": txn_date, "inline": True},
+            {"name": "Transaction Date", "value": txn_date, "inline": True}
         ]
-    }
-
-    # Embed 2: Information Section with Transaction Date and Filing Date
-    embed2 = {
-        "color": 7538847,
-        "description": f"\n**Transaction Date**: {txn_date}\n**Filing Date**: {filing_date}"
     }
 
     payload = {
         "content": None,
         "embeds": [embed1],
-        "attachments": []
+        "attachments": [],
+        # This ensures that even though the embed text displays the role mention,
+        # no ping/notification is actually sent to that role.
+        "allowed_mentions": {
+            "roles": []
+        }
     }
 
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
@@ -181,20 +174,53 @@ def test_discord_embed(transaction):
 if __name__ == "__main__":
     # Example transaction tuple:
     sample_transaction = (
-        "a0a26d20-b140-444b-b562-9d73de4c6bd9",  # ptr_id
-        1,                                      # Transaction Number
-        "03/11/2015",                           # Transaction Date
+        "41868f55-ad42-4855-9aca-1764a05fb956",  # ptr_id
+        4,                                      # Transaction Number
+        "12/22/2021",                           # Transaction Date
         "Spouse",                               # Owner
-        "AAPL",                                   # Ticker
-        "International Paper Company (NYSE)",          # Asset Name
-        "",   # Additional Info
-        "Municipal Security",                       # Asset Type
-        "Sale (Partial)",                          # Type
-        "$500,001 - $1,000,000",                      # Amount
+        "--",                                   # Ticker
+        "JPM Contingent Autocall on Gilead",          # Asset Name
+        "Rate/Coupon: 8.65% Matures: 09/20/2024",   # Additional Info
+        "Corporate Bond",                       # Asset Type
+        "Sale (Full)",                          # Type
+        "$15,001 - $50,000",                      # Amount
         "--",                                   # Comment
-        "10/02/2015"                            # Filing Date
+        "01/04/2022",                            # Filing Date
+        "Thomas R Carper",                            # Filing Date
     )
-    test_discord_embed(sample_transaction)
+
+    sample_transaction_2 = (
+        "8d87d0d9-8094-4891-a29c-c0e0435acb1a",  # ptr_id
+        24,                                      # Transaction Number
+        "02/14/2020",                           # Transaction Date
+        "Joint",                               # Owner
+        "XOM",                                   # Ticker
+        "Exxon Mobil Corporation",          # Asset Name
+        "",   # Additional Info
+        "Stock",                       # Asset Type
+        "Sale (Full)",                          # Type
+        "$250,001 - $500,000",                      # Amount
+        "--",                                   # Comment
+        "05/01/2020",                            # Filing Date
+        "Kelly Loeffler",                            # Filing Date
+    )
+
+    sample_transaction_3 = (
+        "41868f55-ad42-4855-9aca-1764a05fb956",  # ptr_id
+        4,                                      # Transaction Number
+        "12/22/2021",                           # Transaction Date
+        "Spouse",                               # Owner
+        "--",                                   # Ticker
+        "JPM Contingent Autocall on Gilead",          # Asset Name
+        "Rate/Coupon: 8.65% Matures: 09/20/2024",   # Additional Info
+        "Corporate Bond",                       # Asset Type
+        "Sale (Full)",                          # Type
+        "$15,001 - $50,000",                      # Amount
+        "--",                                   # Comment
+        "01/04/2022",                            # Filing Date
+        "xd",                            # Filing Date
+    )
+    test_discord_embed(sample_transaction_2)
 
 
 
