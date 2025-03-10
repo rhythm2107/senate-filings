@@ -100,6 +100,106 @@ def send_discord_notification(transaction):
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
     return response
 
+
+
+
+
+import requests
+
+
+# Replace with your actual Discord webhook URL.
+
+def test_discord_embed(transaction):
+    """
+    Sends a test Discord embed notification using dynamic transaction data.
+    The embed format is inspired by the provided example, with:
+      - Apple Inc. as the author (with image)
+      - A colorful layout with a two-part embed:
+          * The first embed contains detailed transaction information in fields.
+          * The second embed displays transaction date and filing date separately.
+    """
+    # Unpack transaction tuple:
+    (ptr_id, txn_num, txn_date, owner, ticker, asset_name, additional_info,
+     asset_type, txn_type, amount, comment, filing_date) = transaction
+
+    # Embed 1: Detailed Notification with rich formatting
+    embed1 = {
+        # "title": "title ~~(did you know you can have markdown here too?)~~",
+        "description": "This is a new transaction from Senator Lamar Alexander. It seems that if i spread the text it sizes to the content amount so maybe its more readable this way.",
+        "url": "https://discordapp.com",
+        "color": 1538847,
+        "timestamp": datetime.datetime.utcnow().isoformat(),
+        "footer": {
+            "icon_url": "https://i.imgur.com/J01MSXf.jpeg",
+            "text": "footer text"
+        },
+        "thumbnail": {
+            "url": "https://i.imgur.com/J01MSXf.jpeg"
+        },
+        "image": {
+            # "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+        },
+        "author": {
+            "name": "Senator Lamar Alexander",
+            "url": "https://discordapp.com",
+            # "icon_url": "https://assets-netstorage.groww.in/intl-stocks/logos/AAPL.png"
+        },
+        "fields": [
+            # {"name": "Transaction #", "value": str(txn_num), "inline": True},
+            {"name": "Ticker", "value": ticker, "inline": False},
+            {"name": "Owner", "value": owner, "inline": False},
+            {"name": "Asset Name", "value": asset_name, "inline": True},
+            {"name": "Asset Type", "value": asset_type, "inline": True},
+            {"name": "Transaction Type", "value": txn_type, "inline": True},
+            {"name": "Amount", "value": amount, "inline": True},
+            # {"name": "Additional Info", "value": additional_info if additional_info else "N/A", "inline": False},
+            # {"name": "Comment", "value": comment, "inline": False},
+            {"name": "Filing Date", "value": filing_date, "inline": True},
+            {"name": "Transaction Date", "value": txn_date, "inline": True},
+        ]
+    }
+
+    # Embed 2: Information Section with Transaction Date and Filing Date
+    embed2 = {
+        "color": 7538847,
+        "description": f"\n**Transaction Date**: {txn_date}\n**Filing Date**: {filing_date}"
+    }
+
+    payload = {
+        "content": None,
+        "embeds": [embed1],
+        "attachments": []
+    }
+
+    response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+    if response.status_code in (200, 204):
+        print("Test embed sent successfully! Status code:", response.status_code)
+    else:
+        print("Failed to send test embed. Status code:", response.status_code)
+        print("Response:", response.text)
+
+if __name__ == "__main__":
+    # Example transaction tuple:
+    sample_transaction = (
+        "a0a26d20-b140-444b-b562-9d73de4c6bd9",  # ptr_id
+        1,                                      # Transaction Number
+        "03/11/2015",                           # Transaction Date
+        "Spouse",                               # Owner
+        "AAPL",                                   # Ticker
+        "International Paper Company (NYSE)",          # Asset Name
+        "",   # Additional Info
+        "Municipal Security",                       # Asset Type
+        "Sale (Partial)",                          # Type
+        "$500,001 - $1,000,000",                      # Amount
+        "--",                                   # Comment
+        "10/02/2015"                            # Filing Date
+    )
+    test_discord_embed(sample_transaction)
+
+
+
+
+
 # --- Main Process ---
 
 def main():
@@ -131,5 +231,5 @@ def main():
     print(f"Total new notifications sent: {total_new_notifications}")
     conn.close()
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
