@@ -73,62 +73,21 @@ def send_discord_notification(transaction):
        asset_name, additional_info, asset_type, txn_type, amount, comment, filing_date)
     """
     (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
-     additional_info, asset_type, txn_type, amount, comment, filing_date) = transaction
+     additional_info, asset_type, txn_type, amount, comment, filing_date, name) = transaction
+
+    # Set left border color
+    color = 3447003
+    if ticker == '--':
+        color = 3462032
 
     # Build an embed payload
     embed = {
-        "title": "New Transaction Notification",
-        "color": 3447003,  # A blue color; you can change this value as desired.
-        "fields": [
-            {"name": "Filing Date", "value": filing_date, "inline": True},
-            {"name": "Transaction Number", "value": str(txn_num), "inline": True},
-            {"name": "Transaction Date", "value": txn_date, "inline": True},
-            {"name": "Owner", "value": owner, "inline": True},
-            {"name": "Ticker", "value": ticker, "inline": True},
-            {"name": "Asset Name", "value": asset_name, "inline": False},
-            {"name": "Additional Info", "value": additional_info if additional_info else "N/A", "inline": False},
-            {"name": "Asset Type", "value": asset_type, "inline": True},
-            {"name": "Type", "value": txn_type, "inline": True},
-            {"name": "Amount", "value": amount, "inline": True},
-            {"name": "Comment", "value": comment, "inline": False}
-        ],
-        "timestamp": datetime.datetime.utcnow().isoformat(),
-        "footer": {"text": "Your Application Name"}
-    }
-
-    payload = {"embeds": [embed]}
-    response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
-    return response
-
-
-
-
-
-import requests
-
-
-# Replace with your actual Discord webhook URL.
-
-def test_discord_embed(transaction):
-    """
-    Sends a test Discord embed notification using dynamic transaction data.
-    The embed format is inspired by your example, with:
-      - Apple Inc. as the author (with image)
-      - A colorful layout with a two-part embed:
-          * The first embed contains detailed transaction information in fields.
-          * The second embed displays transaction date and filing date separately.
-    The message includes a VIP role reference without pinging it.
-    """
-    # Unpack transaction tuple:
-    (ptr_id, txn_num, txn_date, owner, ticker, asset_name, additional_info,
-     asset_type, txn_type, amount, comment, filing_date, name) = transaction
-
-    embed1 = {
+        "title": f"Senator {name}",
         "description": (
             f"A new transaction from Senator {name} has been detected!\n"
             f"For analytics, please <#1348693301607530526> to our <@&1348695007778967614> role.\n"
         ),
-        "color": 1538847,
+        "color": color,
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "footer": {
             "icon_url": "https://i.imgur.com/J01MSXf.jpeg",
@@ -136,9 +95,6 @@ def test_discord_embed(transaction):
         },
         "thumbnail": {
             "url": "https://i.imgur.com/J01MSXf.jpeg"
-        },
-        "author": {
-            "name": f"Senator {name}"
         },
         "fields": [
             {"name": "Ticker", "value": ticker, "inline": False},
@@ -154,7 +110,7 @@ def test_discord_embed(transaction):
 
     payload = {
         "content": None,
-        "embeds": [embed1],
+        "embeds": [embed],
         "attachments": [],
         # This ensures that even though the embed text displays the role mention,
         # no ping/notification is actually sent to that role.
@@ -162,17 +118,13 @@ def test_discord_embed(transaction):
             "roles": []
         }
     }
-
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
-    if response.status_code in (200, 204):
-        print("Test embed sent successfully! Status code:", response.status_code)
-    else:
-        print("Failed to send test embed. Status code:", response.status_code)
-        print("Response:", response.text)
+    return response
+
 
 if __name__ == "__main__":
     # Example transaction tuple:
-    sample_transaction = (
+    sample_transaction_1 = (
         "41868f55-ad42-4855-9aca-1764a05fb956",  # ptr_id
         4,                                      # Transaction Number
         "12/22/2021",                           # Transaction Date
@@ -219,7 +171,7 @@ if __name__ == "__main__":
         "01/04/2022",                            # Filing Date
         "xd",                            # Filing Date
     )
-    test_discord_embed(sample_transaction_2)
+    send_discord_notification(sample_transaction_1)
 
 
 
