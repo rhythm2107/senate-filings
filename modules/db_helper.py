@@ -1,5 +1,7 @@
 import sqlite3
+import datetime
 from modules.config import DB_NAME
+
 # Basic DB Functions
 
 def init_db(db_name=DB_NAME):
@@ -61,6 +63,36 @@ def get_filing_ptr_ids(conn):
     c.execute("SELECT DISTINCT ptr_id FROM transactions")
     processed_ptr_ids = {row[0] for row in c.fetchall()}
     return list(all_ptr_ids - processed_ptr_ids)
+
+# Create or update the filing scrape log table.
+def init_filing_scrape_log(conn):
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS filing_scrape_log (
+            ptr_id TEXT PRIMARY KEY,
+            scraped_at TEXT
+        )
+    ''')
+    conn.commit()
+
+# Insert a filing record into the filings table.
+def insert_filing(conn, filing):
+    c = conn.cursor()
+    c.execute('''
+        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', filing)
+    conn.commit()
+
+# Log the scraping event for a given filing (using ptr_id).
+def insert_filing_scrape_log(conn, ptr_id):
+    c = conn.cursor()
+    scraped_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    c.execute('''
+        INSERT OR IGNORE INTO filing_scrape_log (ptr_id, scraped_at)
+        VALUES (?, ?)
+    ''', (ptr_id, scraped_at))
+    conn.commit()
 
 # Notification System DB Functions
 

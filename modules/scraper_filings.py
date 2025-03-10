@@ -6,6 +6,8 @@ from urllib3.util.retry import Retry
 import time
 import datetime
 from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
+from modules.session_utilis import get_csrf_token
+from modules.db_helper import init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log
 
 if USE_DATE_FILTER:
     submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
@@ -13,67 +15,10 @@ else:
     # When not filtering, you could use an earlier date or an empty string.
     submitted_start_date = '01/01/2012 00:00:00'
 
-# Retrieve CSRF token from the initial GET request and update headers.
-def get_csrf_token(session, headers):
-    url = 'https://efdsearch.senate.gov/search/'
-    response = session.get(url)
-    if 'csrftoken' in response.cookies:
-        headers['X-Csrftoken'] = response.cookies['csrftoken']
-    return headers
-
 # Extract the PTR (or paper) id using a regex pattern for a GUID.
 def extract_ptr_id(link_html):
     match = re.search(r'([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})', link_html)
     return match.group(1) if match else None
-
-# Initialize (or create) the SQLite database and the filings table.
-def init_db(db_name=DB_NAME):
-    conn = sqlite3.connect(db_name)
-    c = conn.cursor()
-    # Added filing_type column to record whether it's "Online" or "Paper"
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS filings (
-            ptr_id TEXT PRIMARY KEY,
-            first_name TEXT,
-            last_name TEXT,
-            filing_info TEXT,
-            filing_url TEXT,
-            filing_date TEXT,
-            filing_type TEXT
-        )
-    ''')
-    conn.commit()
-    return conn
-
-# Create or update the filing scrape log table.
-def init_filing_scrape_log(conn):
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS filing_scrape_log (
-            ptr_id TEXT PRIMARY KEY,
-            scraped_at TEXT
-        )
-    ''')
-    conn.commit()
-
-# Insert a filing record into the filings table.
-def insert_filing(conn, filing):
-    c = conn.cursor()
-    c.execute('''
-        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', filing)
-    conn.commit()
-
-# Log the scraping event for a given filing (using ptr_id).
-def insert_filing_scrape_log(conn, ptr_id):
-    c = conn.cursor()
-    scraped_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    c.execute('''
-        INSERT OR IGNORE INTO filing_scrape_log (ptr_id, scraped_at)
-        VALUES (?, ?)
-    ''', (ptr_id, scraped_at))
-    conn.commit()
 
 def fetch_page(session, headers, payload, start, expected_length, url):
     payload['start'] = str(start)
