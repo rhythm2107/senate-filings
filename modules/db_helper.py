@@ -1,7 +1,8 @@
 import sqlite3
+from modules.config import DB_NAME
 # Basic DB Functions
 
-def init_db(db_name="filings.db"):
+def init_db(db_name=DB_NAME):
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
     c.execute('''

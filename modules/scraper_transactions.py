@@ -7,10 +7,6 @@ from modules.config import PROXY
 from modules.db_helper import init_db, init_transactions_table, get_filing_ptr_ids, insert_transaction
 from modules.session_utilis import get_csrf_token, accept_disclaimer
 
-# --- Helper Functions ---
-
-
-
 # --- Scraping Function ---
 
 def scrape_transactions_for_ptr(session, headers, ptr_id):
@@ -90,7 +86,7 @@ def scrape_transactions_for_ptr(session, headers, ptr_id):
 
 # --- Main Function ---
 
-def main():
+def scrape_transactions():
     # Optional: set proxy if needed
     proxy = {"http": PROXY}
     
@@ -148,6 +144,3 @@ def main():
     
     print(f"Inserted a total of {total_new_transactions} new transaction records.")
     conn.close()
-
-if __name__ == "__main__":
-    main()

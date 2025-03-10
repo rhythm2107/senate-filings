@@ -5,7 +5,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import time
 import datetime
-from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS
+from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
 
 if USE_DATE_FILTER:
     submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
@@ -27,7 +27,7 @@ def extract_ptr_id(link_html):
     return match.group(1) if match else None
 
 # Initialize (or create) the SQLite database and the filings table.
-def init_db(db_name="filings.db"):
+def init_db(db_name=DB_NAME):
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
     # Added filing_type column to record whether it's "Online" or "Paper"
