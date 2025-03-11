@@ -164,11 +164,12 @@ def scrape_filings():
     for item in filings_data:
         # Each item is expected to be in the form:
         # [first_name, last_name, filing_info, link_html, filing_date]
-        first_name = item[0]
-        last_name = item[1]
+        first_name = item[0].upper().strip() # Ensuring consistency of case & strip trailing spaces
+        last_name = item[1].upper().strip() # Ensuring consistency of case & strip trailing spaces
         filing_info = item[2]
         link_html = item[3]
         filing_date = item[4]
+        full_name = first_name + ' ' + last_name
         
         ptr_id = extract_ptr_id(link_html)
         
@@ -185,7 +186,7 @@ def scrape_filings():
         else:
             filing_type = "Unknown"
         
-        filing_tuple = (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
+        filing_tuple = (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type)
         insert_filing(conn, filing_tuple)
         # Log the scraping event for this filing.
         insert_filing_scrape_log(conn, ptr_id)

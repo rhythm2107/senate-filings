@@ -16,6 +16,7 @@ def init_db(db_name=DB_NAME):
             ptr_id TEXT PRIMARY KEY,
             first_name TEXT,
             last_name TEXT,
+            full_name TEXT,
             filing_info TEXT,
             filing_url TEXT,
             filing_date TEXT,
@@ -98,8 +99,8 @@ def init_filing_scrape_log(conn):
 def insert_filing(conn, filing):
     c = conn.cursor()
     c.execute('''
-        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, filing_info, filing_url, filing_date, filing_type)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ''', filing)
     conn.commit()
 
