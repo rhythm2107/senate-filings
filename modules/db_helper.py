@@ -182,8 +182,8 @@ def init_filing_scrape_log(conn):
 def insert_filing(conn, filing):
     c = conn.cursor()
     c.execute('''
-        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT OR IGNORE INTO filings (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type, senator_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', filing)
     conn.commit()
 

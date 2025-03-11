@@ -105,8 +105,6 @@ def send_debug_notification_unknown_senator(ptr_id, alias_name):
     )
     return response
 
-send_debug_notification_unknown_senator('6cf4a78e-92f0-4201-bf73-e9b02cd8f9ef', '')
-
 # --- Main Process ---
 
 def send_unnotified_discord_notifications():

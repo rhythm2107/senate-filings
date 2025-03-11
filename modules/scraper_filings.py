@@ -208,7 +208,7 @@ def scrape_filings():
         else:
             logger.debug(f"Resolved alias '{alias_name}' to senator_id {senator_id}")
         
-        filing_tuple = (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type)
+        filing_tuple = (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type, senator_id)
         insert_filing(conn, filing_tuple)
         # Log the scraping event for this filing.
         insert_filing_scrape_log(conn, ptr_id)
