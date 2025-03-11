@@ -26,6 +26,89 @@ def init_db(db_name=DB_NAME):
     conn.commit()
     return conn
 
+def init_senators_tables(conn):
+    """
+    Create tables:
+      - senators (one row per senator, with a canonical name)
+      - senator_aliases (many possible aliases linked to senator_id)
+    """
+    c = conn.cursor()
+
+    # Create the 'senators' table
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS senators (
+            senator_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            canonical_full_name TEXT NOT NULL,
+            state TEXT,
+            party TEXT
+            -- add any extra columns as needed
+        )
+    ''')
+
+    # Create the 'senator_aliases' table
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS senator_aliases (
+            alias_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            senator_id INTEGER NOT NULL,
+            alias_name TEXT NOT NULL,
+            UNIQUE(alias_name),
+            FOREIGN KEY (senator_id) REFERENCES senators(senator_id)
+        )
+    ''')
+
+    conn.commit()
+    logger.debug("Senators tables (senators, senator_aliases) created/initialized if they did not exist.")
+
+def get_senator_id_by_alias(conn, alias_name):
+    """
+    Given an alias_name (e.g., 'LADDA TAMMY DUCKWORTH'),
+    returns the senator_id if we have it on file, else None.
+    """
+    c = conn.cursor()
+    c.execute("SELECT senator_id FROM senator_aliases WHERE alias_name = ?", (alias_name,))
+    row = c.fetchone()
+    return row[0] if row else None
+
+# NEW
+def insert_alias_for_senator(conn, senator_id, alias_name):
+    """
+    Inserts a new alias into senator_aliases for the given senator_id.
+    If alias_name already exists, it will skip due to UNIQUE(alias_name).
+    """
+    c = conn.cursor()
+    try:
+        c.execute('''
+            INSERT OR IGNORE INTO senator_aliases (senator_id, alias_name)
+            VALUES (?, ?)
+        ''', (senator_id, alias_name))
+        conn.commit()
+        logger.debug(f"Inserted alias '{alias_name}' for senator_id={senator_id}.")
+    except Exception as e:
+        logger.exception(f"Failed to insert alias {alias_name}: {e}")
+        conn.rollback()
+
+# NEW
+def insert_new_senator(conn, canonical_full_name, state="", party=""):
+    """
+    Inserts a new row into the senators table and returns the new senator_id.
+    """
+    c = conn.cursor()
+    try:
+        c.execute('''
+            INSERT INTO senators (canonical_full_name, state, party)
+            VALUES (?, ?, ?)
+        ''', (canonical_full_name, state, party))
+        conn.commit()
+
+        new_id = c.lastrowid  # senator_id autoincrement
+        logger.debug(f"Inserted new senator '{canonical_full_name}' with senator_id={new_id}.")
+        return new_id
+    except Exception as e:
+        logger.exception(f"Failed to insert new senator '{canonical_full_name}': {e}")
+        conn.rollback()
+        return None
+
+
 def init_transactions_table(conn):
     logger.debug(f"Init_transaction_table has been called.")
     try:
