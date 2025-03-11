@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 # Load variables from the .env file
 load_dotenv()
 
-DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+DISCORD_WEBHOOK_NOTIFICATION = os.getenv("DISCORD_WEBHOOK_NOTIFICATION")
+DISCORD_WEBHOOK_DEBUG = os.getenv("DISCORD_WEBHOOK_DEBUG")
 DB_NAME = os.getenv("DB_NAME", "filings.db")  # Provide a default fallback if not found
 USE_DATE_FILTER = os.getenv("USE_DATE_FILTER", "False").lower() == "true"
 DATE_FILTER_DAYS = int(os.getenv("DATE_FILTER_DAYS", "7"))

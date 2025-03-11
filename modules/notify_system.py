@@ -3,8 +3,16 @@ import sqlite3
 import datetime
 import time
 import logging
-from modules.config import DISCORD_WEBHOOK_URL, DB_NAME
-from modules.db_helper import init_notification_log, get_unnotified_transactions, log_notification
+from config import (
+    DB_NAME,
+    DISCORD_WEBHOOK_NOTIFICATION,
+    DISCORD_WEBHOOK_DEBUG
+)
+# from modules.db_helper import (
+#     init_notification_log,
+#     get_unnotified_transactions,
+#     log_notification
+# )
 
 # Get the main_logger object
 logger = logging.getLogger("main_logger")
@@ -65,8 +73,39 @@ def send_single_discord_notification(transaction):
             "roles": []
         }
     }
-    response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+    response = requests.post(DISCORD_WEBHOOK_NOTIFICATION, json=payload)
     return response
+
+def send_debug_notification_unknown_senator(ptr_id, alias_name):
+    """
+    Sends a simple notification to the Discord 'debug' channel if we discover
+    an unrecognized senator name (i.e., no senator_id).
+    """
+    # Build a minimal embed or plain message
+    embed = {
+        "title": "Unknown Senator Name Detected",
+        "description": (
+            f"PTR ID: **{ptr_id}**\n"
+            f"Unknown name: **{alias_name}**\n\n"
+            "Manual review needed to assign the correct senator."
+        ),
+        "color": 15158332,  # a red-ish color to highlight error (optional)
+        "timestamp": datetime.datetime.utcnow().isoformat()
+    }
+
+    payload = {
+        "embeds": [embed],
+        "allowed_mentions": { "parse": [] }  # don't ping anyone
+    }
+
+    response = requests.post(DISCORD_WEBHOOK_DEBUG, json=payload)
+    logger.info(
+        f"Debug notification sent for unknown senator alias '{alias_name}' (ptr_id={ptr_id}). "
+        f"Status: {response.status_code}"
+    )
+    return response
+
+send_debug_notification_unknown_senator('6cf4a78e-92f0-4201-bf73-e9b02cd8f9ef', 'ASHLEY MOODY')
 
 # --- Main Process ---
 

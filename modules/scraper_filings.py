@@ -8,7 +8,10 @@ import datetime
 import logging
 from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
 from modules.session_utilis import get_csrf_token
-from modules.db_helper import init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log
+from modules.db_helper import (
+    init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log,
+    init_senators_tables, get_senator_id_by_alias  # <-- NEW import
+)
 
 # Get the main_logger object
 logger = logging.getLogger("main_logger")
@@ -159,6 +162,7 @@ def scrape_filings():
     # Initialize database, filings table, and the filing scrape log table.
     conn = init_db()
     init_filing_scrape_log(conn)
+    init_senators_tables(conn)
     
     # Insert filings and log the scrape event.
     for item in filings_data:
@@ -169,7 +173,6 @@ def scrape_filings():
         filing_info = item[2]
         link_html = item[3]
         filing_date = item[4]
-        full_name = first_name + ' ' + last_name
         
         ptr_id = extract_ptr_id(link_html)
         
@@ -185,6 +188,17 @@ def scrape_filings():
             filing_type = "Paper"
         else:
             filing_type = "Unknown"
+
+
+        full_name = f"{first_name} {last_name}"
+        alias_name = full_name
+        senator_id = get_senator_id_by_alias(conn, alias_name)
+
+        if senator_id is None:
+            # We haven't recognized this name yet. We'll log and continue.
+            logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
+        else:
+            logger.debug(f"Resolved alias '{alias_name}' to senator_id {senator_id}")
         
         filing_tuple = (ptr_id, first_name, last_name, full_name, filing_info, filing_url, filing_date, filing_type)
         insert_filing(conn, filing_tuple)
