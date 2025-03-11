@@ -8,6 +8,7 @@ import datetime
 import logging
 from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
 from modules.session_utilis import get_csrf_token
+from modules.notify_system import send_debug_notification_unknown_senator
 from modules.db_helper import (
     init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log,
     init_senators_tables, get_senator_id_by_alias  # <-- NEW import
@@ -26,6 +27,13 @@ else:
 def extract_ptr_id(link_html):
     match = re.search(r'([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})', link_html)
     return match.group(1) if match else None
+
+def clean_name_part(raw_name):
+    # Convert to uppercase and strip whitespace first
+    cleaned = raw_name.upper().strip()
+    # Now remove trailing commas, periods, etc. 
+    cleaned = cleaned.rstrip(",.")
+    return cleaned
 
 def fetch_page(session, headers, payload, start, expected_length, url):
     payload['start'] = str(start)
@@ -168,8 +176,8 @@ def scrape_filings():
     for item in filings_data:
         # Each item is expected to be in the form:
         # [first_name, last_name, filing_info, link_html, filing_date]
-        first_name = item[0].upper().strip() # Ensuring consistency of case & strip trailing spaces
-        last_name = item[1].upper().strip() # Ensuring consistency of case & strip trailing spaces
+        first_name = clean_name_part(item[0])
+        last_name  = clean_name_part(item[1])
         filing_info = item[2]
         link_html = item[3]
         filing_date = item[4]
@@ -189,7 +197,6 @@ def scrape_filings():
         else:
             filing_type = "Unknown"
 
-
         full_name = f"{first_name} {last_name}"
         alias_name = full_name
         senator_id = get_senator_id_by_alias(conn, alias_name)
@@ -197,6 +204,7 @@ def scrape_filings():
         if senator_id is None:
             # We haven't recognized this name yet. We'll log and continue.
             logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
+            send_debug_notification_unknown_senator(ptr_id, alias_name)
         else:
             logger.debug(f"Resolved alias '{alias_name}' to senator_id {senator_id}")
         

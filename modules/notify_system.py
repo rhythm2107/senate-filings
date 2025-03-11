@@ -3,16 +3,16 @@ import sqlite3
 import datetime
 import time
 import logging
-from config import (
+from modules.config import (
     DB_NAME,
     DISCORD_WEBHOOK_NOTIFICATION,
     DISCORD_WEBHOOK_DEBUG
 )
-# from modules.db_helper import (
-#     init_notification_log,
-#     get_unnotified_transactions,
-#     log_notification
-# )
+from modules.db_helper import (
+    init_notification_log,
+    get_unnotified_transactions,
+    log_notification
+)
 
 # Get the main_logger object
 logger = logging.getLogger("main_logger")
@@ -105,7 +105,7 @@ def send_debug_notification_unknown_senator(ptr_id, alias_name):
     )
     return response
 
-send_debug_notification_unknown_senator('6cf4a78e-92f0-4201-bf73-e9b02cd8f9ef', 'ASHLEY MOODY')
+send_debug_notification_unknown_senator('6cf4a78e-92f0-4201-bf73-e9b02cd8f9ef', '')
 
 # --- Main Process ---
 
