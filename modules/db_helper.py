@@ -20,7 +20,8 @@ def init_db(db_name=DB_NAME):
             filing_info TEXT,
             filing_url TEXT,
             filing_date TEXT,
-            filing_type TEXT
+            filing_type TEXT,
+            senator_id INTEGER
         )
     ''')
     conn.commit()

@@ -10,8 +10,14 @@ from modules.config import USE_DATE_FILTER, DATE_FILTER_DAYS, DB_NAME
 from modules.session_utilis import get_csrf_token
 from modules.notify_system import send_debug_notification_unknown_senator
 from modules.db_helper import (
-    init_db, init_filing_scrape_log, insert_filing, insert_filing_scrape_log,
-    init_senators_tables, get_senator_id_by_alias  # <-- NEW import
+    init_db,
+    init_filing_scrape_log,
+    insert_filing,
+    insert_filing_scrape_log,
+    init_senators_tables,
+    get_senator_id_by_alias,
+    insert_new_senator,
+    insert_alias_for_senator
 )
 
 # Get the main_logger object
@@ -199,12 +205,18 @@ def scrape_filings():
 
         full_name = f"{first_name} {last_name}"
         alias_name = full_name
-        senator_id = get_senator_id_by_alias(conn, alias_name)
 
+        senator_id = get_senator_id_by_alias(conn, alias_name)
         if senator_id is None:
-            # We haven't recognized this name yet. We'll log and continue.
-            logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
-            send_debug_notification_unknown_senator(ptr_id, alias_name)
+            # Auto-create a brand new senator row using the full_name as a placeholder
+            # Uncomment this part of code, if you want to fill up a fresh database and do manual review
+            senator_id = insert_new_senator(conn, canonical_full_name=alias_name)
+            insert_alias_for_senator(conn, senator_id, alias_name)
+            logger.info(f"Auto-created new senator with ID={senator_id} for alias='{alias_name}'")
+            
+            # # We haven't recognized this name yet. We'll log and continue.
+            # logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
+            # send_debug_notification_unknown_senator(ptr_id, alias_name)
         else:
             logger.debug(f"Resolved alias '{alias_name}' to senator_id {senator_id}")
         
