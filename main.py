@@ -8,12 +8,15 @@ from modules.logger import setup_logger
 logger = setup_logger("main_logger", "main.log")
 
 def main():
+    logger.info("[MAIN] Starting scrape_filings")
     scrape_filings()
     time.sleep(2)
 
+    logger.info("{MAIN] Starting scrape_transactions")
     scrape_transactions()
     time.sleep(2)
 
+    logger.info("{MAIN] Starting send_unnotified_discord_notifications")
     send_unnotified_discord_notifications()
     time.sleep(2)
 

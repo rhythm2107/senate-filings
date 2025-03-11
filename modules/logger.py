@@ -34,9 +34,9 @@ def setup_logger(name, log_filename="my_script.log"):
     # -----------------------
     # Console Handler
     # -----------------------
-    # console_handler = logging.StreamHandler()
-    # console_handler.setLevel(logging.DEBUG)  # We'll handle all levels, then filter
-    # console_handler.setFormatter(console_formatter)
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)  # We'll handle all levels, then filter
+    console_handler.setFormatter(console_formatter)
     # console_handler.addFilter(OnlyInfoFilter())  # Only pass INFO to console
 
     # -----------------------
@@ -54,7 +54,7 @@ def setup_logger(name, log_filename="my_script.log"):
     if logger.hasHandlers():
         logger.handlers.clear()
 
-    # logger.addHandler(console_handler)
+    logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
     # Prevent logs from propagating to the root logger
