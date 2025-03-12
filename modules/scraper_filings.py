@@ -211,13 +211,14 @@ def scrape_filings():
         if senator_id is None:
             # Auto-create a brand new senator row using the full_name as a placeholder
             # Uncomment this part of code, if you want to fill up a fresh database and do manual review
-            senator_id = insert_new_senator(conn, canonical_full_name=alias_name)
-            insert_alias_for_senator(conn, senator_id, alias_name)
-            logger.info(f"Auto-created new senator with ID={senator_id} for alias='{alias_name}'")
+            # senator_id = insert_new_senator(conn, canonical_full_name=alias_name)
+            # insert_alias_for_senator(conn, senator_id, alias_name)
+            # logger.info(f"Auto-created new senator with ID={senator_id} for alias='{alias_name}'")
             
-            # # We haven't recognized this name yet. We'll log and continue.
-            # logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
-            # send_debug_notification_unknown_senator(ptr_id, alias_name)
+            # We haven't recognized this name yet. We'll log and continue.
+            logger.info(f"Unknown senator name: {alias_name} for ptr_id={ptr_id}. Manual review needed.")
+            send_debug_notification_unknown_senator(ptr_id, alias_name)
+            continue # Skip insertion for this filing until it's resolved
         else:
             logger.debug(f"Resolved alias '{alias_name}' to senator_id {senator_id}")
         
