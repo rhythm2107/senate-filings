@@ -67,3 +67,5 @@ if __name__ == '__main__':
         print(f"Processing transaction {tuple}")
         insert_transaction(conn, tuple)
         total_inserted_tx += 1
+
+    print(f"Total transactions inserted: {total_inserted_tx}")
