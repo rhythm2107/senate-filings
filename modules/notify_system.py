@@ -131,7 +131,7 @@ def send_unnotified_discord_notifications():
             logger.info(f"Failed to send notification for ptr_id {transaction[0]}, transaction {transaction[1]}. Status: {response.status_code}")
         
         # Wait briefly between notifications.
-        time.sleep(1)
+        time.sleep(3)
     
     logger.info(f"Total new notifications sent: {total_new_notifications}")
     conn.close()
