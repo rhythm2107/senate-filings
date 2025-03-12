@@ -228,12 +228,22 @@ def get_unnotified_transactions(conn):
     """
     c = conn.cursor()
     query = '''
-        SELECT t.ptr_id, t.transaction_number, t.transaction_date, t.owner, t.ticker, 
-               t.asset_name, t.additional_info, t.asset_type, t.type, t.amount, t.comment,
+        SELECT t.ptr_id,
+               t.transaction_number,
+               t.transaction_date,
+               t.owner,
+               t.ticker, 
+               t.asset_name,
+               t.additional_info,
+               t.asset_type,
+               t.type,
+               t.amount,
+               t.comment,
                f.filing_date,
-               f.first_name || ' ' || f.last_name AS name
+               s.canonical_full_name AS name
         FROM transactions t
         JOIN filings f ON t.ptr_id = f.ptr_id
+        JOIN senators s ON f.senator_id = s.senator_id
         WHERE NOT EXISTS (
             SELECT 1 FROM notification_log n
             WHERE n.ptr_id = t.ptr_id AND n.transaction_number = t.transaction_number
