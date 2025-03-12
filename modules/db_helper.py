@@ -263,3 +263,32 @@ def log_notification(conn, ptr_id, transaction_number, notified_at, status_code,
         VALUES (?, ?, ?, ?, ?)
     ''', (ptr_id, transaction_number, notified_at, status_code, error_message))
     conn.commit()
+
+# Function for Seeding Notiifcations
+def seed_notification_log():
+    conn = init_db()
+    init_notification_log(conn)
+    c = conn.cursor()
+    
+    # Assume you have a table 'transactions' that already contains all scraped transactions.
+    # We'll select all current transactions.
+    c.execute("SELECT ptr_id, transaction_number FROM transactions")
+    transactions = c.fetchall()
+    
+    seeded = 0
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # For each transaction, insert a record into notification_log if one does not already exist.
+    for ptr_id, txn_number in transactions:
+        # Insert a record with a status code that you define (e.g., 999 for "seeded") and empty error message.
+        try:
+            c.execute('''
+                INSERT OR IGNORE INTO notification_log (ptr_id, transaction_number, notified_at, status_code, error_message)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (ptr_id, txn_number, now, 999, "Seeded"))
+            seeded += 1
+        except Exception as e:
+            print(f"Error seeding transaction {ptr_id}, {txn_number}: {e}")
+    
+    conn.commit()
+    conn.close()
+    print(f"Seeded notification_log with {seeded} transactions.")
