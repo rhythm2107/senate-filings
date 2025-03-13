@@ -5,7 +5,10 @@ import time
 import logging
 from modules.config import (
     DB_NAME,
-    DISCORD_WEBHOOK_NOTIFICATION,
+    DISCORD_WEBHOOK_NOTIFICATION_FREE,
+    DISCORD_WEBHOOK_NOTIFICATION_STOCK,
+    DISCORD_WEBHOOK_NOTIFICATION_LARGE,
+    DISCORD_WEBHOOK_NOTIFICATION_OTHER,
     DISCORD_WEBHOOK_DEBUG
 )
 from modules.db_helper import (
@@ -19,7 +22,7 @@ logger = logging.getLogger("main_logger")
 
 # --- Notification Function ---
 
-def send_single_discord_notification(transaction):
+def send_transaction_discord_notification(transaction, discord_channel):
     """
     Send a Discord notification using an embed.
     
@@ -73,7 +76,7 @@ def send_single_discord_notification(transaction):
             "roles": []
         }
     }
-    response = requests.post(DISCORD_WEBHOOK_NOTIFICATION, json=payload)
+    response = requests.post(discord_channel, json=payload)
     return response
 
 def send_debug_notification_unknown_senator(ptr_id, alias_name):
@@ -119,7 +122,7 @@ def send_unnotified_discord_notifications():
     total_new_notifications = 0
     for transaction in unnotified_transactions:
         # Send the notification to Discord.
-        response = send_single_discord_notification(transaction)
+        response = send_transaction_discord_notification(transaction)
         notified_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if response.status_code in (200, 204):  # Discord returns 204 on success sometimes
             log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code)
