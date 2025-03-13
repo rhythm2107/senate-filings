@@ -22,30 +22,19 @@ logger = logging.getLogger("main_logger")
 
 # --- Notification Function ---
 
-def send_transaction_discord_notification(transaction, discord_channel):
+def build_standard_embed(transaction):
     """
-    Send a Discord notification using an embed.
-    
-    The transaction tuple is expected to contain:
-      (ptr_id, transaction_number, transaction_date, owner, ticker,
-       asset_name, additional_info, asset_type, txn_type, amount, comment, filing_date)
+    Build the standard embed dictionary based on the transaction tuple.
+    The transaction tuple is expected to have this structure:
+    (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
+     additional_info, asset_type, txn_type, amount, comment, filing_date, name)
     """
     (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
      additional_info, asset_type, txn_type, amount, comment, filing_date, name) = transaction
-
-    # Set left border color
-    color = 3447003
-    if ticker == '--':
-        color = 3462032
-
-    # Build an embed payload
     embed = {
         "title": f"Senator {name}",
-        "description": (
-            f"A new transaction from Senator {name}!\n"
-            f"For detailed analytics, please <#1348693301607530526> to our <@&1348695007778967614> role.\n"
-        ),
-        "color": color,
+        "description": f"A new transaction from Senator {name}!",
+        "color": 3447003,
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "footer": {
             "icon_url": "https://i.imgur.com/J01MSXf.jpeg",
@@ -65,18 +54,64 @@ def send_transaction_discord_notification(transaction, discord_channel):
             {"name": "Transaction Date", "value": txn_date, "inline": True}
         ]
     }
+    return embed
 
+def send_transaction_notifications(transaction):
+    responses = []
+    
+    # Unpack transaction (same as before)
+    ptr_id, txn_num, txn_date, owner, ticker, asset_name, additional_info, asset_type, txn_type, amount, comment, filing_date, name = transaction
+    
+    # Build the standard embed
+    standard_embed = build_standard_embed(transaction)
+    
+    # 1. Large Channel (if applicable)
+    large_amounts = [
+        "Over $50,000,000",
+        "$25,000,001-$50,000,000",
+        "$5,000,001-$25,000,000",
+        "$1,000,001-$5,000,000",
+        "$500,001-$1,000,000"
+    ]
+    if amount.strip() in large_amounts:
+        large_embed = {
+            "title": "💰 **LARGE TRANSACTION WAS DETECTED!** 💰",
+            "description": "",
+            "color": 15158332
+        }
+        embeds = [large_embed, standard_embed]
+        responses.append(send_transaction_discord_notification(transaction, DISCORD_WEBHOOK_NOTIFICATION_LARGE, embeds=embeds))
+        time.sleep(2)
+    
+    # 2. VIP Channels
+    if asset_type.strip().lower() == "stock":
+        responses.append(send_transaction_discord_notification(transaction, DISCORD_WEBHOOK_NOTIFICATION_STOCK))
+    else:
+        responses.append(send_transaction_discord_notification(transaction, DISCORD_WEBHOOK_NOTIFICATION_OTHER))
+    time.sleep(2)
+    
+    # 3. Free Channel (all transactions)
+    responses.append(send_transaction_discord_notification(transaction, DISCORD_WEBHOOK_NOTIFICATION_FREE))
+    time.sleep(2)
+    
+    return responses
+
+
+def send_transaction_discord_notification(transaction, webhook_url, embeds=None):
+    """
+    Sends a Discord notification via a webhook.
+    If `embeds` is not provided, it sends a standard embed built from the transaction.
+    """
+    if embeds is None:
+        # Use the standard embed
+        embeds = [build_standard_embed(transaction)]
     payload = {
         "content": None,
-        "embeds": [embed],
+        "embeds": embeds,
         "attachments": [],
-        # This ensures that even though the embed text displays the role mention,
-        # no ping/notification is actually sent to that role.
-        "allowed_mentions": {
-            "roles": []
-        }
+        "allowed_mentions": {"roles": []}
     }
-    response = requests.post(discord_channel, json=payload)
+    response = requests.post(webhook_url, json=payload)
     return response
 
 def send_debug_notification_unknown_senator(ptr_id, alias_name):
@@ -115,25 +150,25 @@ def send_unnotified_discord_notifications():
     conn = sqlite3.connect(DB_NAME)
     init_notification_log(conn)
     
-    # Retrieve transactions that haven't been notified yet.
     unnotified_transactions = get_unnotified_transactions(conn)
     logger.info(f"Found {len(unnotified_transactions)} unnotified transactions.")
     
     total_new_notifications = 0
     for transaction in unnotified_transactions:
-        # Send the notification to Discord.
-        response = send_transaction_discord_notification(transaction)
+        responses = send_transaction_notifications(transaction)
         notified_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        if response.status_code in (200, 204):  # Discord returns 204 on success sometimes
-            log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code)
+        
+        # Check if all responses are successful
+        if all(r.status_code in (200, 204) for r in responses):
+            log_notification(conn, transaction[0], transaction[1], notified_at, 200)  # using 200 as a success code
             logger.info(f"Notification sent for ptr_id {transaction[0]}, transaction {transaction[1]}.")
             total_new_notifications += 1
         else:
-            error_msg = response.text
-            log_notification(conn, transaction[0], transaction[1], notified_at, response.status_code, error_msg)
-            logger.info(f"Failed to send notification for ptr_id {transaction[0]}, transaction {transaction[1]}. Status: {response.status_code}")
+            # If any response failed, log the error. You might combine responses or log the first failure.
+            error_msg = "; ".join(r.text for r in responses if r.status_code not in (200, 204))
+            log_notification(conn, transaction[0], transaction[1], notified_at, 400, error_msg)
+            logger.info(f"Failed to send notification for ptr_id {transaction[0]}, transaction {transaction[1]}.")
         
-        # Wait briefly between notifications.
         time.sleep(3)
     
     logger.info(f"Total new notifications sent: {total_new_notifications}")
