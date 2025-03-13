@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 from modules.config import PROXY
 from modules.db_helper import init_db, init_transactions_table, get_filing_ptr_ids, insert_transaction
 from modules.session_utilis import get_csrf_token, accept_disclaimer
+from modules.utilis import normalize_amount_field_format
+
 
 # Get the main_logger object
 logger = logging.getLogger("main_logger")
@@ -63,7 +65,8 @@ def scrape_transactions_for_ptr(session, headers, ptr_id):
         additional_info    = additional_div.get_text(separator=" ", strip=True) if additional_div else ""
         asset_type         = cols[5].get_text(strip=True)
         txn_type           = cols[6].get_text(strip=True)
-        amount             = cols[7].get_text(strip=True)
+        raw_amount         = cols[7].get_text(strip=True)
+        amount             = normalize_amount_field_format(raw_amount)
         comment            = cols[8].get_text(strip=True)
         
         try:

@@ -33,7 +33,7 @@ def format_amount(part):
         result = "Over " + result
     return result
 
-def normalize_amount_range_format(amount_str):
+def normalize_amount_field_format(amount_str):
     """
     Normalizes an amount range string.
     Example outputs:
