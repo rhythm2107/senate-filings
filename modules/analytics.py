@@ -76,41 +76,86 @@ def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
             retries += 1
     return None
 
+def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date):
+    """
+    Fetch and return a dictionary mapping each unique ticker to its historical
+    data (as a DataFrame) between overall_start_date and overall_end_date.
+    """
+    c = conn.cursor()
+    # Adjust the query as needed to match your table schema.
+    c.execute("""
+        SELECT DISTINCT t.ticker
+        FROM transactions t
+        WHERE t.ticker <> '--'
+    """)
+    tickers = [row[0].lstrip('$') for row in c.fetchall()]
+    
+    ticker_histories = {}
+    for ticker in tickers:
+        print(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
+        stock = yf.Ticker(ticker)
+        try:
+            hist = stock.history(start=overall_start_date.strftime("%Y-%m-%d"),
+                                   end=overall_end_date.strftime("%Y-%m-%d"),
+                                   interval="1d")
+            ticker_histories[ticker] = hist
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+        time.sleep(1)  # Throttle to avoid hitting the rate limit
+    return ticker_histories
+
+def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
+    """
+    Return the closing price for a ticker from the pre-fetched history.
+    If the price for target_date is missing (e.g. non-trading day),
+    try forward up to max_offset days.
+    """
+    ticker = ticker.lstrip('$')
+    if ticker not in ticker_histories:
+        return None
+    hist = ticker_histories[ticker]
+    available_dates = [d.strftime("%Y-%m-%d") for d in hist.index]
+    for offset in range(max_offset + 1):
+        check_date = (target_date + timedelta(days=offset)).strftime("%Y-%m-%d")
+        if check_date in available_dates:
+            return hist.loc[check_date]["Close"]
+    return None
+
 
 
 # -------------------------------------------------------------------
 # PERFORMANCE CALCULATION FOR A TRANSACTION
 # -------------------------------------------------------------------
-def compute_transaction_performance(transaction, price_fetcher=get_price_at_date):
-    # Unpack and parse the transaction date (format: MM/DD/YYYY)
+def compute_transaction_performance(transaction, ticker_histories):
+    """
+    Compute performance metrics using pre-fetched ticker histories.
+    """
+    # Unpack the transaction. Assuming txn_date_str is in "MM/DD/YYYY" format.
     _, _, txn_date_str, _, ticker, _, _, _, _, _, _, _, _ = transaction
     purchase_date = datetime.strptime(txn_date_str, "%m/%d/%Y")
     today = datetime.utcnow()
 
-    # Fetch the purchase price and current price only once
-    purchase_price = price_fetcher(ticker, purchase_date)
-    current_price = price_fetcher(ticker, today)
-
-    # For 7-day target: if the date is in the future, use current_price
+    # Get purchase price
+    purchase_price = get_price_from_history(ticker, purchase_date, ticker_histories)
+    
+    # Get current price (fetch only once)
+    current_price = get_price_from_history(ticker, today, ticker_histories)
+    
+    # For 7-day price: if target date is in the future, use current price.
     target_7d = purchase_date + timedelta(days=7)
-    if target_7d > today:
-        price_7d = current_price
-    else:
-        price_7d = price_fetcher(ticker, target_7d)
-
-    # For 30-day target: if the date is in the future, use current_price
+    price_7d = (current_price if target_7d > today 
+                else get_price_from_history(ticker, target_7d, ticker_histories))
+    
+    # For 30-day price: same logic as 7-day.
     target_30d = purchase_date + timedelta(days=30)
-    if target_30d > today:
-        price_30d = current_price
-    else:
-        price_30d = price_fetcher(ticker, target_30d)
-
+    price_30d = (current_price if target_30d > today 
+                 else get_price_from_history(ticker, target_30d, ticker_histories))
+    
     def calc_perf(current):
         if purchase_price and purchase_price != 0 and current is not None:
             return ((current - purchase_price) / purchase_price) * 100
-        else:
-            return None
-
+        return None
+    
     return {
         "purchase_price": purchase_price,
         "price_7d": price_7d,
@@ -120,6 +165,7 @@ def compute_transaction_performance(transaction, price_fetcher=get_price_at_date
         "perf_30d": calc_perf(price_30d),
         "perf_current": calc_perf(current_price)
     }
+
 
 
 
@@ -193,7 +239,7 @@ def get_basic_analytics(conn):
 
     return basic
 
-def get_advanced_metrics(conn):
+def get_advanced_metrics(conn, ticker_histories):
     """
     Calculate advanced metrics for open transactions.
     Returns a dictionary with senator_id as key and advanced metrics as value.
@@ -216,17 +262,14 @@ def get_advanced_metrics(conn):
                 AND f2.senator_id = f.senator_id
           )
     """)
-    start_time = time.time()
     rows = c.fetchall()
-    end_time = time.time()
-    logger.info(f"Open transactions fetched in {end_time - start_time:.2f} seconds.")
     
     advanced = {}
     for row in rows:
         senator_id, ptr_id, txn_num, txn_date, ticker, amount_str = row
         # Build a transaction tuple for performance calculation.
         transaction = (ptr_id, txn_num, txn_date, None, ticker, None, None, None, "purchase", amount_str, None, None, None)
-        perf = compute_transaction_performance(transaction)
+        perf = compute_transaction_performance(transaction, ticker_histories)
         if perf.get("purchase_price") is None:
             continue
 
@@ -254,6 +297,7 @@ def get_advanced_metrics(conn):
                 if perf[key] > 0:
                     adv[f"positive_{horizon}"] += 1
     return advanced
+
 
 def upsert_analytics(conn, basic, advanced):
     """
@@ -354,15 +398,21 @@ def upsert_analytics(conn, basic, advanced):
 def update_analytics(conn):
     start_time = time.time()
     basic = get_basic_analytics(conn)
-    end_time = time.time()
-    logger.info(f"Basic analytics fetched in {end_time - start_time:.2f} seconds.")
+    logger.info(f"Basic analytics fetched in {time.time() - start_time:.2f} seconds.")
 
-    advanced = get_advanced_metrics(conn)
-    end_time = time.time()
-    logger.info(f"Advanced analytics fetched in {end_time - start_time:.2f} seconds.")
+    # Define overall date range.
+    # You can compute overall_start_date as the earliest transaction date from your DB,
+    # but here we'll hardcode it for illustration.
+    overall_start_date = datetime(2010, 1, 1)
+    overall_end_date = datetime.utcnow() + timedelta(days=30)
+    
+    # Fetch all ticker histories once.
+    ticker_histories = fetch_all_ticker_histories(conn, overall_start_date, overall_end_date)
+    
+    # Pass the ticker_histories into advanced metrics.
+    advanced = get_advanced_metrics(conn, ticker_histories)
+    logger.info(f"Advanced analytics fetched in {time.time() - start_time:.2f} seconds.")
 
     upsert_analytics(conn, basic, advanced)
-    end_time = time.time()
-    logger.info(f"Analytics updated in {end_time - start_time:.2f} seconds.")
-
+    logger.info(f"Analytics updated in {time.time() - start_time:.2f} seconds.")
     logger.info("Analytics table updated successfully.")
