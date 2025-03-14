@@ -50,3 +50,44 @@ def normalize_amount_field_format(amount_str):
     else:
         # Unexpected format; return as-is
         return amount_str
+    
+import re
+
+def average_amount(amount_str):
+    """
+    Given an amount range string in one of the expected formats, return the average value as an integer.
+    Examples:
+      "$1,000,001-$5,000,000" returns (1000001 + 5000000) // 2
+      "$15,001-$50,000" returns (15001 + 50000) // 2
+      "Over $50,000,000" returns the numeric value after "Over" (or you could decide a different logic).
+    """
+    s = amount_str.strip()
+    # Handle "Over" case: we'll just remove "Over" and return the numeric part
+    if s.lower().startswith("over"):
+        # Remove the "Over" text, then remove $ and commas
+        s = s[4:].strip()
+        if s.startswith("$"):
+            s = s[1:].strip()
+        s = s.replace(",", "")
+        try:
+            return int(s)
+        except ValueError:
+            return None
+    # Assume it's a range separated by a dash
+    if "-" in s:
+        parts = s.split("-")
+        if len(parts) == 2:
+            low_str = parts[0].replace("$", "").replace(",", "").strip()
+            high_str = parts[1].replace("$", "").replace(",", "").strip()
+            try:
+                low = int(low_str)
+                high = int(high_str)
+                return (low + high) // 2
+            except ValueError:
+                return None
+    # Otherwise, attempt to parse a single numeric value
+    s = s.replace("$", "").replace(",", "").strip()
+    try:
+        return int(s)
+    except ValueError:
+        return None
