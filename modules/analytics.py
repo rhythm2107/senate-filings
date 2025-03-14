@@ -1,170 +1,114 @@
+# advanced_analytics.py
+
+import sqlite3
 import yfinance as yf
 from datetime import datetime, timedelta
+from modules.utilis import average_amount  # Your function to convert amount ranges to a number
+import logging
+import time
 
-# BASIC ANALYTICS FUNCTIONS
-def update_analytics(conn):
+logger = logging.getLogger("main_logger")
+
+# -------------------------------------------------------------------
+# TABLE INITIALIZATION
+# -------------------------------------------------------------------
+def init_analytics_table(conn):
     """
-    Calculate analytics for each senator based on transactions and update (or insert)
-    the aggregated values into the analytics table.
-    Since the transactions table does not contain senator_id directly, we join with filings.
+    Create an analytics table to store aggregated metrics per senator,
+    including both basic and advanced analytics.
     """
     c = conn.cursor()
-
-    # Join transactions with filings to get senator_id from filings.
-    query = '''
-        SELECT f.senator_id, t.type, t.asset_type, t.owner, t.amount
-        FROM transactions t
-        JOIN filings f ON t.ptr_id = f.ptr_id
-        WHERE f.senator_id IS NOT NULL
-    '''
-    c.execute(query)
-    rows = c.fetchall()
-
-    # Aggregate metrics per senator
-    analytics = {}  # key: senator_id, value: dict of aggregated metrics
-    for row in rows:
-        senator_id, txn_type, asset_type, owner, amount_str = row
-        if senator_id not in analytics:
-            analytics[senator_id] = {
-                "total_transaction_count": 0,
-                "total_purchase_count": 0,
-                "total_exchange_count": 0,
-                "total_sale_count": 0,
-                "total_stock_transactions": 0,
-                "total_other_transactions": 0,
-                "count_ownership_child": 0,
-                "count_ownership_dependent_child": 0,
-                "count_ownership_joint": 0,
-                "count_ownership_self": 0,
-                "count_ownership_spouse": 0,
-                "total_transaction_value": 0
-            }
-        agg = analytics[senator_id]
-        agg["total_transaction_count"] += 1
-
-        # Transaction type counts (assume txn_type contains keywords)
-        txn_type_lower = txn_type.lower().strip()
-        if "purchase" in txn_type_lower:
-            agg["total_purchase_count"] += 1
-        elif "exchange" in txn_type_lower:
-            agg["total_exchange_count"] += 1
-        elif "sale" in txn_type_lower:
-            agg["total_sale_count"] += 1
-
-        # Asset type: treat "stock" (case-insensitive) as Stock; everything else as Others.
-        if asset_type.lower().strip() == "stock":
-            agg["total_stock_transactions"] += 1
-        else:
-            agg["total_other_transactions"] += 1
-
-        # Ownership counts (assuming owner field exactly matches one of these strings).
-        owner_lower = owner.lower().strip()
-        if owner_lower == "child":
-            agg["count_ownership_child"] += 1
-        elif owner_lower in ["dependant child", "dependent child"]:
-            agg["count_ownership_dependent_child"] += 1
-        elif owner_lower == "joint":
-            agg["count_ownership_joint"] += 1
-        elif owner_lower == "self":
-            agg["count_ownership_self"] += 1
-        elif owner_lower == "spouse":
-            agg["count_ownership_spouse"] += 1
-
-        # Use the utility function to get the average numeric value from the amount range.
-        from modules.utilis import average_amount
-        numeric_value = average_amount(amount_str)
-        if numeric_value is not None:
-            agg["total_transaction_value"] += numeric_value
-
-    # Upsert aggregated data into the analytics table.
-    for senator_id, agg in analytics.items():
-        total_count = agg["total_transaction_count"]
-        avg_amount = (agg["total_transaction_value"] / total_count) if total_count > 0 else 0
-        c.execute('''
-            INSERT INTO analytics (
-                senator_id,
-                total_transaction_count,
-                total_purchase_count,
-                total_exchange_count,
-                total_sale_count,
-                total_stock_transactions,
-                total_other_transactions,
-                count_ownership_child,
-                count_ownership_dependent_child,
-                count_ownership_joint,
-                count_ownership_self,
-                count_ownership_spouse,
-                total_transaction_value,
-                average_transaction_amount
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(senator_id) DO UPDATE SET
-                total_transaction_count = excluded.total_transaction_count,
-                total_purchase_count = excluded.total_purchase_count,
-                total_exchange_count = excluded.total_exchange_count,
-                total_sale_count = excluded.total_sale_count,
-                total_stock_transactions = excluded.total_stock_transactions,
-                total_other_transactions = excluded.total_other_transactions,
-                count_ownership_child = excluded.count_ownership_child,
-                count_ownership_dependent_child = excluded.count_ownership_dependent_child,
-                count_ownership_joint = excluded.count_ownership_joint,
-                count_ownership_self = excluded.count_ownership_self,
-                count_ownership_spouse = excluded.count_ownership_spouse,
-                total_transaction_value = excluded.total_transaction_value,
-                average_transaction_amount = excluded.average_transaction_amount
-        ''', (
-            senator_id,
-            total_count,
-            agg["total_purchase_count"],
-            agg["total_exchange_count"],
-            agg["total_sale_count"],
-            agg["total_stock_transactions"],
-            agg["total_other_transactions"],
-            agg["count_ownership_child"],
-            agg["count_ownership_dependent_child"],
-            agg["count_ownership_joint"],
-            agg["count_ownership_self"],
-            agg["count_ownership_spouse"],
-            agg["total_transaction_value"],
-            avg_amount
-        ))
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS analytics (
+            senator_id INTEGER PRIMARY KEY,
+            total_transaction_count INTEGER,
+            total_purchase_count INTEGER,
+            total_exchange_count INTEGER,
+            total_sale_count INTEGER,
+            total_stock_transactions INTEGER,
+            total_other_transactions INTEGER,
+            count_ownership_child INTEGER,
+            count_ownership_dependent_child INTEGER,
+            count_ownership_joint INTEGER,
+            count_ownership_self INTEGER,
+            count_ownership_spouse INTEGER,
+            total_transaction_value INTEGER,
+            average_transaction_amount REAL,
+            avg_perf_7d REAL,
+            avg_perf_30d REAL,
+            avg_perf_current REAL,
+            accuracy_7d REAL,
+            accuracy_30d REAL,
+            accuracy_current REAL,
+            total_net_profit REAL
+        )
+    ''')
     conn.commit()
+    logger.debug("Analytics table created or verified.")
 
 
-# ADVANCED ANALYTICS FUNCTIONS
-def get_price_at_date(ticker, target_date):
+# -------------------------------------------------------------------
+# HISTORICAL PRICE FETCHING
+# -------------------------------------------------------------------
+def get_price_at_date(ticker, target_date, max_lookback=5):
     """
-    Given a ticker and a target_date (datetime), return the closing price on that date.
-    If no data is available (e.g., a weekend), try the next available date.
+    Given a ticker and a target_date (datetime), return the closing price on the nearest trading day.
+    
+    If no data is available on the target_date (e.g., it's a weekend or holiday), 
+    the function will look back up to max_lookback days to find available data.
+    It also handles rate limiting by waiting 5 seconds when a rate limit error is encountered.
+    
+    Parameters:
+      ticker (str): The stock ticker symbol.
+      target_date (datetime): The desired date.
+      max_lookback (int): The maximum number of days to look back.
+      
+    Returns:
+      float: The closing price, or None if no data is found.
     """
-    # Format target_date as string (YYYY-MM-DD) for the API call.
-    start_date = target_date.strftime("%Y-%m-%d")
-    # End date is target_date + 1 day
-    end_date = (target_date + timedelta(days=1)).strftime("%Y-%m-%d")
+    # Remove any leading '$' from the ticker
+    ticker = ticker.lstrip('$')
+    
     stock = yf.Ticker(ticker)
-    hist = stock.history(start=start_date, end=end_date)
-    if not hist.empty:
-        # .iloc[0] accesses the first row in the Series of closing prices.
-        return hist["Close"].iloc[0]
-    else:
-        return None
+    print(stock)
+    lookback = 0
+    while lookback < max_lookback:
+        try_date = target_date - timedelta(days=lookback)
+        start_date = try_date.strftime("%Y-%m-%d")
+        end_date = (try_date + timedelta(days=1)).strftime("%Y-%m-%d")
+        try:
+            hist = stock.history(start=start_date, end=end_date, interval="1d")
+        except yf.exceptions.YFRateLimitError:
+            logger.warning(f"Rate limit hit for ticker {ticker} on date {start_date}. Sleeping for 5 seconds before retrying.")
+            time.sleep(5)
+            # 'continue' here sends execution back to the start of the loop
+            # Since 'lookback' is not incremented, it will retry the same date.
+            continue
+        time.sleep(1)  # Sleep after a successful API call to reduce the request rate.
+        if not hist.empty:
+            return hist["Close"].iloc[0]
+        lookback += 1
+    return None
 
 
+
+# -------------------------------------------------------------------
+# PERFORMANCE CALCULATION FOR A TRANSACTION
+# -------------------------------------------------------------------
 def compute_transaction_performance(transaction, price_fetcher=get_price_at_date):
     """
-    Given a transaction tuple (assumed to be:
+    Given a transaction tuple (expected structure:
       (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
        additional_info, asset_type, txn_type, amount, comment, filing_date, name))
-    where txn_date is the purchase date (as "MM/DD/YYYY"),
-    fetch the historical prices at 7 days, 30 days, and now.
+    where txn_date is in "MM/DD/YYYY", fetch historical prices at 7d, 30d, and current,
+    then compute performance percentages.
     
     Returns a dictionary with:
-      - purchase_price
-      - price_7d, price_30d, current_price
-      - perf_7d, perf_30d, perf_current (in percentages)
+      - purchase_price, price_7d, price_30d, current_price
+      - perf_7d, perf_30d, perf_current (percent changes)
     """
-    # Unpack needed fields
+    # Unpack and parse date using MM/DD/YYYY
     _, _, txn_date_str, _, ticker, _, _, _, _, _, _, _, _ = transaction
-    # Parse using MM/DD/YYYY format
     purchase_date = datetime.strptime(txn_date_str, "%m/%d/%Y")
     
     purchase_price = price_fetcher(ticker, purchase_date)
@@ -189,89 +133,233 @@ def compute_transaction_performance(transaction, price_fetcher=get_price_at_date
     }
 
 
-def match_transactions(conn):
+# -------------------------------------------------------------------
+# ADVANCED AGGREGATION: BASIC + PERFORMANCE & ACCURACY
+# -------------------------------------------------------------------
+
+def get_basic_analytics(conn):
     """
-    For each purchase transaction, find the earliest matching sale transaction (for the same ticker)
-    that occurred after the purchase, and belonging to the same senator.
-    Compute profit in dollars and percent.
-    Returns a list of dictionaries with matched data.
+    Calculate basic analytics for each senator based on transactions.
+    Returns a dictionary where keys are senator_ids and values are aggregated metrics.
     """
     c = conn.cursor()
-    # Fetch purchase transactions (from transactions joined with filings to get senator_id)
+    query = '''
+        SELECT f.senator_id, t.type, t.asset_type, t.owner, t.amount
+        FROM transactions t
+        JOIN filings f ON t.ptr_id = f.ptr_id
+        WHERE f.senator_id IS NOT NULL
+          AND LOWER(t.asset_type) = 'stock'
+          AND t.ticker <> '--'
+    '''
+    c.execute(query)
+    rows = c.fetchall()
+
+    basic = {}  # key: senator_id, value: dict of basic aggregated metrics
+    for row in rows:
+        senator_id, txn_type, asset_type, owner, amount_str = row
+        if senator_id not in basic:
+            basic[senator_id] = {
+                "total_transaction_count": 0,
+                "total_purchase_count": 0,
+                "total_exchange_count": 0,
+                "total_sale_count": 0,
+                "total_stock_transactions": 0,
+                "total_other_transactions": 0,
+                "count_ownership_child": 0,
+                "count_ownership_dependent_child": 0,
+                "count_ownership_joint": 0,
+                "count_ownership_self": 0,
+                "count_ownership_spouse": 0,
+                "total_transaction_value": 0
+            }
+        agg = basic[senator_id]
+        agg["total_transaction_count"] += 1
+
+        txn_type_lower = txn_type.lower().strip()
+        if "purchase" in txn_type_lower:
+            agg["total_purchase_count"] += 1
+        elif "exchange" in txn_type_lower:
+            agg["total_exchange_count"] += 1
+        elif "sale" in txn_type_lower:
+            agg["total_sale_count"] += 1
+
+        agg["total_stock_transactions"] += 1
+
+        owner_lower = owner.lower().strip()
+        if owner_lower == "child":
+            agg["count_ownership_child"] += 1
+        elif owner_lower in ["dependant child", "dependent child"]:
+            agg["count_ownership_dependent_child"] += 1
+        elif owner_lower == "joint":
+            agg["count_ownership_joint"] += 1
+        elif owner_lower == "self":
+            agg["count_ownership_self"] += 1
+        elif owner_lower == "spouse":
+            agg["count_ownership_spouse"] += 1
+
+        numeric_value = average_amount(amount_str)
+        if numeric_value is not None:
+            agg["total_transaction_value"] += numeric_value
+
+    return basic
+
+def get_advanced_metrics(conn):
+    """
+    Calculate advanced metrics for open transactions.
+    Returns a dictionary with senator_id as key and advanced metrics as value.
+    """
+    c = conn.cursor()
     c.execute("""
         SELECT f.senator_id, t.ptr_id, t.transaction_number, t.transaction_date, t.ticker, t.amount
         FROM transactions t
         JOIN filings f ON t.ptr_id = f.ptr_id
         WHERE LOWER(t.type) LIKE '%purchase%'
+          AND t.asset_type IS NOT NULL
+          AND LOWER(t.asset_type) = 'stock'
+          AND t.ticker <> '--'
+          AND NOT EXISTS (
+              SELECT 1 FROM transactions ts
+              JOIN filings f2 ON ts.ptr_id = f2.ptr_id
+              WHERE LOWER(ts.type) LIKE '%sale%'
+                AND ts.ticker = t.ticker
+                AND ts.transaction_date > t.transaction_date
+                AND f2.senator_id = f.senator_id
+          )
     """)
-    purchases = c.fetchall()
-    matches = []
+    rows = c.fetchall()
     
-    from modules.utilis import average_amount  # assuming you have this function to compute an average value from a range
-    for purchase in purchases:
-        senator_id, p_ptr, p_txn, p_date, p_ticker, p_amount = purchase
-        # Find earliest sale for the same ticker, where sale date > purchase date and sale belongs to the same senator.
-        c.execute("""
-            SELECT t.ptr_id, t.transaction_number, t.transaction_date, t.amount
-            FROM transactions t
-            JOIN filings f2 ON t.ptr_id = f2.ptr_id
-            WHERE LOWER(t.type) LIKE '%sale%'
-              AND t.ticker = ?
-              AND t.transaction_date > ?
-              AND f2.senator_id = ?
-            ORDER BY t.transaction_date ASC
-            LIMIT 1
-        """, (p_ticker, p_date, senator_id))
-        sale = c.fetchone()
-        if sale:
-            s_ptr, s_txn, s_date, s_amount = sale
-            buy_val = average_amount(p_amount)
-            sell_val = average_amount(s_amount)
-            if buy_val is not None and sell_val is not None:
-                profit_amount = sell_val - buy_val
-                profit_percentage = ((profit_amount) / buy_val * 100) if buy_val != 0 else None
-            else:
-                profit_amount = None
-                profit_percentage = None
-            matches.append({
-                "senator_id": senator_id,
-                "buy_ptr": p_ptr,
-                "buy_txn": p_txn,
-                "sell_ptr": s_ptr,
-                "sell_txn": s_txn,
-                "buy_date": p_date,
-                "sell_date": s_date,
-                "profit_percentage": profit_percentage,
-                "profit_amount": profit_amount
-            })
-    return matches
+    advanced = {}
+    for row in rows:
+        senator_id, ptr_id, txn_num, txn_date, ticker, amount_str = row
+        # Build a transaction tuple for performance calculation.
+        transaction = (ptr_id, txn_num, txn_date, None, ticker, None, None, None, "purchase", amount_str, None, None, None)
+        perf = compute_transaction_performance(transaction)
+        if perf.get("purchase_price") is None:
+            continue
 
+        if senator_id not in advanced:
+            advanced[senator_id] = {
+                "total_open": 0,
+                "sum_perf_7d": 0,
+                "sum_perf_30d": 0,
+                "sum_perf_current": 0,
+                "count_perf_7d": 0,
+                "count_perf_30d": 0,
+                "count_perf_current": 0,
+                "positive_7d": 0,
+                "positive_30d": 0,
+                "positive_current": 0,
+                "total_net_profit": 0  # Placeholder for future calculation.
+            }
+        adv = advanced[senator_id]
+        adv["total_open"] += 1
+        for horizon in ["7d", "30d", "current"]:
+            key = f"perf_{horizon}"
+            if perf.get(key) is not None:
+                adv[f"sum_{key}"] += perf[key]
+                adv[f"count_{key}"] += 1
+                if perf[key] > 0:
+                    adv[f"positive_{horizon}"] += 1
+    return advanced
 
-def compute_accuracy_metrics(performance_results):
+def upsert_analytics(conn, basic, advanced):
     """
-    Given a list of performance result dictionaries along with senator_id,
-    compute the accuracy per senator for each time horizon.
-    Expected input: a list of tuples (senator_id, performance_dict)
-    where performance_dict is the output of compute_transaction_performance.
-    
-    Returns a dict keyed by senator_id with accuracy percentages.
+    Combine basic and advanced metrics and upsert them into the analytics table.
     """
-    accuracy = {}
-    for senator_id, perf in performance_results:
-        if senator_id not in accuracy:
-            accuracy[senator_id] = {"total": 0, "positive_7d": 0, "positive_30d": 0, "positive_current": 0}
-        accuracy[senator_id]["total"] += 1
-        if perf.get("perf_7d") is not None and perf.get("perf_7d") > 0:
-            accuracy[senator_id]["positive_7d"] += 1
-        if perf.get("perf_30d") is not None and perf.get("perf_30d") > 0:
-            accuracy[senator_id]["positive_30d"] += 1
-        if perf.get("perf_current") is not None and perf.get("perf_current") > 0:
-            accuracy[senator_id]["positive_current"] += 1
-    
-    # Compute percentages
-    for senator_id, stats in accuracy.items():
-        total = stats["total"]
-        stats["accuracy_7d"] = (stats["positive_7d"] / total * 100) if total > 0 else 0
-        stats["accuracy_30d"] = (stats["positive_30d"] / total * 100) if total > 0 else 0
-        stats["accuracy_current"] = (stats["positive_current"] / total * 100) if total > 0 else 0
-    return accuracy
+    c = conn.cursor()
+    for senator_id, basic_agg in basic.items():
+        total_count = basic_agg["total_transaction_count"]
+        avg_amount = (basic_agg["total_transaction_value"] / total_count) if total_count > 0 else 0
+
+        # Set default advanced metrics.
+        avg_perf_7d = avg_perf_30d = avg_perf_current = 0
+        accuracy_7d = accuracy_30d = accuracy_current = 0
+
+        if senator_id in advanced and advanced[senator_id]["total_open"] > 0:
+            adv = advanced[senator_id]
+            if adv["count_perf_7d"] > 0:
+                avg_perf_7d = adv["sum_perf_7d"] / adv["count_perf_7d"]
+                accuracy_7d = (adv["positive_7d"] / adv["total_open"]) * 100
+            if adv["count_perf_30d"] > 0:
+                avg_perf_30d = adv["sum_perf_30d"] / adv["count_perf_30d"]
+                accuracy_30d = (adv["positive_30d"] / adv["total_open"]) * 100
+            if adv["count_perf_current"] > 0:
+                avg_perf_current = adv["sum_perf_current"] / adv["count_perf_current"]
+                accuracy_current = (adv["positive_current"] / adv["total_open"]) * 100
+
+        c.execute('''
+            INSERT INTO analytics (
+                senator_id,
+                total_transaction_count,
+                total_purchase_count,
+                total_exchange_count,
+                total_sale_count,
+                total_stock_transactions,
+                total_other_transactions,
+                count_ownership_child,
+                count_ownership_dependent_child,
+                count_ownership_joint,
+                count_ownership_self,
+                count_ownership_spouse,
+                total_transaction_value,
+                average_transaction_amount,
+                avg_perf_7d,
+                avg_perf_30d,
+                avg_perf_current,
+                accuracy_7d,
+                accuracy_30d,
+                accuracy_current,
+                total_net_profit
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(senator_id) DO UPDATE SET
+                total_transaction_count = excluded.total_transaction_count,
+                total_purchase_count = excluded.total_purchase_count,
+                total_exchange_count = excluded.total_exchange_count,
+                total_sale_count = excluded.total_sale_count,
+                total_stock_transactions = excluded.total_stock_transactions,
+                total_other_transactions = excluded.total_other_transactions,
+                count_ownership_child = excluded.count_ownership_child,
+                count_ownership_dependent_child = excluded.count_ownership_dependent_child,
+                count_ownership_joint = excluded.count_ownership_joint,
+                count_ownership_self = excluded.count_ownership_self,
+                count_ownership_spouse = excluded.count_ownership_spouse,
+                total_transaction_value = excluded.total_transaction_value,
+                average_transaction_amount = excluded.average_transaction_amount,
+                avg_perf_7d = excluded.avg_perf_7d,
+                avg_perf_30d = excluded.avg_perf_30d,
+                avg_perf_current = excluded.avg_perf_current,
+                accuracy_7d = excluded.accuracy_7d,
+                accuracy_30d = excluded.accuracy_30d,
+                accuracy_current = excluded.accuracy_current,
+                total_net_profit = excluded.total_net_profit
+        ''', (
+            senator_id,
+            total_count,
+            basic_agg["total_purchase_count"],
+            basic_agg["total_exchange_count"],
+            basic_agg["total_sale_count"],
+            basic_agg["total_stock_transactions"],
+            basic_agg["total_other_transactions"],
+            basic_agg["count_ownership_child"],
+            basic_agg["count_ownership_dependent_child"],
+            basic_agg["count_ownership_joint"],
+            basic_agg["count_ownership_self"],
+            basic_agg["count_ownership_spouse"],
+            basic_agg["total_transaction_value"],
+            avg_amount,
+            avg_perf_7d,
+            avg_perf_30d,
+            avg_perf_current,
+            accuracy_7d,
+            accuracy_30d,
+            accuracy_current,
+            0  # total_net_profit placeholder
+        ))
+    conn.commit()
+    logger.info("Analytics table updated successfully.")
+
+def update_analytics(conn):
+    basic = get_basic_analytics(conn)
+    advanced = get_advanced_metrics(conn)
+    upsert_analytics(conn, basic, advanced)
+    logger.info("Analytics table updated successfully.")
