@@ -3,7 +3,8 @@ from modules.scraper_filings import scrape_filings
 from modules.scraper_transactions import scrape_transactions
 from modules.notify_system import send_unnotified_discord_notifications
 from modules.logger import setup_logger
-from modules.db_helper import init_db, init_analytics_table, update_analytics
+from modules.db_helper import init_db, init_analytics_table
+from modules.analytics import update_analytics
 from modules.config import DB_NAME
 
 # Create a logger object for debugging purposes
