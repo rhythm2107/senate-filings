@@ -50,44 +50,30 @@ def init_analytics_table(conn):
 # -------------------------------------------------------------------
 # HISTORICAL PRICE FETCHING
 # -------------------------------------------------------------------
-def get_price_at_date(ticker, target_date, max_lookback=5):
-    """
-    Given a ticker and a target_date (datetime), return the closing price on the nearest trading day.
-    
-    If no data is available on the target_date (e.g., it's a weekend or holiday), 
-    the function will look back up to max_lookback days to find available data.
-    It also handles rate limiting by waiting 5 seconds when a rate limit error is encountered.
-    
-    Parameters:
-      ticker (str): The stock ticker symbol.
-      target_date (datetime): The desired date.
-      max_lookback (int): The maximum number of days to look back.
-      
-    Returns:
-      float: The closing price, or None if no data is found.
-    """
-    # Remove any leading '$' from the ticker
+def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
     ticker = ticker.lstrip('$')
-    
+    logger.debug(f"Fetching price for {ticker} on {target_date}")
     stock = yf.Ticker(ticker)
-    print(stock)
-    lookback = 0
-    while lookback < max_lookback:
-        try_date = target_date - timedelta(days=lookback)
-        start_date = try_date.strftime("%Y-%m-%d")
-        end_date = (try_date + timedelta(days=1)).strftime("%Y-%m-%d")
+    retries = 0
+    while retries < max_retries:
+        start_date = target_date.strftime("%Y-%m-%d")
+        end_date = (target_date + timedelta(days=max_offset+1)).strftime("%Y-%m-%d")
+        print(f"\nFetching data for {ticker} between {start_date} and {end_date}")
         try:
             hist = stock.history(start=start_date, end=end_date, interval="1d")
+            time.sleep(1)  # Throttle after API call
+            if hist.empty:
+                return None
+            for offset in range(max_offset + 1):
+                check_date = (target_date + timedelta(days=offset)).strftime("%Y-%m-%d")
+                if check_date in hist.index.strftime("%Y-%m-%d"):
+                    print(hist.loc[check_date]["Close"])
+                    return hist.loc[check_date]["Close"]
+            return None
         except yf.exceptions.YFRateLimitError:
-            logger.warning(f"Rate limit hit for ticker {ticker} on date {start_date}. Sleeping for 5 seconds before retrying.")
+            print(f"Rate limit hit for ticker {ticker}. Sleeping for 5 seconds before retrying.")
             time.sleep(5)
-            # 'continue' here sends execution back to the start of the loop
-            # Since 'lookback' is not incremented, it will retry the same date.
-            continue
-        time.sleep(1)  # Sleep after a successful API call to reduce the request rate.
-        if not hist.empty:
-            return hist["Close"].iloc[0]
-        lookback += 1
+            retries += 1
     return None
 
 
@@ -96,26 +82,29 @@ def get_price_at_date(ticker, target_date, max_lookback=5):
 # PERFORMANCE CALCULATION FOR A TRANSACTION
 # -------------------------------------------------------------------
 def compute_transaction_performance(transaction, price_fetcher=get_price_at_date):
-    """
-    Given a transaction tuple (expected structure:
-      (ptr_id, txn_num, txn_date, owner, ticker, asset_name,
-       additional_info, asset_type, txn_type, amount, comment, filing_date, name))
-    where txn_date is in "MM/DD/YYYY", fetch historical prices at 7d, 30d, and current,
-    then compute performance percentages.
-    
-    Returns a dictionary with:
-      - purchase_price, price_7d, price_30d, current_price
-      - perf_7d, perf_30d, perf_current (percent changes)
-    """
-    # Unpack and parse date using MM/DD/YYYY
+    # Unpack and parse the transaction date (format: MM/DD/YYYY)
     _, _, txn_date_str, _, ticker, _, _, _, _, _, _, _, _ = transaction
     purchase_date = datetime.strptime(txn_date_str, "%m/%d/%Y")
-    
+    today = datetime.utcnow()
+
+    # Fetch the purchase price and current price only once
     purchase_price = price_fetcher(ticker, purchase_date)
-    price_7d = price_fetcher(ticker, purchase_date + timedelta(days=7))
-    price_30d = price_fetcher(ticker, purchase_date + timedelta(days=30))
-    current_price = price_fetcher(ticker, datetime.utcnow())
-    
+    current_price = price_fetcher(ticker, today)
+
+    # For 7-day target: if the date is in the future, use current_price
+    target_7d = purchase_date + timedelta(days=7)
+    if target_7d > today:
+        price_7d = current_price
+    else:
+        price_7d = price_fetcher(ticker, target_7d)
+
+    # For 30-day target: if the date is in the future, use current_price
+    target_30d = purchase_date + timedelta(days=30)
+    if target_30d > today:
+        price_30d = current_price
+    else:
+        price_30d = price_fetcher(ticker, target_30d)
+
     def calc_perf(current):
         if purchase_price and purchase_price != 0 and current is not None:
             return ((current - purchase_price) / purchase_price) * 100
@@ -131,6 +120,7 @@ def compute_transaction_performance(transaction, price_fetcher=get_price_at_date
         "perf_30d": calc_perf(price_30d),
         "perf_current": calc_perf(current_price)
     }
+
 
 
 # -------------------------------------------------------------------
@@ -226,7 +216,10 @@ def get_advanced_metrics(conn):
                 AND f2.senator_id = f.senator_id
           )
     """)
+    start_time = time.time()
     rows = c.fetchall()
+    end_time = time.time()
+    logger.info(f"Open transactions fetched in {end_time - start_time:.2f} seconds.")
     
     advanced = {}
     for row in rows:
@@ -359,7 +352,17 @@ def upsert_analytics(conn, basic, advanced):
     logger.info("Analytics table updated successfully.")
 
 def update_analytics(conn):
+    start_time = time.time()
     basic = get_basic_analytics(conn)
+    end_time = time.time()
+    logger.info(f"Basic analytics fetched in {end_time - start_time:.2f} seconds.")
+
     advanced = get_advanced_metrics(conn)
+    end_time = time.time()
+    logger.info(f"Advanced analytics fetched in {end_time - start_time:.2f} seconds.")
+
     upsert_analytics(conn, basic, advanced)
+    end_time = time.time()
+    logger.info(f"Analytics updated in {end_time - start_time:.2f} seconds.")
+
     logger.info("Analytics table updated successfully.")
