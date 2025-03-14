@@ -4,13 +4,11 @@ from datetime import datetime, timedelta
 # BASIC ANALYTICS FUNCTIONS
 def update_analytics(conn):
     """
-    Calculate analytics for each senator based on transactions and update the analytics table.
+    Calculate analytics for each senator based on transactions and update (or insert)
+    the aggregated values into the analytics table.
     Since the transactions table does not contain senator_id directly, we join with filings.
     """
     c = conn.cursor()
-    # Clear the analytics table so we can recompute all values:
-    c.execute("DELETE FROM analytics")
-    conn.commit()
 
     # Join transactions with filings to get senator_id from filings.
     query = '''
@@ -44,7 +42,7 @@ def update_analytics(conn):
         agg = analytics[senator_id]
         agg["total_transaction_count"] += 1
 
-        # Count transaction types (assume txn_type contains keywords)
+        # Transaction type counts (assume txn_type contains keywords)
         txn_type_lower = txn_type.lower().strip()
         if "purchase" in txn_type_lower:
             agg["total_purchase_count"] += 1
@@ -53,13 +51,13 @@ def update_analytics(conn):
         elif "sale" in txn_type_lower:
             agg["total_sale_count"] += 1
 
-        # Asset type: if asset_type equals "Stock" (case-insensitive), count as stock; else, others.
+        # Asset type: treat "stock" (case-insensitive) as Stock; everything else as Others.
         if asset_type.lower().strip() == "stock":
             agg["total_stock_transactions"] += 1
         else:
             agg["total_other_transactions"] += 1
 
-        # Ownership counts: assuming owner field is exactly one of these strings.
+        # Ownership counts (assuming owner field exactly matches one of these strings).
         owner_lower = owner.lower().strip()
         if owner_lower == "child":
             agg["count_ownership_child"] += 1
@@ -78,7 +76,7 @@ def update_analytics(conn):
         if numeric_value is not None:
             agg["total_transaction_value"] += numeric_value
 
-    # Insert aggregated data into the analytics table
+    # Upsert aggregated data into the analytics table.
     for senator_id, agg in analytics.items():
         total_count = agg["total_transaction_count"]
         avg_amount = (agg["total_transaction_value"] / total_count) if total_count > 0 else 0
@@ -99,6 +97,20 @@ def update_analytics(conn):
                 total_transaction_value,
                 average_transaction_amount
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(senator_id) DO UPDATE SET
+                total_transaction_count = excluded.total_transaction_count,
+                total_purchase_count = excluded.total_purchase_count,
+                total_exchange_count = excluded.total_exchange_count,
+                total_sale_count = excluded.total_sale_count,
+                total_stock_transactions = excluded.total_stock_transactions,
+                total_other_transactions = excluded.total_other_transactions,
+                count_ownership_child = excluded.count_ownership_child,
+                count_ownership_dependent_child = excluded.count_ownership_dependent_child,
+                count_ownership_joint = excluded.count_ownership_joint,
+                count_ownership_self = excluded.count_ownership_self,
+                count_ownership_spouse = excluded.count_ownership_spouse,
+                total_transaction_value = excluded.total_transaction_value,
+                average_transaction_amount = excluded.average_transaction_amount
         ''', (
             senator_id,
             total_count,
@@ -116,6 +128,7 @@ def update_analytics(conn):
             avg_amount
         ))
     conn.commit()
+
 
 # ADVANCED ANALYTICS FUNCTIONS
 def get_price_at_date(ticker, target_date):
