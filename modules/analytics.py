@@ -82,7 +82,7 @@ def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignor
     data between overall_start_date and overall_end_date.
     Tickers found in the ignore file are skipped.
     """
-    c = conn.cursor()
+    c = conn.cursor()   
     c.execute("""
         SELECT DISTINCT t.ticker
         FROM transactions t
