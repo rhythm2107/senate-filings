@@ -3,7 +3,7 @@
 import sqlite3
 import yfinance as yf
 from datetime import datetime, timedelta
-from modules.utilis import average_amount  # Your function to convert amount ranges to a number
+from modules.utilis import average_amount, get_ignore_tickers
 import logging
 import time
 
@@ -76,33 +76,52 @@ def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
             retries += 1
     return None
 
-def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date):
+def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignore_file="resources/ignore_tickers.txt"):
     """
     Fetch and return a dictionary mapping each unique ticker to its historical
-    data (as a DataFrame) between overall_start_date and overall_end_date.
+    data between overall_start_date and overall_end_date.
+    Tickers found in the ignore file are skipped.
     """
     c = conn.cursor()
-    # Adjust the query as needed to match your table schema.
     c.execute("""
         SELECT DISTINCT t.ticker
         FROM transactions t
         WHERE t.ticker <> '--'
     """)
+    # Clean up the tickers by removing leading '$'
     tickers = [row[0].lstrip('$') for row in c.fetchall()]
     
+    # Read the ignore list from file
+    ignore_tickers = get_ignore_tickers(ignore_file)
+    logger.info(f"Ignore tickers: {ignore_tickers}")
+
     ticker_histories = {}
+    failed_tickers = []
     for ticker in tickers:
-        print(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
+        if ticker in ignore_tickers:
+            logger.info(f"Ticker {ticker} is in the ignore list. Skipping.")
+            continue
+
+        logger.debug(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
         stock = yf.Ticker(ticker)
         try:
             hist = stock.history(start=overall_start_date.strftime("%Y-%m-%d"),
                                    end=overall_end_date.strftime("%Y-%m-%d"),
                                    interval="1d")
-            ticker_histories[ticker] = hist
+            time.sleep(1)  # Throttle API calls.
+            if hist.empty:
+                logger.warning(f"No data returned for {ticker} between {overall_start_date} and {overall_end_date}. Possibly delisted.")
+                failed_tickers.append(ticker)
+            else:
+                ticker_histories[ticker] = hist
         except Exception as e:
-            print(f"Error fetching data for {ticker}: {e}")
-        time.sleep(1)  # Throttle to avoid hitting the rate limit
+            logger.error(f"Error fetching data for {ticker}: {e}")
+            failed_tickers.append(ticker)
+    if failed_tickers:
+        logger.info(f"Tickers that failed to fetch: {failed_tickers}")
     return ticker_histories
+
+
 
 def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
     """

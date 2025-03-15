@@ -1,4 +1,7 @@
 import re
+import logging
+
+logger = logging.getLogger("main_logger")
 
 def format_amount(part):
     """
@@ -91,3 +94,20 @@ def average_amount(amount_str):
         return int(s)
     except ValueError:
         return None
+    
+import os
+
+def get_ignore_tickers(file_path="resources/ignore_tickers.txt"):
+    """
+    Read and return a list of tickers to ignore from the specified file located
+    in the resources folder of your module. Each ticker should be on a separate line.
+    """
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    full_path = os.path.join(base_dir, file_path)
+    try:
+        with open(full_path, "r") as f:
+            ignore_tickers = [line.strip().lstrip('$') for line in f if line.strip()]
+        return ignore_tickers
+    except FileNotFoundError:
+        logger.warning(f"Ignore file not found: {full_path}. No tickers will be ignored.")
+        return []
