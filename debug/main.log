@@ -1888,12 +1888,6 @@
 2025-03-15 00:40:24 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
 2025-03-15 00:40:25 | DEBUG    | Fetching history for SVM from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
 2025-03-15 00:40:26 | DEBUG    | Fetching history for SWK from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
-2025-03-15 00:40:28 | DEBUG    | Fetching history for T
-
- from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
-2025-03-15 00:40:30 | WARNING  | No data returned for T
-
- between 2010-01-01 00:00:00 and 2025-04-13 23:06:00.041381. Possibly delisted.
 2025-03-15 00:40:30 | DEBUG    | Fetching history for TBRG from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
 2025-03-15 00:40:31 | DEBUG    | Fetching history for TDW from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
 2025-03-15 00:40:32 | DEBUG    | Fetching history for TEF from 2010-01-01 00:00:00 to 2025-04-13 23:06:00.041381
