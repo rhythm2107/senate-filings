@@ -21,15 +21,15 @@ def main():
     # scrape_transactions()
     # time.sleep(2)
 
-    conn = init_db("filings_1senator.db") # Rename to DB_NAME constant later after debugging is finished
-    # logger.info("[MAIN] Starting process_transactions_analytics")
-    # process_transactions_analytics(conn)
-    # time.sleep(2)
+    conn = init_db("filings.db") # Rename to DB_NAME constant later after debugging is finished
+    logger.info("[MAIN] Starting process_transactions_analytics")
+    process_transactions_analytics(conn)
+    time.sleep(2)
 
-    # init_analytics_table(conn)
-    # logger.info("[MAIN] Starting update_senators_analytics")
-    # update_senators_analytics(conn)
-    # time.sleep(2)
+    init_analytics_table(conn)
+    logger.info("[MAIN] Starting update_senators_analytics")
+    update_senators_analytics(conn)
+    time.sleep(2)
 
     logger.info("[MAIN] Starting update_senators_analytics_left")
     update_senators_analytics_left(conn)

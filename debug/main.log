@@ -2929,3 +2929,6 @@
 2025-03-16 22:08:58 | INFO     | [MAIN] Starting update_senators_analytics
 2025-03-16 22:19:18 | INFO     | [MAIN] Starting update_senators_analytics_left
 2025-03-16 22:22:07 | INFO     | [MAIN] Starting update_senators_analytics_left
+2025-03-16 22:39:04 | INFO     | [MAIN] Starting process_transactions_analytics
+2025-03-16 23:02:18 | INFO     | [MAIN] Starting update_senators_analytics
+2025-03-16 23:02:21 | INFO     | [MAIN] Starting update_senators_analytics_left
