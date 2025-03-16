@@ -469,7 +469,7 @@ def update_transactions_analytics_calculations(conn):
 
 # Example usage:
 if __name__ == "__main__":
-    conn = sqlite3.connect("filings_1senator.db")
+    conn = sqlite3.connect("filings.db")
     # Init transactions_analytics table
     init_transactions_analytics_table(conn)
     # First, perform matching:
