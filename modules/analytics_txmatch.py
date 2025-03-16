@@ -5,6 +5,7 @@ import yfinance as yf
 from datetime import datetime, timedelta
 from modules.logger import setup_logger
 from modules.utilis import get_ignore_tickers, average_amount
+from modules.db_helper import init_transactions_analytics_table
 
 logger = logging.getLogger("analytics")
 
@@ -426,33 +427,39 @@ def update_transactions_analytics_calculations(conn):
     print(f"Updated calculations for {updated_count} transactions in transactions_analytics.")
 
 
-# Example usage:
-if __name__ == "__main__":
-    conn = sqlite3.connect("filings.db")
-    # Init transactions_analytics table
+def process_transactions_analytics(conn):
+    """
+    Runs the full pipeline to build and update the transactions_analytics table:
+      - Initializes the table.
+      - Matches purchase transactions to sale transactions.
+      - Populates the transactions_analytics table with matching data.
+      - Fetches historical price data for distinct tickers.
+      - Updates each transaction row with price data.
+      - Calculates additional metrics (percentages, net profit, current value).
+    """
     init_transactions_analytics_table(conn)
-    # First, perform matching:
+    
+    # Match transactions.
     matches = match_transactions(conn)
     print(f"Found matches for {len(matches)} purchase transactions.")
-    # Then, use those matches to populate the transactions_analytics table.
+    
+    # Populate the transactions_analytics table based on the matching.
     populate_transactions_analytics_from_matches(conn, matches)
-    print("Debug matching complete. Check 'matched_transactions.log' for details and verify transactions_analytics table.")
-    # Fetch tickers from YFinance
+    print("Matching complete. Check 'matched_transactions.log' for details and verify transactions_analytics table.")
+    
+    # Fetch historical ticker data.
     overall_start_date = datetime(2010, 1, 1)
     overall_end_date = datetime.utcnow() + timedelta(days=30)
     print("Overall Start Date:", overall_start_date)
     print("Overall End Date:", overall_end_date)
     ticker_histories = fetch_all_ticker_histories(conn, overall_start_date, overall_end_date)
-    
-    # Print tickers with historical data
     for ticker, hist in ticker_histories.items():
         print(f"{ticker}: {hist.shape[0]} rows")
-
-    # Update transactions_analytics with price data
+    
+    # Update the transactions_analytics table with price data.
     update_transactions_prices(conn, ticker_histories)
     print("Price data updated successfully.")
-
-    # Update transactions_analytics with calculated values
+    
+    # Update the transactions_analytics table with calculated percentage and net profit values.
     update_transactions_analytics_calculations(conn)
     print("Calculated values updated successfully.")
-

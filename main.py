@@ -48,3 +48,33 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+if __name__ == "__main__":
+    conn = sqlite3.connect("filings.db")
+    # Init transactions_analytics table
+    # First, perform matching:
+    matches = match_transactions(conn)
+    print(f"Found matches for {len(matches)} purchase transactions.")
+    # Then, use those matches to populate the transactions_analytics table.
+    populate_transactions_analytics_from_matches(conn, matches)
+    print("Debug matching complete. Check 'matched_transactions.log' for details and verify transactions_analytics table.")
+    # Fetch tickers from YFinance
+    overall_start_date = datetime(2010, 1, 1)
+    overall_end_date = datetime.utcnow() + timedelta(days=30)
+    print("Overall Start Date:", overall_start_date)
+    print("Overall End Date:", overall_end_date)
+    ticker_histories = fetch_all_ticker_histories(conn, overall_start_date, overall_end_date)
+    
+    # Print tickers with historical data
+    for ticker, hist in ticker_histories.items():
+        print(f"{ticker}: {hist.shape[0]} rows")
+
+    # Update transactions_analytics with price data
+    update_transactions_prices(conn, ticker_histories)
+    print("Price data updated successfully.")
+
+    # Update transactions_analytics with calculated values
+    update_transactions_analytics_calculations(conn)
+    print("Calculated values updated successfully.")
+
