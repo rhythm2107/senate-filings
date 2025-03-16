@@ -1920,3 +1920,999 @@
 2025-03-15 00:43:34 | INFO     | Analytics table updated successfully.
 2025-03-15 00:43:34 | INFO     | Analytics updated in 2254.46 seconds.
 2025-03-15 00:43:34 | INFO     | Analytics table updated successfully.
+2025-03-15 23:54:35 | DEBUG    | Analytics table created or verified.
+2025-03-15 23:54:35 | INFO     | Basic analytics fetched in 0.04 seconds.
+2025-03-15 23:54:35 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-15 23:54:35 | INFO     | Ticker --VIAC is in the ignore list. Skipping.
+2025-03-15 23:54:35 | INFO     | Ticker --RTX is in the ignore list. Skipping.
+2025-03-15 23:54:35 | DEBUG    | Fetching history for AMLP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:37 | DEBUG    | Fetching history for BHF from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:38 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:39 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:41 | DEBUG    | Fetching history for NWL from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:42 | INFO     | Ticker DISH is in the ignore list. Skipping.
+2025-03-15 23:54:42 | DEBUG    | Fetching history for SYK from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:43 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:44 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:46 | INFO     | Ticker RAI is in the ignore list. Skipping.
+2025-03-15 23:54:46 | DEBUG    | Fetching history for SCCO from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:47 | DEBUG    | Fetching history for PFS from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:48 | DEBUG    | Fetching history for REVB from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:49 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:50 | INFO     | Ticker PKI is in the ignore list. Skipping.
+2025-03-15 23:54:50 | DEBUG    | Fetching history for TRP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:52 | INFO     | Ticker TLLP is in the ignore list. Skipping.
+2025-03-15 23:54:52 | DEBUG    | Fetching history for ENB from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:53 | DEBUG    | Fetching history for KMI from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:54 | DEBUG    | Fetching history for EPD from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:55 | DEBUG    | Fetching history for WLK from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:57 | INFO     | Ticker VSM is in the ignore list. Skipping.
+2025-03-15 23:54:57 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:58 | DEBUG    | Fetching history for GPK from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:54:59 | DEBUG    | Fetching history for SLB from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:00 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:01 | DEBUG    | Fetching history for BMY from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:03 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:04 | DEBUG    | Fetching history for PRU from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:05 | DEBUG    | Fetching history for WOOF from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:06 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-15 23:55:06 | DEBUG    | Fetching history for MOS from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:08 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:09 | DEBUG    | Fetching history for BAX from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:10 | DEBUG    | Fetching history for PFE from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:11 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:13 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:14 | DEBUG    | Fetching history for WTW from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:15 | INFO     | Ticker DWDP is in the ignore list. Skipping.
+2025-03-15 23:55:15 | DEBUG    | Fetching history for TAP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:16 | DEBUG    | Fetching history for IVZ from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:18 | DEBUG    | Fetching history for BUD from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:19 | DEBUG    | Fetching history for FDX from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:20 | INFO     | Ticker BX is in the ignore list. Skipping.
+2025-03-15 23:55:20 | INFO     | Ticker --DIS is in the ignore list. Skipping.
+2025-03-15 23:55:20 | DEBUG    | Fetching history for BWXT from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:21 | DEBUG    | Fetching history for LYV from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:22 | INFO     | Ticker FDC is in the ignore list. Skipping.
+2025-03-15 23:55:22 | INFO     | Ticker --AM is in the ignore list. Skipping.
+2025-03-15 23:55:22 | DEBUG    | Fetching history for BKNG from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:24 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:25 | DEBUG    | Fetching history for CSCO from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:26 | DEBUG    | Fetching history for ORCL from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:27 | DEBUG    | Fetching history for GOOG from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:28 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:30 | DEBUG    | Fetching history for ET from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:31 | DEBUG    | Fetching history for MPLX from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:32 | DEBUG    | Fetching history for TRGP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:33 | DEBUG    | Fetching history for WES from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:34 | DEBUG    | Fetching history for NVS from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:36 | DEBUG    | Fetching history for VZ from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:37 | DEBUG    | Fetching history for MCHP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:38 | DEBUG    | Fetching history for VOD from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:39 | DEBUG    | Fetching history for DE from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:41 | INFO     | Ticker MDP is in the ignore list. Skipping.
+2025-03-15 23:55:41 | INFO     | Ticker QLIK is in the ignore list. Skipping.
+2025-03-15 23:55:41 | DEBUG    | Fetching history for PANW from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:42 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-15 23:55:42 | DEBUG    | Fetching history for AXP from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:43 | DEBUG    | Fetching history for UL from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:44 | INFO     | Ticker KORS is in the ignore list. Skipping.
+2025-03-15 23:55:44 | DEBUG    | Fetching history for GPRO from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:55:45 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 22:54:35.553572
+2025-03-15 23:58:49 | DEBUG    | Analytics table created or verified.
+2025-03-15 23:58:49 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-15 23:58:49 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-15 23:58:49 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:51 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:52 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:53 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:55 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:56 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:57 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:58:58 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:00 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:01 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:02 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:03 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:04 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:06 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-15 23:59:06 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-15 23:59:06 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:07 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:08 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:09 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:11 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:12 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-15 23:59:12 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:13 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:14 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:16 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-15 23:59:16 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:17 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-15 23:59:17 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-15 23:59:17 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:18 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:19 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:21 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-15 23:59:21 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:22 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-15 23:59:22 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-15 23:59:22 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:23 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:24 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:26 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:27 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:28 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:29 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:30 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:32 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:33 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:34 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:35 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:36 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:38 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-15 23:59:38 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:39 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:40 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:41 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:42 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:44 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:45 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:46 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:47 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:48 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:50 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-15 23:59:50 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-15 23:59:50 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:51 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:52 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:53 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:55 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-15 23:59:55 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:56 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:57 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-15 23:59:57 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-15 23:59:57 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-15 23:59:58 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-15 23:59:58 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:00 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:01 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:02 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:03 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:04 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:00:04 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 22:58:49.580407
+2025-03-16 00:00:10 | INFO     | Advanced analytics fetched in 81.19 seconds.
+2025-03-16 00:00:10 | INFO     | Analytics table updated successfully.
+2025-03-16 00:00:10 | INFO     | Analytics updated in 81.19 seconds.
+2025-03-16 00:00:10 | INFO     | Analytics table updated successfully.
+2025-03-16 00:01:46 | DEBUG    | Analytics table created or verified.
+2025-03-16 00:01:46 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-16 00:01:46 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 00:01:46 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:48 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:49 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:51 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:52 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:53 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:54 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:55 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:57 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:58 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:01:59 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:00 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:02 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:03 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 00:02:03 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 00:02:03 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:04 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:05 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:07 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:08 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:09 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 00:02:09 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:10 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:12 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:13 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-16 00:02:13 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:14 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 00:02:14 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-16 00:02:14 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:15 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:17 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:18 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 00:02:18 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:19 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 00:02:19 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 00:02:19 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:20 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:22 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:23 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:24 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:25 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:26 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:28 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:29 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:30 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:31 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:33 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:34 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:35 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 00:02:35 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:36 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:37 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:38 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:40 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:41 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:42 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:43 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:45 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:46 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:47 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 00:02:47 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 00:02:47 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:48 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:49 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:51 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:52 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 00:02:52 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:53 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:54 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-16 00:02:54 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-16 00:02:54 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:56 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-16 00:02:56 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:57 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:58 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:02:59 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:03:00 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:03:02 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:03:02 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 23:01:46.607187
+2025-03-16 00:04:09 | DEBUG    | Analytics table created or verified.
+2025-03-16 00:04:09 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-16 00:04:09 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 00:04:09 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:11 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:12 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:13 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:14 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:15 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:17 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:18 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:19 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:20 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:22 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:23 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:24 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:25 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 00:04:25 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 00:04:25 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:26 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:28 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:29 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:30 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:31 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 00:04:31 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:33 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:34 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:35 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-16 00:04:35 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:36 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 00:04:36 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-16 00:04:36 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:38 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:39 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:40 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 00:04:40 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:41 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 00:04:41 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 00:04:41 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:43 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:44 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:45 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:46 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:47 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:49 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:50 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:51 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:52 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:53 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:55 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:56 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:57 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 00:04:57 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:58 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:04:59 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:01 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:02 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:03 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:04 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:06 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:07 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:08 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:09 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 00:05:09 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 00:05:09 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:10 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:12 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:13 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:14 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 00:05:14 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:15 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:17 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-16 00:05:17 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-16 00:05:17 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:18 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-16 00:05:18 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:19 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:20 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:21 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:22 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:05:24 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:05:24 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 23:04:09.074955
+2025-03-16 00:06:19 | DEBUG    | Analytics table created or verified.
+2025-03-16 00:06:19 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-16 00:06:19 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 00:06:19 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:21 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:23 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:24 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:25 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:26 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:27 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:29 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:30 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:31 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:32 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:33 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:35 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:36 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 00:06:36 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 00:06:36 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:37 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:38 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:40 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:41 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:42 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 00:06:42 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:43 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:45 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:46 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-16 00:06:46 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:47 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 00:06:47 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-16 00:06:47 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:48 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:49 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:51 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 00:06:51 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:52 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 00:06:52 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 00:06:52 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:53 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:54 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:56 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:57 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:58 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:06:59 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:00 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:02 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:03 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:04 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:05 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:06 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:08 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 00:07:08 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:09 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:10 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:11 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:12 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:14 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:15 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:16 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:17 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:19 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:20 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 00:07:20 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 00:07:20 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:21 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:22 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:23 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:25 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 00:07:25 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:26 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:27 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-16 00:07:27 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-16 00:07:27 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:28 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-16 00:07:28 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:29 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:31 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:32 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:33 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:34 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:07:34 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 23:06:19.806304
+2025-03-16 00:07:40 | INFO     | Advanced analytics fetched in 80.86 seconds.
+2025-03-16 00:07:40 | INFO     | Analytics table updated successfully.
+2025-03-16 00:07:40 | INFO     | Analytics updated in 80.87 seconds.
+2025-03-16 00:07:40 | INFO     | Analytics table updated successfully.
+2025-03-16 00:10:33 | DEBUG    | Analytics table created or verified.
+2025-03-16 00:10:33 | DEBUG    | transactions_analytics table created or verified.
+2025-03-16 00:10:33 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-16 00:10:33 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 00:10:33 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:35 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:36 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:38 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:39 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:40 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:41 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:42 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:44 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:45 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:46 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:47 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:49 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:50 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 00:10:50 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 00:10:50 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:51 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:52 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:54 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:55 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:56 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 00:10:56 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:57 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:10:59 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:00 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-16 00:11:00 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:01 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 00:11:01 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-16 00:11:01 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:02 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:04 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:05 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 00:11:05 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:06 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 00:11:06 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 00:11:06 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:07 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:09 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:10 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:11 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:12 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:13 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:15 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:16 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:17 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:18 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:19 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:21 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:22 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 00:11:22 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:23 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:24 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:25 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:26 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:28 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:29 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:30 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:31 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:32 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:34 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 00:11:34 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 00:11:34 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:35 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:36 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:37 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:39 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 00:11:39 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:40 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:41 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-16 00:11:41 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-16 00:11:41 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:42 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-16 00:11:42 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:43 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:45 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:46 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:47 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:48 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:11:48 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 23:10:33.644926
+2025-03-16 00:11:54 | INFO     | Advanced analytics fetched in 80.96 seconds.
+2025-03-16 00:11:54 | INFO     | Analytics table updated successfully.
+2025-03-16 00:11:54 | INFO     | Analytics updated in 80.97 seconds.
+2025-03-16 00:11:54 | INFO     | Analytics table updated successfully.
+2025-03-16 00:12:19 | INFO     | transactions_analytics table populated successfully.
+2025-03-16 00:12:19 | INFO     | Transactions analytics updated in 105.48 seconds.
+2025-03-16 00:19:52 | DEBUG    | Analytics table created or verified.
+2025-03-16 00:19:52 | DEBUG    | transactions_analytics table created or verified.
+2025-03-16 00:19:52 | INFO     | Basic analytics fetched in 0.00 seconds.
+2025-03-16 00:19:52 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 00:19:52 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:19:54 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:19:55 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:19:56 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:19:58 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:19:59 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:00 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:01 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:03 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:04 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:05 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:06 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:08 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:09 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 00:20:09 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 00:20:09 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:10 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:11 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:12 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:14 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:15 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 00:20:15 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:16 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:17 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:19 | INFO     | Ticker ZNGA.SW is in the ignore list. Skipping.
+2025-03-16 00:20:19 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:20 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 00:20:20 | INFO     | Ticker ZNGA is in the ignore list. Skipping.
+2025-03-16 00:20:20 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:21 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:22 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:24 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 00:20:24 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:25 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 00:20:25 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 00:20:25 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:26 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:27 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:29 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:30 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:31 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:32 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:33 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:35 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:36 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:37 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:38 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:39 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:41 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 00:20:41 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:42 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:43 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:44 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:45 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:46 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:48 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:49 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:50 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:51 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:53 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 00:20:53 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 00:20:53 | DEBUG    | Fetching history for CAT from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:54 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:55 | DEBUG    | Fetching history for DUK from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:56 | DEBUG    | Fetching history for HPQ from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:58 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 00:20:58 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:20:59 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:00 | INFO     | Ticker NFLS is in the ignore list. Skipping.
+2025-03-16 00:21:00 | INFO     | Ticker NYX is in the ignore list. Skipping.
+2025-03-16 00:21:00 | DEBUG    | Fetching history for SHAW from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:01 | INFO     | Ticker SINA is in the ignore list. Skipping.
+2025-03-16 00:21:01 | DEBUG    | Fetching history for SIRI from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:02 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:03 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:05 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:06 | DEBUG    | Fetching history for WFC from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:07 | INFO     | Ticker WFM is in the ignore list. Skipping.
+2025-03-16 00:21:07 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-14 23:19:52.469353
+2025-03-16 00:21:13 | INFO     | Advanced analytics fetched in 81.04 seconds.
+2025-03-16 00:21:13 | INFO     | Analytics table updated successfully.
+2025-03-16 00:21:13 | INFO     | Analytics updated in 81.05 seconds.
+2025-03-16 00:21:13 | INFO     | Analytics table updated successfully.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6 (purchase date 01/02/2015), found 6 sale candidate(s) for ticker TCS.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6 (purchase date 01/02/2015), found 0 sale candidate(s) for ticker TWTR.
+2025-03-16 00:21:13 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id 2bea78ab-9ff7-46ca-8d73-6bd2b049c421 (purchase date 01/03/2017), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/03/2018), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/03/2018), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:13 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/04/2018), found 1 sale candidate(s) for ticker JPM.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/04/2018), found 1 sale candidate(s) for ticker JPM.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/05/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/05/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id F5F31261-73D5-49A9-9642-16871D93AD45 (purchase date 01/07/2014), found 1 sale candidate(s) for ticker F.
+2025-03-16 00:21:14 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id F5F31261-73D5-49A9-9642-16871D93AD45.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 01/07/2014), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:14 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id E0F69812-6B00-4773-894B-4068B7600DDC.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id F5F31261-73D5-49A9-9642-16871D93AD45 (purchase date 01/07/2014), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:14 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id F5F31261-73D5-49A9-9642-16871D93AD45.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id F5F31261-73D5-49A9-9642-16871D93AD45 (purchase date 01/08/2014), found 6 sale candidate(s) for ticker TCS.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id F5F31261-73D5-49A9-9642-16871D93AD45 (purchase date 01/09/2014), found 1 sale candidate(s) for ticker F.
+2025-03-16 00:21:14 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id F5F31261-73D5-49A9-9642-16871D93AD45.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 2bea78ab-9ff7-46ca-8d73-6bd2b049c421 (purchase date 01/09/2017), found 6 sale candidate(s) for ticker TJX.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 5f8b9460-57a5-472f-ad9d-52d1f0b32237 (purchase date 01/10/2020), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 5f8b9460-57a5-472f-ad9d-52d1f0b32237 (purchase date 01/10/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 5f8b9460-57a5-472f-ad9d-52d1f0b32237 (purchase date 01/13/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 5f8b9460-57a5-472f-ad9d-52d1f0b32237 (purchase date 01/14/2020), found 2 sale candidate(s) for ticker BABA.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 7AA4158D-4E25-4BAF-8FBE-69B1EF51730F (purchase date 01/16/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:14 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/17/2018), found 7 sale candidate(s) for ticker CELG.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/17/2018), found 1 sale candidate(s) for ticker LMT.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/17/2018), found 7 sale candidate(s) for ticker CELG.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/17/2018), found 1 sale candidate(s) for ticker LMT.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 2bea78ab-9ff7-46ca-8d73-6bd2b049c421 (purchase date 01/19/2017), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 02c266b1-25a7-41d4-93f3-886b437e97a6 (purchase date 01/20/2016), found 4 sale candidate(s) for ticker GE.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 5f8b9460-57a5-472f-ad9d-52d1f0b32237 (purchase date 01/21/2020), found 2 sale candidate(s) for ticker MA.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 0d60b065-461c-4fca-be82-d0c8e54b9ad1 (purchase date 01/25/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id ab33ea63-b5e3-417c-bc3b-49e121da0027 (purchase date 01/25/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6 (purchase date 01/27/2015), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6 (purchase date 01/28/2015), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id 591ce7b1-e710-4f58-842a-f226650f6ab6 (purchase date 01/28/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 01/30/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:15 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 01/30/2013), found 7 sale candidate(s) for ticker CELG.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 01/30/2013), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 01/30/2013), found 1 sale candidate(s) for ticker WM.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/01/2013), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id b51eca09-bc7d-447a-8cdc-e6066b910541 (purchase date 02/05/2015), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id b51eca09-bc7d-447a-8cdc-e6066b910541 (purchase date 02/05/2015), found 1 sale candidate(s) for ticker GM.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id b51eca09-bc7d-447a-8cdc-e6066b910541 (purchase date 02/05/2015), found 7 sale candidate(s) for ticker CELG.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:16 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/05/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/06/2014), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/06/2014), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/07/2014), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/07/2014), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/07/2014), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:17 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/08/2013), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/08/2013), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/08/2013), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/08/2013), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id B445D3BC-BFF7-456F-9596-D23BF78C75D4 (purchase date 02/08/2013), found 1 sale candidate(s) for ticker MCD.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id b6d21e86-7a9f-4340-ba9c-21e73b9f01d7 (purchase date 02/11/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id b6d21e86-7a9f-4340-ba9c-21e73b9f01d7 (purchase date 02/11/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/12/2014), found 0 sale candidate(s) for ticker TWTR.
+2025-03-16 00:21:18 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id AB5EEBA0-7045-4B8D-BC91-007761245D4C (purchase date 02/13/2014), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/14/2018), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id b6d21e86-7a9f-4340-ba9c-21e73b9f01d7 (purchase date 02/18/2020), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/20/2018), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id 880caa8f-bd2d-4351-9397-3775e4cc2680 (purchase date 02/20/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:18 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/02/2015), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/04/2015), found 2 sale candidate(s) for ticker BABA.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/06/2015), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/06/2015), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/06/2015), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/06/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/06/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/06/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/06/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id D9193289-A9D9-4F80-94B0-F3E91FAB02DB (purchase date 03/08/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:19 | DEBUG    | For ptr_id C438E84F-22F5-465F-8F7B-75E96A416B33 (purchase date 03/12/2013), found 1 sale candidate(s) for ticker M.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id C438E84F-22F5-465F-8F7B-75E96A416B33 (purchase date 03/13/2013), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/13/2015), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/13/2015), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/13/2015), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/16/2015), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/16/2015), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/17/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/17/2015), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 9e736ac9-65e1-44d7-a543-8e4893e0e0a7 (purchase date 03/17/2015), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:20 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/20/2020), found 0 sale candidate(s) for ticker V.
+2025-03-16 00:21:20 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/20/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/24/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/24/2020), found 0 sale candidate(s) for ticker DIS.
+2025-03-16 00:21:21 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/24/2020), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/24/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id ac731195-8728-4af6-93df-649abdda24db (purchase date 03/25/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/26/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/26/2020), found 3 sale candidate(s) for ticker XOM.
+2025-03-16 00:21:21 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/26/2020), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:21 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 6bbd9f3b-986f-45ca-925e-b7e8ecad9d0e (purchase date 03/26/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:21 | DEBUG    | For ptr_id 1975ed1c-b99e-4719-8a8f-f81f2b63d7ac (purchase date 04/07/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/07/2020), found 0 sale candidate(s) for ticker DIS.
+2025-03-16 00:21:22 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id f29730b1-6b84-427b-88e7-443fac481b6d.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/07/2020), found 6 sale candidate(s) for ticker TJX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/08/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/08/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/09/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id 994b4308-c6c7-4e7f-a958-1da19b71e00a (purchase date 04/14/2015), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/16/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id AD0A4814-6252-49FC-A7E3-C75776E89550 (purchase date 04/17/2013), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id 61e4535e-c9b2-4935-93c2-2d4dbe41922e (purchase date 04/23/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id 994b4308-c6c7-4e7f-a958-1da19b71e00a (purchase date 04/24/2015), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:22 | DEBUG    | For ptr_id 994b4308-c6c7-4e7f-a958-1da19b71e00a (purchase date 04/24/2015), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 994b4308-c6c7-4e7f-a958-1da19b71e00a (purchase date 04/24/2015), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/24/2020), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:23 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id f29730b1-6b84-427b-88e7-443fac481b6d.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 61e4535e-c9b2-4935-93c2-2d4dbe41922e (purchase date 04/25/2018), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 61e4535e-c9b2-4935-93c2-2d4dbe41922e (purchase date 04/25/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/27/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/27/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 9a3b11df-5923-486f-a6af-ecc34eb390cd (purchase date 04/28/2016), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/29/2020), found 2 sale candidate(s) for ticker MA.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/29/2020), found 2 sale candidate(s) for ticker BYND.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id f29730b1-6b84-427b-88e7-443fac481b6d (purchase date 04/30/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35 (purchase date 05/04/2020), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:23 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35.
+2025-03-16 00:21:23 | DEBUG    | For ptr_id 6a0d647a-a7e5-49d7-a029-7abbf5db5e91 (purchase date 05/15/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 78df66e0-5a6b-4b38-9584-a9dec98dec39 (purchase date 05/26/2017), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 994b4308-c6c7-4e7f-a958-1da19b71e00a (purchase date 05/28/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35 (purchase date 05/29/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35 (purchase date 05/29/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35 (purchase date 05/29/2020), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:24 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 272165ed-f8a4-4fc5-a160-faf91ddb4f35 (purchase date 05/29/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 87564346-D5B8-4075-9EEE-5E18824AE98A (purchase date 05/31/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 87564346-D5B8-4075-9EEE-5E18824AE98A (purchase date 05/31/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/04/2020), found 3 sale candidate(s) for ticker AAL.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/04/2020), found 3 sale candidate(s) for ticker AAL.
+2025-03-16 00:21:24 | DEBUG    | For ptr_id 78df66e0-5a6b-4b38-9584-a9dec98dec39 (purchase date 06/05/2017), found 3 sale candidate(s) for ticker T.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/05/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28 (purchase date 06/10/2016), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28 (purchase date 06/10/2016), found 1 sale candidate(s) for ticker HDS.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28 (purchase date 06/10/2016), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 487c7f1c-663b-4e48-b2be-60ef43888487 (purchase date 06/20/2017), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 487c7f1c-663b-4e48-b2be-60ef43888487 (purchase date 06/20/2017), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 487c7f1c-663b-4e48-b2be-60ef43888487 (purchase date 06/20/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id ca841b2a-8860-4331-842f-5740d4ef480f (purchase date 06/22/2018), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:25 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id ca841b2a-8860-4331-842f-5740d4ef480f.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 5e407914-33e4-4388-b670-c4a680f927aa (purchase date 06/22/2018), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:25 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 5e407914-33e4-4388-b670-c4a680f927aa.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id ca841b2a-8860-4331-842f-5740d4ef480f (purchase date 06/25/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id ca841b2a-8860-4331-842f-5740d4ef480f (purchase date 06/25/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:25 | DEBUG    | For ptr_id 5e407914-33e4-4388-b670-c4a680f927aa (purchase date 06/25/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 5e407914-33e4-4388-b670-c4a680f927aa (purchase date 06/25/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/26/2020), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:26 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 8be9d29a-c980-494e-b719-64794f213978.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28 (purchase date 06/29/2016), found 1 sale candidate(s) for ticker HD.
+2025-03-16 00:21:26 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id b558e183-7af6-45da-99a6-a0a5e8dc2d28 (purchase date 06/29/2016), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/30/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 8be9d29a-c980-494e-b719-64794f213978 (purchase date 06/30/2020), found 3 sale candidate(s) for ticker AAL.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/01/2020), found 2 sale candidate(s) for ticker BYND.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/02/2020), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:26 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/02/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/02/2020), found 0 sale candidate(s) for ticker SPOT.
+2025-03-16 00:21:26 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 13967099-6f71-4683-b817-7cd1620ec716 (purchase date 07/05/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 13967099-6f71-4683-b817-7cd1620ec716 (purchase date 07/05/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 13967099-6f71-4683-b817-7cd1620ec716 (purchase date 07/05/2018), found 4 sale candidate(s) for ticker TGT.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 13967099-6f71-4683-b817-7cd1620ec716 (purchase date 07/05/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:26 | DEBUG    | For ptr_id 59621016-9a15-404e-b3db-cde44aa15719 (purchase date 07/05/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 59621016-9a15-404e-b3db-cde44aa15719 (purchase date 07/05/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 59621016-9a15-404e-b3db-cde44aa15719 (purchase date 07/05/2018), found 4 sale candidate(s) for ticker TGT.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 59621016-9a15-404e-b3db-cde44aa15719 (purchase date 07/05/2018), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id da32cc82-662c-4fc0-a938-9dcd2ef8e845 (purchase date 07/13/2015), found 0 sale candidate(s) for ticker SBUX.SW.
+2025-03-16 00:21:27 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id da32cc82-662c-4fc0-a938-9dcd2ef8e845.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/13/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/14/2017), found 3 sale candidate(s) for ticker T.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/15/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 3B840710-F2B4-4284-903F-5A32513838C9 (purchase date 07/18/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/18/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/20/2017), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id da32cc82-662c-4fc0-a938-9dcd2ef8e845 (purchase date 07/24/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:27 | DEBUG    | For ptr_id 33ee814c-5aef-4c2c-9ba1-245dfd145ef4 (purchase date 07/24/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/24/2017), found 6 sale candidate(s) for ticker TJX.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id 3B840710-F2B4-4284-903F-5A32513838C9 (purchase date 07/25/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id 44FD4251-4F6F-42AB-8353-82778AC43E55 (purchase date 07/26/2012), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id da32cc82-662c-4fc0-a938-9dcd2ef8e845 (purchase date 07/27/2015), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id da32cc82-662c-4fc0-a938-9dcd2ef8e845 (purchase date 07/27/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id 33ee814c-5aef-4c2c-9ba1-245dfd145ef4 (purchase date 07/27/2015), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id 33ee814c-5aef-4c2c-9ba1-245dfd145ef4 (purchase date 07/27/2015), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id 33d51e53-683b-4cdc-9575-8f72f9a71d57 (purchase date 07/27/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/31/2017), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:28 | DEBUG    | For ptr_id cbd4b72c-ac3f-44c0-91de-c6f75631b29f (purchase date 07/31/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/01/2013), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/01/2013), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/01/2017), found 3 sale candidate(s) for ticker WF.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/01/2017), found 1 sale candidate(s) for ticker COF.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/01/2017), found 7 sale candidate(s) for ticker CELG.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/01/2017), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/03/2020), found 2 sale candidate(s) for ticker TSLA.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/03/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/05/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/07/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:29 | DEBUG    | For ptr_id 02f4f88f-5607-4fd6-a686-2d2b78890db2 (purchase date 08/10/2017), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ccc83b84-0a61-4fa2-81df-9ff472720511 (purchase date 08/14/2019), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ccc83b84-0a61-4fa2-81df-9ff472720511 (purchase date 08/14/2019), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/17/2020), found 1 sale candidate(s) for ticker NVAX.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/18/2020), found 0 sale candidate(s) for ticker GOLD.
+2025-03-16 00:21:30 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/18/2020), found 3 sale candidate(s) for ticker BBY.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/18/2020), found 0 sale candidate(s) for ticker GLD.
+2025-03-16 00:21:30 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/19/2013), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/19/2013), found 1 sale candidate(s) for ticker HD.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/19/2013), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:30 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/19/2013), found 3 sale candidate(s) for ticker XOM.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id ee7d87c0-21be-482b-9e7b-3caf7a6fff24 (purchase date 08/19/2020), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 9bf4061a-631f-4413-9e74-aaf653ffa30e (purchase date 08/20/2018), found 3 sale candidate(s) for ticker XOM.
+2025-03-16 00:21:31 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 9bf4061a-631f-4413-9e74-aaf653ffa30e.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 9bf4061a-631f-4413-9e74-aaf653ffa30e (purchase date 08/20/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 9bf4061a-631f-4413-9e74-aaf653ffa30e (purchase date 08/20/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 9bf4061a-631f-4413-9e74-aaf653ffa30e (purchase date 08/21/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 8579DF96-661B-449D-AD86-40F67328F8E7 (purchase date 08/22/2012), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 8579DF96-661B-449D-AD86-40F67328F8E7 (purchase date 08/23/2012), found 1 sale candidate(s) for ticker SRZ.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/24/2018), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/24/2018), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/26/2013), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 790DF967-856C-46E0-988F-26C9568CF731 (purchase date 08/26/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:31 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/28/2018), found 1 sale candidate(s) for ticker KSS.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/28/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/28/2018), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/28/2018), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/28/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 08/29/2018), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 62d693bf-7dd8-4d87-98b8-26d0c71f87c5 (purchase date 08/31/2020), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:32 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 62d693bf-7dd8-4d87-98b8-26d0c71f87c5.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/02/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/03/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/03/2020), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/03/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:32 | DEBUG    | For ptr_id 263a0113-cdbb-43b8-a994-75fec2fd65c4 (purchase date 09/04/2018), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/04/2020), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:33 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6f691f61-e375-42ab-af01-72da4328447c.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/04/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/07/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/07/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/07/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/09/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/09/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/09/2020), found 0 sale candidate(s) for ticker ZM.
+2025-03-16 00:21:33 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 6f691f61-e375-42ab-af01-72da4328447c.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/11/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/11/2013), found 0 sale candidate(s) for ticker IBM.
+2025-03-16 00:21:33 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0.
+2025-03-16 00:21:33 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/11/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/14/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/16/2020), found 1 sale candidate(s) for ticker W.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/17/2013), found 1 sale candidate(s) for ticker CIEN.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/17/2013), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 6f691f61-e375-42ab-af01-72da4328447c (purchase date 09/17/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/24/2013), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 7973BB91-7A4B-49ED-9344-25302EFD53B0 (purchase date 09/25/2013), found 1 sale candidate(s) for ticker LNKD.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/26/2017), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/26/2017), found 1 sale candidate(s) for ticker COF.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/26/2017), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/26/2017), found 1 sale candidate(s) for ticker COF.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/26/2017), found 4 sale candidate(s) for ticker SBUX.
+2025-03-16 00:21:34 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/26/2017), found 1 sale candidate(s) for ticker COF.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/27/2017), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/27/2017), found 1 sale candidate(s) for ticker RTN.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/27/2017), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/27/2017), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/27/2017), found 1 sale candidate(s) for ticker RTN.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/27/2017), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/27/2017), found 1 sale candidate(s) for ticker RTN.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/28/2017), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 09/28/2017), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id a329be05-5227-49ed-a7db-605f7939adfb (purchase date 09/28/2017), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 8e2a3cb5-2511-4921-82ee-bf81d7c8ea6b (purchase date 09/28/2017), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/01/2019), found 1 sale candidate(s) for ticker KTB.
+2025-03-16 00:21:35 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/01/2019), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/01/2019), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 09F27BC5-02B8-42D8-BB79-9AEC73A91A61 (purchase date 10/02/2012), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/03/2019), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 09F27BC5-02B8-42D8-BB79-9AEC73A91A61 (purchase date 10/08/2012), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/08/2013), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 03cb719a-2b68-4f51-b5ee-c96a9b9b9e13 (purchase date 10/12/2018), found 4 sale candidate(s) for ticker WMT.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 03cb719a-2b68-4f51-b5ee-c96a9b9b9e13 (purchase date 10/12/2018), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/22/2013), found 4 sale candidate(s) for ticker GE.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/22/2013), found 0 sale candidate(s) for ticker IBM.
+2025-03-16 00:21:36 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/22/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:36 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/23/2019), found 3 sale candidate(s) for ticker MSFT.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/25/2013), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/25/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/28/2013), found 0 sale candidate(s) for ticker AFL.
+2025-03-16 00:21:37 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 19E236D8-A246-441F-B264-A4ECC37A5664 (purchase date 10/28/2013), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/31/2019), found 2 sale candidate(s) for ticker MA.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 43a27c67-0c46-4c8b-97bd-33cf17185cce (purchase date 10/31/2019), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 74d7fcde-e861-476e-9258-561874fb23cc (purchase date 11/04/2019), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:37 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 74d7fcde-e861-476e-9258-561874fb23cc.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 74d7fcde-e861-476e-9258-561874fb23cc (purchase date 11/04/2019), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:37 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 74d7fcde-e861-476e-9258-561874fb23cc.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 74d7fcde-e861-476e-9258-561874fb23cc (purchase date 11/04/2019), found 0 sale candidate(s) for ticker DIS.
+2025-03-16 00:21:37 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 74d7fcde-e861-476e-9258-561874fb23cc.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/06/2017), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:37 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/06/2017), found 1 sale candidate(s) for ticker DVN.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/07/2017), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/07/2017), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/07/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/07/2017), found 4 sale candidate(s) for ticker CVX.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/07/2017), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/07/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/08/2017), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/08/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/08/2017), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:38 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/08/2017), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/10/2020), found 0 sale candidate(s) for ticker DIS.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/10/2020), found 0 sale candidate(s) for ticker DIS.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 4f809324-f54d-48b7-af27-46f6657857f3.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 74d7fcde-e861-476e-9258-561874fb23cc (purchase date 11/12/2019), found 2 sale candidate(s) for ticker MA.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 48c2f7d9-a851-4012-bbf6-3ae1231796d9 (purchase date 11/14/2016), found 3 sale candidate(s) for ticker NOC.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 48c2f7d9-a851-4012-bbf6-3ae1231796d9 (purchase date 11/14/2016), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/16/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/16/2020), found 0 sale candidate(s) for ticker V.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/16/2020), found 0 sale candidate(s) for ticker DAL.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/16/2020), found 0 sale candidate(s) for ticker V.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 4f809324-f54d-48b7-af27-46f6657857f3.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/16/2020), found 0 sale candidate(s) for ticker DAL.
+2025-03-16 00:21:39 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 4f809324-f54d-48b7-af27-46f6657857f3.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/16/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:39 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/17/2020), found 1 sale candidate(s) for ticker W.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/17/2020), found 1 sale candidate(s) for ticker W.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id D45A8795-99AF-471A-AE55-DDD80E19B31E (purchase date 11/20/2013), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:40 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id D45A8795-99AF-471A-AE55-DDD80E19B31E.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id D45A8795-99AF-471A-AE55-DDD80E19B31E (purchase date 11/21/2013), found 1 sale candidate(s) for ticker TRN.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a (purchase date 11/24/2020), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:40 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id b7e581e7-f154-4dc7-890d-1c827c88ba7a.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 4f809324-f54d-48b7-af27-46f6657857f3 (purchase date 11/24/2020), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:40 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 4f809324-f54d-48b7-af27-46f6657857f3.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id D45A8795-99AF-471A-AE55-DDD80E19B31E (purchase date 11/29/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 4cdd93be-dfaf-465a-820f-616ae1f0f6b0 (purchase date 11/30/2017), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 5ba30cf2-0019-4c66-9318-23c1283367f3 (purchase date 11/30/2017), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/01/2017), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/02/2020), found 0 sale candidate(s) for ticker ZM.
+2025-03-16 00:21:40 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id D9ED1CD9-F649-45D2-B27E-4B2B404C83D2 (purchase date 12/06/2012), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/06/2013), found 10 sale candidate(s) for ticker AMZN.
+2025-03-16 00:21:40 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/06/2013), found 2 sale candidate(s) for ticker KSU.
+2025-03-16 00:21:40 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id E0F69812-6B00-4773-894B-4068B7600DDC.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/07/2017), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/07/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:41 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/07/2020), found 2 sale candidate(s) for ticker TSLA.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id fcfa1745-5a76-4899-8541-7012c66b5f04 (purchase date 12/11/2014), found 1 sale candidate(s) for ticker MIK.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/11/2020), found 2 sale candidate(s) for ticker TSLA.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/13/2017), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/13/2017), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/13/2017), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id de5e79a5-a564-4b76-81ad-33a96f251b33 (purchase date 12/15/2016), found 13 sale candidate(s) for ticker BAC.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id de5e79a5-a564-4b76-81ad-33a96f251b33 (purchase date 12/15/2016), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:41 | DEBUG    | For ptr_id D9ED1CD9-F649-45D2-B27E-4B2B404C83D2 (purchase date 12/17/2012), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/18/2013), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/18/2013), found 9 sale candidate(s) for ticker BIDU.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/18/2013), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 4dc9426a-51a2-4f90-94ac-1adf3ea7fb2e (purchase date 12/18/2017), found 4 sale candidate(s) for ticker ETY.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id fcfa1745-5a76-4899-8541-7012c66b5f04 (purchase date 12/19/2014), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/21/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/21/2020), found 11 sale candidate(s) for ticker NVDA.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/21/2020), found 0 sale candidate(s) for ticker EXPI.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/22/2020), found 8 sale candidate(s) for ticker BA.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/22/2020), found 0 sale candidate(s) for ticker PLUG.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/22/2020), found 0 sale candidate(s) for ticker SQ.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/22/2020), found 6 sale candidate(s) for ticker COST.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:42 | DEBUG    | For ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350 (purchase date 12/22/2020), found 16 sale candidate(s) for ticker AAPL.
+2025-03-16 00:21:42 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id 70614aca-cf77-4a70-b0c8-245a097a7350.
+2025-03-16 00:21:43 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/23/2013), found 27 sale candidate(s) for ticker NFLX.
+2025-03-16 00:21:43 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/23/2013), found 0 sale candidate(s) for ticker TRU.
+2025-03-16 00:21:43 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id E0F69812-6B00-4773-894B-4068B7600DDC.
+2025-03-16 00:21:43 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/26/2013), found 6 sale candidate(s) for ticker FB.
+2025-03-16 00:21:43 | DEBUG    | For ptr_id E0F69812-6B00-4773-894B-4068B7600DDC (purchase date 12/27/2013), found 1 sale candidate(s) for ticker CEA.
+2025-03-16 00:21:43 | DEBUG    | No matching sale (sale date > purchase date) found for ptr_id E0F69812-6B00-4773-894B-4068B7600DDC.
+2025-03-16 00:21:43 | INFO     | transactions_analytics table populated successfully.
+2025-03-16 00:21:43 | INFO     | Transactions analytics updated in 110.70 seconds.

@@ -1,5 +1,3 @@
-# advanced_analytics.py
-
 import sqlite3
 import yfinance as yf
 from datetime import datetime, timedelta
@@ -10,12 +8,11 @@ import time
 logger = logging.getLogger("main_logger")
 
 # -------------------------------------------------------------------
-# TABLE INITIALIZATION
+# TABLE INITIALIZATION FOR AGGREGATED ANALYTICS
 # -------------------------------------------------------------------
 def init_analytics_table(conn):
     """
-    Create an analytics table to store aggregated metrics per senator,
-    including both basic and advanced analytics.
+    Create an analytics table to store aggregated metrics per senator.
     """
     c = conn.cursor()
     c.execute('''
@@ -46,9 +43,42 @@ def init_analytics_table(conn):
     conn.commit()
     logger.debug("Analytics table created or verified.")
 
+# -------------------------------------------------------------------
+# TABLE INITIALIZATION FOR TRANSACTION ANALYTICS
+# -------------------------------------------------------------------
+def init_transactions_analytics_table(conn):
+    """
+    Create a table to store detailed transaction analytics.
+    """
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS transactions_analytics (
+            ptr_id TEXT PRIMARY KEY,
+            senator_id INTEGER,
+            transaction_number INTEGER,
+            transaction_date TEXT,
+            ticker TEXT,
+            type TEXT,
+            amount TEXT,
+            asset_type TEXT,
+            status TEXT,              -- 'closed' if a matching sale is found; otherwise 'open'
+            estimated_invested REAL,  -- average of the amount range
+            price_purchase REAL,      -- price on purchase date
+            price_7d REAL,            -- price 7 days after purchase
+            price_30d REAL,           -- price 30 days after purchase
+            price_closing REAL,       -- price on sale date if closed; NULL otherwise
+            price_today REAL,         -- price today if open; NULL otherwise
+            gain_7d REAL,             -- % gain at 7 days
+            gain_30d REAL,            -- % gain at 30 days
+            gain_closing REAL,        -- % gain on day of closing if closed; NULL otherwise
+            gain_today REAL           -- % gain today if open; NULL otherwise
+        )
+    ''')
+    conn.commit()
+    logger.debug("transactions_analytics table created or verified.")
 
 # -------------------------------------------------------------------
-# HISTORICAL PRICE FETCHING
+# HISTORICAL PRICE FETCHING FUNCTIONS
 # -------------------------------------------------------------------
 def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
     ticker = ticker.lstrip('$')
@@ -58,29 +88,27 @@ def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
     while retries < max_retries:
         start_date = target_date.strftime("%Y-%m-%d")
         end_date = (target_date + timedelta(days=max_offset+1)).strftime("%Y-%m-%d")
-        print(f"\nFetching data for {ticker} between {start_date} and {end_date}")
         try:
-            hist = stock.history(start=start_date, end=end_date, interval="1d")
-            time.sleep(1)  # Throttle after API call
+            hist = stock.history(start=start_date, end=end_date, interval="1d", actions=False)
+            time.sleep(1)
             if hist.empty:
                 return None
             for offset in range(max_offset + 1):
                 check_date = (target_date + timedelta(days=offset)).strftime("%Y-%m-%d")
                 if check_date in hist.index.strftime("%Y-%m-%d"):
-                    print(hist.loc[check_date]["Close"])
                     return hist.loc[check_date]["Close"]
             return None
         except yf.exceptions.YFRateLimitError:
-            print(f"Rate limit hit for ticker {ticker}. Sleeping for 5 seconds before retrying.")
+            logger.warning(f"Rate limit hit for {ticker}. Sleeping for 5 seconds before retrying.")
             time.sleep(5)
             retries += 1
     return None
 
 def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignore_file="resources/ignore_tickers.txt"):
     """
-    Fetch and return a dictionary mapping each unique ticker to its historical
-    data between overall_start_date and overall_end_date.
-    Tickers found in the ignore file are skipped.
+    Fetch a dictionary mapping each unique ticker to its historical data
+    between overall_start_date and overall_end_date.
+    Tickers in the ignore file are skipped.
     """
     c = conn.cursor()   
     c.execute("""
@@ -88,10 +116,7 @@ def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignor
         FROM transactions t
         WHERE t.ticker <> '--'
     """)
-    # Clean up the tickers by removing leading '$'
     tickers = [row[0].lstrip('$') for row in c.fetchall()]
-    
-    # Read the ignore list from file
     ignore_tickers = get_ignore_tickers(ignore_file)
     logger.info(f"Ignore tickers: {ignore_tickers}")
 
@@ -101,16 +126,16 @@ def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignor
         if ticker in ignore_tickers:
             logger.info(f"Ticker {ticker} is in the ignore list. Skipping.")
             continue
-
         logger.debug(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
         stock = yf.Ticker(ticker)
         try:
             hist = stock.history(start=overall_start_date.strftime("%Y-%m-%d"),
                                    end=overall_end_date.strftime("%Y-%m-%d"),
-                                   interval="1d")
-            time.sleep(1)  # Throttle API calls.
+                                   interval="1d",
+                                   actions=False)
+            time.sleep(1)
             if hist.empty:
-                logger.warning(f"No data returned for {ticker} between {overall_start_date} and {overall_end_date}. Possibly delisted.")
+                logger.warning(f"No data for {ticker} between {overall_start_date} and {overall_end_date}.")
                 failed_tickers.append(ticker)
             else:
                 ticker_histories[ticker] = hist
@@ -121,13 +146,10 @@ def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignor
         logger.info(f"Tickers that failed to fetch: {failed_tickers}")
     return ticker_histories
 
-
-
 def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
     """
     Return the closing price for a ticker from the pre-fetched history.
-    If the price for target_date is missing (e.g. non-trading day),
-    try forward up to max_offset days.
+    If not available for target_date, try up to max_offset days forward.
     """
     ticker = ticker.lstrip('$')
     if ticker not in ticker_histories:
@@ -140,43 +162,57 @@ def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
             return hist.loc[check_date]["Close"]
     return None
 
-
-
 # -------------------------------------------------------------------
-# PERFORMANCE CALCULATION FOR A TRANSACTION
+# PERFORMANCE CALCULATION
 # -------------------------------------------------------------------
 def compute_transaction_performance(transaction, ticker_histories):
     """
     Compute performance metrics using pre-fetched ticker histories.
+    
+    Supports transaction tuple lengths of 6, 8, or 13.
+    
+    For a 13-tuple (as constructed in get_advanced_metrics):
+       (ptr_id, txn_num, transaction_date, None, ticker, None, None, None, "purchase", amount_str, None, None, None)
+       -> We need: txn_date_str from index 2, ticker from index 4, amount_str from index 9.
+       
+    For an 8-tuple:
+       (senator_id, ptr_id, transaction_number, transaction_date, ticker, type, amount, asset_type)
+       -> We need: txn_date_str from index 3, ticker from index 4, amount_str from index 6.
+       
+    For a 6-tuple:
+       (senator_id, ptr_id, transaction_number, transaction_date, ticker, amount)
+       -> We need: txn_date_str from index 3, ticker from index 4, amount_str from index 5.
     """
-    # Unpack the transaction. Assuming txn_date_str is in "MM/DD/YYYY" format.
-    _, _, txn_date_str, _, ticker, _, _, _, _, _, _, _, _ = transaction
+    if len(transaction) == 13:
+        _, _, txn_date_str, _, ticker, _, _, _, _, amount_str, _, _, _ = transaction
+    elif len(transaction) == 8:
+        _, _, _, txn_date_str, ticker, _, amount_str, _ = transaction
+    elif len(transaction) == 6:
+        _, _, _, txn_date_str, ticker, amount_str = transaction
+    else:
+        raise ValueError(f"Unexpected transaction tuple length: {len(transaction)}")
+    
+    # Convert transaction date (expected in MM/DD/YYYY format) to a Python date object.
     purchase_date = datetime.strptime(txn_date_str, "%m/%d/%Y")
     today = datetime.utcnow()
-
-    # Get purchase price
-    purchase_price = get_price_from_history(ticker, purchase_date, ticker_histories)
     
-    # Get current price (fetch only once)
+    # Fetch prices from history.
+    price_purchase = get_price_from_history(ticker, purchase_date, ticker_histories)
     current_price = get_price_from_history(ticker, today, ticker_histories)
     
-    # For 7-day price: if target date is in the future, use current price.
     target_7d = purchase_date + timedelta(days=7)
-    price_7d = (current_price if target_7d > today 
-                else get_price_from_history(ticker, target_7d, ticker_histories))
+    price_7d = current_price if target_7d > today else get_price_from_history(ticker, target_7d, ticker_histories)
     
-    # For 30-day price: same logic as 7-day.
     target_30d = purchase_date + timedelta(days=30)
-    price_30d = (current_price if target_30d > today 
-                 else get_price_from_history(ticker, target_30d, ticker_histories))
+    price_30d = current_price if target_30d > today else get_price_from_history(ticker, target_30d, ticker_histories)
     
     def calc_perf(current):
-        if purchase_price and purchase_price != 0 and current is not None:
-            return ((current - purchase_price) / purchase_price) * 100
+        if price_purchase and price_purchase != 0 and current is not None:
+            return ((current - price_purchase) / price_purchase) * 100
         return None
     
     return {
-        "purchase_price": purchase_price,
+        "purchase_price": price_purchase,
         "price_7d": price_7d,
         "price_30d": price_30d,
         "current_price": current_price,
@@ -189,13 +225,11 @@ def compute_transaction_performance(transaction, ticker_histories):
 
 
 # -------------------------------------------------------------------
-# ADVANCED AGGREGATION: BASIC + PERFORMANCE & ACCURACY
+# BASIC AND ADVANCED ANALYTICS FUNCTIONS (Existing)
 # -------------------------------------------------------------------
-
 def get_basic_analytics(conn):
     """
-    Calculate basic analytics for each senator based on transactions.
-    Returns a dictionary where keys are senator_ids and values are aggregated metrics.
+    Calculate basic aggregated metrics per senator from transactions.
     """
     c = conn.cursor()
     query = '''
@@ -208,8 +242,7 @@ def get_basic_analytics(conn):
     '''
     c.execute(query)
     rows = c.fetchall()
-
-    basic = {}  # key: senator_id, value: dict of basic aggregated metrics
+    basic = {}
     for row in rows:
         senator_id, txn_type, asset_type, owner, amount_str = row
         if senator_id not in basic:
@@ -229,7 +262,6 @@ def get_basic_analytics(conn):
             }
         agg = basic[senator_id]
         agg["total_transaction_count"] += 1
-
         txn_type_lower = txn_type.lower().strip()
         if "purchase" in txn_type_lower:
             agg["total_purchase_count"] += 1
@@ -237,9 +269,7 @@ def get_basic_analytics(conn):
             agg["total_exchange_count"] += 1
         elif "sale" in txn_type_lower:
             agg["total_sale_count"] += 1
-
         agg["total_stock_transactions"] += 1
-
         owner_lower = owner.lower().strip()
         if owner_lower == "child":
             agg["count_ownership_child"] += 1
@@ -251,17 +281,14 @@ def get_basic_analytics(conn):
             agg["count_ownership_self"] += 1
         elif owner_lower == "spouse":
             agg["count_ownership_spouse"] += 1
-
         numeric_value = average_amount(amount_str)
         if numeric_value is not None:
             agg["total_transaction_value"] += numeric_value
-
     return basic
 
 def get_advanced_metrics(conn, ticker_histories):
     """
-    Calculate advanced metrics for open transactions.
-    Returns a dictionary with senator_id as key and advanced metrics as value.
+    Calculate advanced performance metrics for open purchase transactions.
     """
     c = conn.cursor()
     c.execute("""
@@ -282,16 +309,13 @@ def get_advanced_metrics(conn, ticker_histories):
           )
     """)
     rows = c.fetchall()
-    
     advanced = {}
     for row in rows:
         senator_id, ptr_id, txn_num, txn_date, ticker, amount_str = row
-        # Build a transaction tuple for performance calculation.
         transaction = (ptr_id, txn_num, txn_date, None, ticker, None, None, None, "purchase", amount_str, None, None, None)
         perf = compute_transaction_performance(transaction, ticker_histories)
         if perf.get("purchase_price") is None:
             continue
-
         if senator_id not in advanced:
             advanced[senator_id] = {
                 "total_open": 0,
@@ -304,7 +328,7 @@ def get_advanced_metrics(conn, ticker_histories):
                 "positive_7d": 0,
                 "positive_30d": 0,
                 "positive_current": 0,
-                "total_net_profit": 0  # Placeholder for future calculation.
+                "total_net_profit": 0
             }
         adv = advanced[senator_id]
         adv["total_open"] += 1
@@ -317,20 +341,16 @@ def get_advanced_metrics(conn, ticker_histories):
                     adv[f"positive_{horizon}"] += 1
     return advanced
 
-
 def upsert_analytics(conn, basic, advanced):
     """
-    Combine basic and advanced metrics and upsert them into the analytics table.
+    Combine basic and advanced metrics and upsert into the analytics table.
     """
     c = conn.cursor()
     for senator_id, basic_agg in basic.items():
         total_count = basic_agg["total_transaction_count"]
         avg_amount = (basic_agg["total_transaction_value"] / total_count) if total_count > 0 else 0
-
-        # Set default advanced metrics.
         avg_perf_7d = avg_perf_30d = avg_perf_current = 0
         accuracy_7d = accuracy_30d = accuracy_current = 0
-
         if senator_id in advanced and advanced[senator_id]["total_open"] > 0:
             adv = advanced[senator_id]
             if adv["count_perf_7d"] > 0:
@@ -342,7 +362,6 @@ def upsert_analytics(conn, basic, advanced):
             if adv["count_perf_current"] > 0:
                 avg_perf_current = adv["sum_perf_current"] / adv["count_perf_current"]
                 accuracy_current = (adv["positive_current"] / adv["total_open"]) * 100
-
         c.execute('''
             INSERT INTO analytics (
                 senator_id,
@@ -414,24 +433,180 @@ def upsert_analytics(conn, basic, advanced):
     conn.commit()
     logger.info("Analytics table updated successfully.")
 
+# -------------------------------------------------------------------
+# POPULATE TRANSACTIONS_ANALYTICS TABLE
+# -------------------------------------------------------------------
+def populate_transactions_analytics(conn, ticker_histories):
+    """
+    For each purchase transaction (Stock) in transactions,
+    determine if it's closed (if a sale exists later) and compute additional fields.
+    Populates the transactions_analytics table with:
+      - status: 'closed' if a matching sale is found, else 'open'
+      - estimated_invested: average of the amount range
+      - price_purchase: price on purchase date (from historical data)
+      - price_7d: price 7 days after purchase
+      - price_30d: price 30 days after purchase
+      - price_closing: price on sale date if closed; else NULL
+      - price_today: price today if open; else NULL
+      - gain_7d, gain_30d, gain_closing, gain_today: corresponding percentage gains
+    """
+    c = conn.cursor()
+    c.execute("""
+       SELECT f.senator_id, t.ptr_id, t.transaction_number, t.transaction_date, 
+              t.ticker, t.type, t.amount, t.asset_type
+       FROM transactions t
+       JOIN filings f ON t.ptr_id = f.ptr_id
+       WHERE LOWER(t.type) LIKE '%purchase%'
+         AND LOWER(t.asset_type) = 'stock'
+         AND t.ticker <> '--'
+       ORDER BY t.transaction_date ASC
+    """)
+    purchases = c.fetchall()
+    today = datetime.utcnow()
+    
+    for purchase in purchases:
+        senator_id, ptr_id, txn_num, txn_date, ticker, tx_type, amount_str, asset_type = purchase
+        try:
+            purchase_date = datetime.strptime(txn_date, "%m/%d/%Y")
+        except Exception as e:
+            logger.error(f"Error converting purchase date '{txn_date}' for ptr_id {ptr_id}: {e}")
+            continue
+
+        estimated_invested = average_amount(amount_str)
+        
+        # Compute performance metrics (prices, % gains) for this purchase.
+        perf = compute_transaction_performance(purchase, ticker_histories)
+        price_purchase = perf.get("purchase_price")
+        price_7d = perf.get("price_7d")
+        price_30d = perf.get("price_30d")
+        
+        # Default values assume open transaction.
+        status = "open"
+        price_closing = None
+        gain_closing = None
+        price_today = perf.get("current_price")
+        gain_today = perf.get("perf_current")
+        
+        # --- Modified Sale Lookup ---
+        # Instead of filtering by date in SQL, get all sale transactions for this ticker and senator.
+        c.execute("""
+            SELECT s.transaction_date
+            FROM transactions s
+            JOIN filings fs ON s.ptr_id = fs.ptr_id
+            WHERE s.ticker = ?
+              AND fs.senator_id = ?
+              AND LOWER(s.type) LIKE '%sale%'
+              AND LOWER(s.asset_type) = 'stock'
+              AND s.ticker <> '--'
+            ORDER BY CAST(substr(s.transaction_date,7,4) || '-' ||
+                          substr(s.transaction_date,1,2) || '-' ||
+                          substr(s.transaction_date,4,2) AS DATE) ASC
+        """, (ticker, senator_id))
+        sales = c.fetchall()
+        logger.debug(f"For ptr_id {ptr_id} (purchase date {txn_date}), found {len(sales)} sale candidate(s) for ticker {ticker}.")
+        
+        # Now, in Python, filter the candidate sales to find the first sale that occurs after purchase_date.
+        matching_sale = None
+        for sale in sales:
+            sale_date_str = sale[0]
+            try:
+                sale_date = datetime.strptime(sale_date_str, "%m/%d/%Y")
+            except Exception as e:
+                logger.error(f"Error converting sale date '{sale_date_str}' for ptr_id {ptr_id}: {e}")
+                continue
+            if sale_date > purchase_date:
+                matching_sale = sale_date
+                break
+        
+        if matching_sale:
+            status = "closed"
+            price_closing = get_price_from_history(ticker, matching_sale, ticker_histories)
+            if price_purchase and price_closing:
+                gain_closing = ((price_closing - price_purchase) / price_purchase) * 100
+        else:
+            logger.debug(f"No matching sale (sale date > purchase date) found for ptr_id {ptr_id}.")
+        
+        gain_7d = ((price_7d - price_purchase) / price_purchase * 100) if price_purchase and price_7d else None
+        gain_30d = ((price_30d - price_purchase) / price_purchase * 100) if price_purchase and price_30d else None
+        
+        analytics_data = (
+            ptr_id,
+            senator_id,
+            txn_num,
+            txn_date,
+            ticker,
+            tx_type,
+            amount_str,
+            asset_type,
+            status,
+            estimated_invested,
+            price_purchase,
+            price_7d,
+            price_30d,
+            price_closing,
+            price_today if status == "open" else None,
+            gain_7d,
+            gain_30d,
+            gain_closing,
+            gain_today if status == "open" else None
+        )
+        
+        c.execute("""
+            INSERT OR REPLACE INTO transactions_analytics (
+                ptr_id,
+                senator_id,
+                transaction_number,
+                transaction_date,
+                ticker,
+                type,
+                amount,
+                asset_type,
+                status,
+                estimated_invested,
+                price_purchase,
+                price_7d,
+                price_30d,
+                price_closing,
+                price_today,
+                gain_7d,
+                gain_30d,
+                gain_closing,
+                gain_today
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, analytics_data)
+    conn.commit()
+    logger.info("transactions_analytics table populated successfully.")
+
+
+# -------------------------------------------------------------------
+# MAIN UPDATE FUNCTION
+# -------------------------------------------------------------------
 def update_analytics(conn):
     start_time = time.time()
     basic = get_basic_analytics(conn)
     logger.info(f"Basic analytics fetched in {time.time() - start_time:.2f} seconds.")
 
-    # Define overall date range.
-    # You can compute overall_start_date as the earliest transaction date from your DB,
-    # but here we'll hardcode it for illustration.
     overall_start_date = datetime(2010, 1, 1)
     overall_end_date = datetime.utcnow() + timedelta(days=30)
     
-    # Fetch all ticker histories once.
     ticker_histories = fetch_all_ticker_histories(conn, overall_start_date, overall_end_date)
     
-    # Pass the ticker_histories into advanced metrics.
     advanced = get_advanced_metrics(conn, ticker_histories)
     logger.info(f"Advanced analytics fetched in {time.time() - start_time:.2f} seconds.")
 
     upsert_analytics(conn, basic, advanced)
     logger.info(f"Analytics updated in {time.time() - start_time:.2f} seconds.")
     logger.info("Analytics table updated successfully.")
+
+    populate_transactions_analytics(conn, ticker_histories)
+    logger.info(f"Transactions analytics updated in {time.time() - start_time:.2f} seconds.")
+
+# -------------------------------------------------------------------
+# Example Usage
+# -------------------------------------------------------------------
+if __name__ == "__main__":
+    conn = sqlite3.connect("your_database.db")
+    init_analytics_table(conn)
+    init_transactions_analytics_table(conn)
+    update_analytics(conn)
+    print("Analytics and transactions analytics updated successfully.")

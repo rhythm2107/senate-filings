@@ -4,7 +4,7 @@ from modules.scraper_transactions import scrape_transactions
 from modules.notify_system import send_unnotified_discord_notifications
 from modules.logger import setup_logger
 from modules.db_helper import init_db, init_analytics_table
-from modules.analytics import update_analytics
+from modules.analytics import update_analytics, init_transactions_analytics_table
 from modules.config import DB_NAME
 
 # Create a logger object for debugging purposes
@@ -42,19 +42,13 @@ def main():
     # Connect to your database
     conn = init_db(DB_NAME)
     
-    # Ensure the analytics table exists
+    # Ensure the analytics tables exists
     init_analytics_table(conn)
+    init_transactions_analytics_table(conn)
     
     # Update the analytics table with aggregated metrics
     update_analytics(conn)
-    
-    # Optionally, fetch and print the analytics table contents to verify
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM analytics")
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-    
+
     conn.close()
 
 if __name__ == '__main__':
