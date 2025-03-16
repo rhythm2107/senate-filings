@@ -299,10 +299,10 @@ def seed_notification_log():
 
 def init_analytics_table(conn):
     """
-    Create an analytics table to store aggregated metrics per senator.
+    Creates the analytics table if it does not exist.
     """
     c = conn.cursor()
-    c.execute('''
+    c.execute("""
         CREATE TABLE IF NOT EXISTS analytics (
             senator_id INTEGER PRIMARY KEY,
             total_transaction_count INTEGER,
@@ -316,11 +316,20 @@ def init_analytics_table(conn):
             count_ownership_joint INTEGER,
             count_ownership_self INTEGER,
             count_ownership_spouse INTEGER,
-            total_transaction_value INTEGER,
-            average_transaction_amount REAL
+            total_transaction_value REAL,
+            average_transaction_amount REAL,
+            avg_perf_7d REAL,
+            avg_perf_30d REAL,
+            avg_perf_current REAL,
+            accuracy_7d REAL,
+            accuracy_30d REAL,
+            accuracy_current REAL,
+            total_net_profit REAL,
+            total_value REAL
         )
-    ''')
+    """)
     conn.commit()
+
 
 def init_transactions_analytics_table(conn):
     """
