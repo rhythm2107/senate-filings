@@ -24,13 +24,13 @@ def main():
 
     conn = init_db("filings.db") # Rename to DB_NAME constant later after debugging is finished
 
-    logger.info("[MAIN] Starting process_transactions_analytics")
-    process_transactions_analytics(conn)
-    time.sleep(2)
+    # logger.info("[MAIN] Starting process_transactions_analytics")
+    # process_transactions_analytics(conn)
+    # time.sleep(2)
 
-    logger.info("[MAIN] Starting update_senators_analytics")
-    update_senators_analytics(conn)
-    time.sleep(2)
+    # logger.info("[MAIN] Starting update_senators_analytics")
+    # update_senators_analytics(conn)
+    # time.sleep(2)
     
     logger.info("[MAIN] Starting update_party_analytics")
     update_party_analytics(conn)
