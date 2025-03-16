@@ -9,7 +9,7 @@ from modules.db_helper import init_transactions_analytics_table
 
 logger = logging.getLogger("analytics")
 
-def setup_match_logger(log_file="matched_transactions.log"):
+def setup_match_logger(log_file="debug\matched_transactions.log"):
     """
     Sets up and returns a logger that writes matched transaction info to a file.
     """
