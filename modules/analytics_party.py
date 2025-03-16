@@ -1,39 +1,6 @@
 import sqlite3
-
-def init_analytics_party_table(conn):
-    """
-    Creates the analytics_party table if it does not exist.
-    This table holds aggregated analytics for each party.
-    """
-    c = conn.cursor()
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS analytics_party (
-            party TEXT PRIMARY KEY,
-            total_transaction_count INTEGER,
-            total_purchase_count INTEGER,
-            total_exchange_count INTEGER,
-            total_sale_count INTEGER,
-            total_stock_transactions INTEGER,
-            total_other_transactions INTEGER,
-            count_ownership_child INTEGER,
-            count_ownership_dependent_child INTEGER,
-            count_ownership_joint INTEGER,
-            count_ownership_self INTEGER,
-            count_ownership_spouse INTEGER,
-            total_transaction_value REAL,
-            average_transaction_amount REAL,
-            avg_perf_7d REAL,
-            avg_perf_30d REAL,
-            avg_perf_current REAL,
-            accuracy_7d REAL,
-            accuracy_30d REAL,
-            accuracy_current REAL,
-            total_net_profit REAL,
-            total_value REAL
-        )
-    """)
-    conn.commit()
-    print("analytics_party table initialized.")
+import time
+from modules.db_helper import init_analytics_party_table
 
 def populate_analytics_party(conn):
     """
@@ -159,12 +126,11 @@ def populate_analytics_party(conn):
     conn.commit()
     print("analytics_party table populated successfully.")
 
-if __name__ == "__main__":
-    # Replace 'your_database.sqlite' with your actual SQLite database file.
-    db_filename = "filings.db"
-    conn = sqlite3.connect(db_filename)
-    
+def update_party_analytics(conn):
+    """
+    Updates the analytics_party table with the latest analytics data.
+    """
     init_analytics_party_table(conn)
+    time.sleep(1)
     populate_analytics_party(conn)
-    
-    conn.close()
+    print("Party analytics updated successfully.")
