@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from modules.utilis import average_amount, get_ignore_tickers
 import logging
 import time
+from modules.db_helper import init_analytics_table
 
 logger = logging.getLogger("main_logger")
 
@@ -347,6 +348,9 @@ def update_senators_analytics(conn):
     Updates the analytics table for all senators by calling the two functions
     update_senators_analytics_left and update_senators_analytics_right.
     """
+    # Initialize the analytics table.
+    init_analytics_table(conn)
+
     # Function that operates on transactions_analytics table.
     update_senators_analytics_right(conn)
 
