@@ -1,0 +1,497 @@
+2025-03-16 17:45:22 | INFO     | Ignore tickers: []
+2025-03-16 17:45:22 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:26 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:27 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:29 | DEBUG    | Fetching history for CELG from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:31 | WARNING  | No data for CELG between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:45:31 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:32 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:34 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:35 | DEBUG    | Fetching history for KSU from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:37 | WARNING  | No data for KSU between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:45:37 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:38 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:39 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:41 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:42 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:43 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:44 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:46 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:47 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:48 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:49 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:51 | DEBUG    | Fetching history for FB from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:53 | WARNING  | No data for FB between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:45:53 | DEBUG    | Fetching history for LNKD from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:54 | WARNING  | No data for LNKD between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:45:54 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:55 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:56 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:58 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:45:59 | DEBUG    | Fetching history for CEA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:01 | WARNING  | No data for CEA between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:01 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:02 | DEBUG    | Fetching history for TCS from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:04 | WARNING  | No data for TCS between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:04 | DEBUG    | Fetching history for TWTR from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:06 | WARNING  | No data for TWTR between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:06 | DEBUG    | Fetching history for MIK from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:08 | WARNING  | No data for MIK between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:08 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:09 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:11 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:12 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:13 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:14 | DEBUG    | Fetching history for SBUX.SW from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:16 | WARNING  | No data for SBUX.SW between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:16 | DEBUG    | Fetching history for HDS from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:18 | WARNING  | No data for HDS between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:18 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:19 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:21 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:22 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:23 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:24 | DEBUG    | Fetching history for RTN from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:26 | WARNING  | No data for RTN between 2010-01-01 00:00:00 and 2025-04-15 16:45:22.984309.
+2025-03-16 17:46:26 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:27 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:29 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:30 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:31 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:32 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:34 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:35 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:36 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:37 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:39 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:40 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:41 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:42 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:43 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:45 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:46 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:47 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:48 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:49 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:51 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:52 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:53 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:54 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 16:45:22.984309
+2025-03-16 17:46:55 | INFO     | Tickers that failed to fetch: ['CELG', 'KSU', 'FB', 'LNKD', 'CEA', 'TCS', 'TWTR', 'MIK', 'SBUX.SW', 'HDS', 'RTN']
+2025-03-16 17:47:07 | INFO     | Ignore tickers: []
+2025-03-16 17:47:07 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 16:47:07.969299
+2025-03-16 17:47:09 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 16:47:07.969299
+2025-03-16 17:47:11 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 16:47:07.969299
+2025-03-16 17:47:12 | DEBUG    | Fetching history for CELG from 2010-01-01 00:00:00 to 2025-04-15 16:47:07.969299
+2025-03-16 17:47:14 | WARNING  | No data for CELG between 2010-01-01 00:00:00 and 2025-04-15 16:47:07.969299.
+2025-03-16 17:47:14 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 16:47:07.969299
+2025-03-16 17:47:43 | INFO     | Ignore tickers: []
+2025-03-16 17:47:43 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 16:47:43.532834
+2025-03-16 17:48:03 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 17:48:03 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:05 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:06 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:07 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 17:48:07 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:09 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:10 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:11 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 17:48:11 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:12 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:14 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:15 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:16 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:17 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:19 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:20 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:21 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:22 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:24 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:25 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 17:48:25 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 17:48:25 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:26 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:27 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:29 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:30 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 17:48:30 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:31 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 17:48:31 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 17:48:31 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 17:48:31 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:32 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:34 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:35 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:36 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:37 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 17:48:37 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 17:48:37 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:38 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:40 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:41 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:42 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:43 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 17:48:43 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:45 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:46 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:47 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:48 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:50 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:51 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:52 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:53 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:54 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:56 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:57 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:58 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:48:59 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:00 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:02 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:03 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:04 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:05 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:06 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:07 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:09 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:10 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 17:49:11 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 16:48:03.758446
+2025-03-16 18:27:27 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 18:27:27 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:29 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:31 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:32 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 18:27:32 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:33 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:34 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:35 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 18:27:35 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:37 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:38 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:39 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:40 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:42 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:43 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:44 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:46 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:47 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:48 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:49 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 18:27:49 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 18:27:49 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:50 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:52 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:53 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:54 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 18:27:54 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:55 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 18:27:55 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 18:27:55 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 18:27:55 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:57 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:58 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:27:59 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:00 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:02 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 18:28:02 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 18:28:02 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:03 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:04 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:05 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:07 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:08 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 18:28:08 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:09 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:10 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:12 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:13 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:14 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:15 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:16 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:18 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:19 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:20 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:21 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:23 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:24 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:25 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:26 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:27 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:29 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:30 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:31 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:32 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:33 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:35 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:28:36 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 17:27:27.953147
+2025-03-16 18:36:31 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 18:36:31 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:33 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:34 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:35 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 18:36:35 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:36 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:37 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:38 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 18:36:38 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:40 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:41 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:42 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:43 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:45 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:46 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:47 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:48 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:50 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:51 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:52 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 18:36:52 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 18:36:52 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:53 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:55 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:56 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:57 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 18:36:57 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:36:58 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 18:36:58 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 18:36:58 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 18:36:58 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:00 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:01 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:02 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:04 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:05 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 18:37:05 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 18:37:05 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:06 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:07 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:09 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:10 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:11 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 18:37:11 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:12 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:13 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:15 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:16 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:17 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:18 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:20 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:21 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:22 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:23 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:24 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:26 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:27 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:28 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:29 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:30 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:32 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:33 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:34 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:35 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:36 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:37 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 18:37:39 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 17:36:31.008612
+2025-03-16 19:01:36 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 19:01:36 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:38 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:40 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:41 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 19:01:41 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:42 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:43 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:45 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 19:01:45 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:46 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:47 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:48 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:49 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:51 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:52 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:53 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:55 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:56 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:57 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:01:58 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 19:01:58 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 19:01:58 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:00 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:01 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:02 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:03 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 19:02:03 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:05 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 19:02:05 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 19:02:05 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 19:02:05 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:06 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:07 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:08 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:10 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:11 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 19:02:11 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 19:02:11 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:12 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:13 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:15 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:16 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:17 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 19:02:17 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:18 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:20 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:21 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:22 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:24 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:25 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:26 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:27 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:29 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:30 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:31 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:32 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:33 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:35 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:36 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:37 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:38 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:39 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:41 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:42 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:43 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:44 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:02:45 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 18:01:36.967940
+2025-03-16 19:03:43 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 19:03:43 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:45 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:46 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:48 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 19:03:48 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:49 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:50 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:51 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 19:03:51 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:53 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:54 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:55 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:56 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:58 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:03:59 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:00 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:01 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:03 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:04 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:05 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 19:04:05 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 19:04:05 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:06 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:08 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:09 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:10 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 19:04:10 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:11 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 19:04:11 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 19:04:11 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 19:04:11 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:13 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:14 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:15 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:16 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:17 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 19:04:17 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 19:04:17 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:19 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:20 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:21 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:22 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:24 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 19:04:24 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:25 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:26 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:27 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:29 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:30 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:31 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:32 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:33 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:35 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:36 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:37 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:38 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:39 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:41 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:42 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:43 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:44 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:45 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:47 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:48 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:49 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:50 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:04:51 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 18:03:43.845548
+2025-03-16 19:17:54 | INFO     | Ignore tickers: ['--', '--AM', '--DIS', '--DWDP', '--ENB', '--HR', '--IRT', '--LGI', '--OKE', '--PTEN', '--RTN', '--RTX', '--TAC', '--TFC', '--VIAC', '--WBD', '--WGP', '3V64.TI', 'AAN', 'ABB', 'ABC', 'ADMR', 'ADT.F', 'AEC', 'AET', 'AETCVS', 'AEX.MU', 'AFSI', 'AGN', 'AGU', 'AHL-C', 'AIMT', 'AIVAIRC', 'AJRD', 'AKRX', 'ALR', 'AMCC', 'AMSG', 'ANCX', 'ANCXUBSH', 'ANDX', 'ANDXMPLX', 'ANTM', 'APC', 'AQFH', 'ARII', 'ARNA', 'ASXC', 'ATML', 'ATVI', 'AUYN', 'AVP', 'AWCMY', 'AXE', 'AXLL', 'AY', 'BBBY', 'BBEPQ', 'BBL', 'BBT', 'BCR', 'BDXEMBC', 'BEAV', 'BIF', 'BKEP', 'BKEPP', 'BLL', 'BPL', 'BRK.B', 'BRKB', 'BRPR3', 'BUNT-RP', 'BX', 'CBS', 'CDK', 'CEA', 'CELG', 'CEM', 'CEQP', 'CEQPET', 'CERN', 'CFN', 'CHK', 'CHL', 'CIT', 'CJ', 'CLNY', 'CLR', 'CMCSK', 'CMN', 'CMO', 'CNSL', 'COF-PP', 'COH', 'CONE', 'COUP', 'CPGX', 'CPSI', 'CRZO', 'CSII', 'CTAA', 'CTCT', 'CTECBX', 'CTL', 'CTRL', 'CTXS', 'CVC', 'CVET', 'CVG', 'CY', 'CYBX', 'CYS', 'DCP', 'DD-PADWDP', 'DDIFF', 'DELLVMW', 'DFRG', 'DGNR', 'DISCA', 'DISCK', 'DISH', 'DLPH', 'DNKN', 'DPM', 'DPS', 'DRQ', 'DWDP', 'ECOM', 'EPAY', 'EQM', 'ESV', 'ETETP', 'ETP', 'ETPET', 'ETP^RGP', 'ETRN', 'EVEPQ', 'EVOP', 'FB', 'FDC', 'FEYE', 'FL4.SGTDY', 'FLT', 'FLY', 'FMBI', 'FMER', 'FNGN', 'FPL', 'FRC', 'FTVVNT', 'GEGEHC', 'GMXR', 'GRUB', 'GWR', 'HDS', 'HFC', 'HOT', 'HRS', 'HTS', 'HUB-B', 'HYH', 'IBKC', 'IIN', 'INST', 'IO', 'IPCM', 'IPHI', 'ISIS', 'JCOM', 'JNJKVUE', 'JPJQL', 'KL', 'KMP', 'KORS', 'KRFT', 'KSU', 'LCC', 'LDR', 'LGP', 'LL', 'LLL', 'LLTC', 'LM09.SG', 'LMACU', 'LMRK', 'LMST', 'LNKD', 'LOCK', 'LSXMK', 'LSXMKSIRI', 'LVLTCTL', 'MANT', 'MAXR', 'MCC', 'MDC', 'MDCA', 'MDP', 'MFGP', 'MFRM', 'MIK', 'MM', 'MMP', 'MNKKQ', 'MON', 'MPLX^MWE', 'MPSX', 'MRKOGN', 'MRO', 'MSTY.PA', 'MTSC', 'MXIM', 'MYL', 'NBL', 'NCR', 'NEE-PC', 'NFLS', 'NGLS', 'NID', 'NPSND', 'NRGM', 'NS', 'NSR', 'NTI', 'NTRPPTPI', 'NTRPSNPX', 'NUAN', 'NVSALC', 'NYX', 'OFC', 'OKS', 'ORIG', 'PACDQ', 'PACW', 'PBCT', 'PCLN', 'PDLI', 'PDRDY', 'PFEVTRS', 'PGH', 'PHLD', 'PKI', 'PLAN', 'PLKI', 'PLT', 'PNM', 'POM', 'POT', 'PRE-J', 'PSXP', 'PWE', 'PXD', 'PXLIN', 'Q', 'QLIK', 'RADCQ', 'RADI', 'RAI', 'RAVN', 'RDC', 'RDS-A', 'RDS-B', 'RDSA', 'RDSA.AS', 'REN', 'RFMD', 'RHT', 'RNWK', 'ROC', 'ROLL', 'RTN', 'RTNRTX', 'RTNUTX', 'SBUX.SW', 'SCG', 'SGY', 'SHLX', 'SHPG', 'SI', 'SIAL', 'SINA', 'SIVB', 'SJR', 'SPLS', 'SPY160219P00180000', 'SQI', 'SWN', 'SYMC', 'TACO', 'TCFHBAN', 'TCP', 'TCS', 'TGH', 'TLLP', 'TMK', 'TNGO', 'TNTOF', 'TOT', 'TPLMQ', 'TRIT', 'TUMI', 'TUP', 'TWBD', 'TWTR', 'TWX', 'TWXT', 'TXI', 'TYPE', 'UA-C', 'UMPQ', 'UN', 'UTX', 'UTXCARR', 'UTXOTIS', 'VAR', 'VFCKTB', 'VGR', 'VIAB', 'VIAC', 'VLP', 'VMW', 'VRX', 'VSI', 'VSM', 'VZTMUS', 'WAGE', 'WETF', 'WFM', 'WIN', 'WINMQ', 'WLL', 'WPX', 'WPZ', 'WPZWMB', 'WRK', 'WTR', 'WTT', 'XER.BE', 'XLNX', 'XLS-WI', 'XON', 'XTXI', 'YHOO', 'ZAYO', 'ZIOP', 'ZMH', 'ZNGA', 'ZNGA.SW', 'ZW', '^MWEMPLX', '^RGPETP']
+2025-03-16 19:17:54 | DEBUG    | Fetching history for AAPL from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:17:56 | DEBUG    | Fetching history for BIDU from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:17:57 | DEBUG    | Fetching history for SRZ from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:17:59 | INFO     | Ticker CELG is in the ignore list. Skipping.
+2025-03-16 19:17:59 | DEBUG    | Fetching history for CVX from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:00 | DEBUG    | Fetching history for WM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:01 | DEBUG    | Fetching history for AMZN from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:02 | INFO     | Ticker KSU is in the ignore list. Skipping.
+2025-03-16 19:18:02 | DEBUG    | Fetching history for MCD from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:04 | DEBUG    | Fetching history for M from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:05 | DEBUG    | Fetching history for COST from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:06 | DEBUG    | Fetching history for NFLX from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:07 | DEBUG    | Fetching history for SBUX from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:08 | DEBUG    | Fetching history for HD from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:10 | DEBUG    | Fetching history for XOM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:11 | DEBUG    | Fetching history for BAC from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:12 | DEBUG    | Fetching history for IBM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:13 | DEBUG    | Fetching history for CIEN from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:15 | DEBUG    | Fetching history for MSFT from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:16 | INFO     | Ticker FB is in the ignore list. Skipping.
+2025-03-16 19:18:16 | INFO     | Ticker LNKD is in the ignore list. Skipping.
+2025-03-16 19:18:16 | DEBUG    | Fetching history for GE from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:17 | DEBUG    | Fetching history for AFL from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:19 | DEBUG    | Fetching history for TRN from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:20 | DEBUG    | Fetching history for TRU from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:21 | INFO     | Ticker CEA is in the ignore list. Skipping.
+2025-03-16 19:18:21 | DEBUG    | Fetching history for F from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:22 | INFO     | Ticker TCS is in the ignore list. Skipping.
+2025-03-16 19:18:22 | INFO     | Ticker TWTR is in the ignore list. Skipping.
+2025-03-16 19:18:22 | INFO     | Ticker MIK is in the ignore list. Skipping.
+2025-03-16 19:18:22 | DEBUG    | Fetching history for BA from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:24 | DEBUG    | Fetching history for DVN from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:25 | DEBUG    | Fetching history for GM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:26 | DEBUG    | Fetching history for BABA from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:27 | DEBUG    | Fetching history for ETY from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:28 | INFO     | Ticker SBUX.SW is in the ignore list. Skipping.
+2025-03-16 19:18:28 | INFO     | Ticker HDS is in the ignore list. Skipping.
+2025-03-16 19:18:28 | DEBUG    | Fetching history for NOC from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:30 | DEBUG    | Fetching history for TJX from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:31 | DEBUG    | Fetching history for T from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:32 | DEBUG    | Fetching history for WF from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:33 | DEBUG    | Fetching history for COF from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:35 | INFO     | Ticker RTN is in the ignore list. Skipping.
+2025-03-16 19:18:35 | DEBUG    | Fetching history for NVDA from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:36 | DEBUG    | Fetching history for JPM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:37 | DEBUG    | Fetching history for LMT from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:38 | DEBUG    | Fetching history for WMT from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:40 | DEBUG    | Fetching history for TGT from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:41 | DEBUG    | Fetching history for KSS from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:42 | DEBUG    | Fetching history for KTB from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:43 | DEBUG    | Fetching history for MA from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:45 | DEBUG    | Fetching history for DIS from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:46 | DEBUG    | Fetching history for V from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:47 | DEBUG    | Fetching history for BYND from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:48 | DEBUG    | Fetching history for AAL from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:49 | DEBUG    | Fetching history for SPOT from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:51 | DEBUG    | Fetching history for TSLA from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:52 | DEBUG    | Fetching history for NVAX from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:53 | DEBUG    | Fetching history for GOLD from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:54 | DEBUG    | Fetching history for BBY from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:55 | DEBUG    | Fetching history for GLD from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:57 | DEBUG    | Fetching history for ZM from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:58 | DEBUG    | Fetching history for W from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:18:59 | DEBUG    | Fetching history for DAL from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:19:00 | DEBUG    | Fetching history for EXPI from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:19:01 | DEBUG    | Fetching history for PLUG from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876
+2025-03-16 19:19:03 | DEBUG    | Fetching history for SQ from 2010-01-01 00:00:00 to 2025-04-15 18:17:54.801876

@@ -104,47 +104,7 @@ def get_price_at_date(ticker, target_date, max_offset=5, max_retries=3):
             retries += 1
     return None
 
-def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignore_file="resources/ignore_tickers.txt"):
-    """
-    Fetch a dictionary mapping each unique ticker to its historical data
-    between overall_start_date and overall_end_date.
-    Tickers in the ignore file are skipped.
-    """
-    c = conn.cursor()   
-    c.execute("""
-        SELECT DISTINCT t.ticker
-        FROM transactions t
-        WHERE t.ticker <> '--'
-    """)
-    tickers = [row[0].lstrip('$') for row in c.fetchall()]
-    ignore_tickers = get_ignore_tickers(ignore_file)
-    logger.info(f"Ignore tickers: {ignore_tickers}")
 
-    ticker_histories = {}
-    failed_tickers = []
-    for ticker in tickers:
-        if ticker in ignore_tickers:
-            logger.info(f"Ticker {ticker} is in the ignore list. Skipping.")
-            continue
-        logger.debug(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
-        stock = yf.Ticker(ticker)
-        try:
-            hist = stock.history(start=overall_start_date.strftime("%Y-%m-%d"),
-                                   end=overall_end_date.strftime("%Y-%m-%d"),
-                                   interval="1d",
-                                   actions=False)
-            time.sleep(1)
-            if hist.empty:
-                logger.warning(f"No data for {ticker} between {overall_start_date} and {overall_end_date}.")
-                failed_tickers.append(ticker)
-            else:
-                ticker_histories[ticker] = hist
-        except Exception as e:
-            logger.error(f"Error fetching data for {ticker}: {e}")
-            failed_tickers.append(ticker)
-    if failed_tickers:
-        logger.info(f"Tickers that failed to fetch: {failed_tickers}")
-    return ticker_histories
 
 def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
     """
