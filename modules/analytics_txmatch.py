@@ -1,6 +1,12 @@
 import sqlite3
 import logging
-from datetime import datetime
+import time
+import yfinance as yf
+from datetime import datetime, timedelta
+from modules.logger import setup_logger
+from modules.utilis import get_ignore_tickers, average_amount
+
+logger = logging.getLogger("analytics")
 
 def setup_match_logger(log_file="matched_transactions.log"):
     """
@@ -16,35 +22,77 @@ def setup_match_logger(log_file="matched_transactions.log"):
         match_logger.addHandler(fh)
     return match_logger
 
-def init_transactions_analytics_table(conn):
+def fetch_all_ticker_histories(conn, overall_start_date, overall_end_date, ignore_file="resources/ignore_tickers.txt"):
     """
-    Creates the transactions_analytics table if it does not exist.
-    
-    The table includes:
-      - ptr_id and transaction_number as a composite primary key.
-      - senator_id: senator performing the transaction.
-      - transaction_date, ticker, amount, owner: purchase details.
-      - status: 'Closed' if a matching sale is found, 'Open' otherwise.
-      - sale_ptr_id, sale_transaction_number, sale_date: details for the matching sale (if available).
+    Fetch a dictionary mapping each unique ticker to its historical data
+    between overall_start_date and overall_end_date.
+    Tickers in the ignore file are skipped.
     """
-    c = conn.cursor()
+    c = conn.cursor()   
     c.execute("""
-        CREATE TABLE IF NOT EXISTS transactions_analytics (
-            ptr_id TEXT,
-            transaction_number INTEGER,
-            senator_id INTEGER,
-            transaction_date TEXT,
-            ticker TEXT,
-            amount TEXT,
-            owner TEXT,
-            status TEXT,
-            sale_ptr_id TEXT,
-            sale_transaction_number INTEGER,
-            sale_date TEXT,
-            PRIMARY KEY (ptr_id, transaction_number)
-        )
+        SELECT DISTINCT t.ticker
+        FROM transactions_analytics t
+        WHERE t.ticker <> '--'
     """)
-    conn.commit()
+    tickers = [row[0].lstrip('$') for row in c.fetchall()]
+    print("Total Distinct Tickers Found:", len(tickers))
+    ignore_tickers = get_ignore_tickers(ignore_file)
+    logger.info(f"Ignore tickers: {ignore_tickers}")
+
+    ticker_histories = {}
+    failed_tickers = []
+    for ticker in tickers:
+        if ticker in ignore_tickers:
+            logger.info(f"Ticker {ticker} is in the ignore list. Skipping.")
+            continue
+        logger.debug(f"Fetching history for {ticker} from {overall_start_date} to {overall_end_date}")
+        stock = yf.Ticker(ticker)
+        try:
+            hist = stock.history(start=overall_start_date.strftime("%Y-%m-%d"),
+                                   end=overall_end_date.strftime("%Y-%m-%d"),
+                                   interval="1d",
+                                   actions=False)
+            time.sleep(1)
+            if hist.empty:
+                logger.warning(f"No data for {ticker} between {overall_start_date} and {overall_end_date}.")
+                failed_tickers.append(ticker)
+            else:
+                ticker_histories[ticker] = hist
+        except Exception as e:
+            logger.error(f"Error fetching data for {ticker}: {e}")
+            failed_tickers.append(ticker)
+    if failed_tickers:
+        logger.info(f"Tickers that failed to fetch: {failed_tickers}")
+    return ticker_histories
+
+def get_price_from_history(ticker, target_date, ticker_histories, max_offset=5):
+    """
+    Return the closing price for a given ticker from the pre-fetched history (ticker_histories)
+    for the target_date. If the price is not available on target_date (e.g. due to a non-trading day),
+    it will search backward day-by-day (up to max_offset days) for the most recent available price.
+    
+    Parameters:
+      - ticker: the stock ticker (string)
+      - target_date: a datetime.date object representing the date to check
+      - ticker_histories: a dictionary mapping tickers to their historical DataFrame (from yfinance)
+      - max_offset: maximum number of days to search backward
+      
+    Returns:
+      The closing price (float) if found, or None if no price is available.
+    """
+    ticker = ticker.lstrip('$')
+    if ticker not in ticker_histories:
+        return None
+    hist = ticker_histories[ticker]
+    available_dates = [d.strftime("%Y-%m-%d") for d in hist.index]
+    
+    # Try target_date, then go backwards.
+    for offset in range(0, max_offset + 1):
+        new_date = target_date - timedelta(days=offset)
+        new_date_str = new_date.strftime("%Y-%m-%d")
+        if new_date_str in available_dates:
+            return hist.loc[new_date_str]["Close"]
+    return None
 
 def match_transactions(conn):
     """
@@ -206,7 +254,7 @@ def populate_transactions_analytics_from_matches(conn, matches):
         
         c.execute("""
             INSERT OR REPLACE INTO transactions_analytics (
-                ptr_id, senator_id, transaction_number, transaction_date,
+                purchase_ptr_id, senator_id, purchase_transaction_number, purchase_date,
                 ticker, amount, owner, status, sale_ptr_id, sale_transaction_number, sale_date
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
@@ -225,6 +273,157 @@ def populate_transactions_analytics_from_matches(conn, matches):
     conn.commit()
     print("transactions_analytics table populated successfully.")
 
+def update_transactions_prices(conn, ticker_histories, max_offset=5):
+    """
+    Fetches all transactions from the transactions_analytics table (using its composite key),
+    and for each transaction, checks for the closing price on the following dates:
+      - purchase_date
+      - purchase_date + 7 days
+      - purchase_date + 30 days
+      - today's date
+      - sale_date (if available and if status is "Closed")
+    
+    If a price is not found on the given date, the function uses get_price_with_fallback
+    to search forward (or backward if the new date would be in the future) up to max_offset days.
+    
+    Then, the row in transactions_analytics is updated with these price values.
+    """
+    c = conn.cursor()
+    # Fetch necessary columns from transactions_analytics.
+    c.execute("""
+        SELECT purchase_ptr_id, purchase_transaction_number, purchase_date, ticker, status, sale_date
+        FROM transactions_analytics
+    """)
+    rows = c.fetchall()
+    today = datetime.utcnow().date()
+    
+    for row in rows:
+        purchase_ptr_id, purchase_txn_num, purchase_date_str, ticker, status, sale_date_str = row
+        try:
+            purchase_date = datetime.strptime(purchase_date_str, "%m/%d/%Y").date()
+        except Exception as e:
+            print(f"Error converting purchase_date '{purchase_date_str}' for {purchase_ptr_id}: {e}")
+            continue
+        
+        # Get price for purchase_date
+        price_on_purchase = get_price_from_history(ticker, purchase_date, ticker_histories, max_offset)
+        # Price 7 days after purchase
+        date_7d = purchase_date + timedelta(days=7)
+        price_7d = get_price_from_history(ticker, date_7d, ticker_histories, max_offset)
+        # Price 30 days after purchase
+        date_30d = purchase_date + timedelta(days=30)
+        price_30d = get_price_from_history(ticker, date_30d, ticker_histories, max_offset)
+        # Price for today
+        price_today = get_price_from_history(ticker, today, ticker_histories, max_offset)
+        # Price on sale date, if status is "Closed" and sale_date is present.
+        price_on_sale = None
+        if status.strip().lower() == "closed" and sale_date_str:
+            try:
+                sale_date = datetime.strptime(sale_date_str, "%m/%d/%Y").date()
+                price_on_sale = get_price_from_history(ticker, sale_date, ticker_histories, max_offset)
+            except Exception as e:
+                print(f"Error converting sale_date '{sale_date_str}' for {purchase_ptr_id}: {e}")
+        
+        # Update the row with the new price data.
+        c.execute("""
+            UPDATE transactions_analytics
+            SET price_on_purchase = ?,
+                price_7d = ?,
+                price_30d = ?,
+                price_today = ?,
+                price_on_sale = ?
+            WHERE purchase_ptr_id = ? AND purchase_transaction_number = ?
+        """, (
+            price_on_purchase,
+            price_7d,
+            price_30d,
+            price_today,
+            price_on_sale,
+            purchase_ptr_id,
+            purchase_txn_num
+        ))
+    conn.commit()
+    print("Updated transactions_analytics with price data.")
+
+def update_transactions_analytics_calculations(conn):
+    """
+    For each row in transactions_analytics, calculates:
+      - percent_7d (if price_on_purchase and price_7d exist)
+      - percent_30d (if price_on_purchase and price_30d exist)
+      - For status "Open": percent_today, net_profit (using percent_today), and current_value.
+      - For status "Closed": percent_on_sale, net_profit (using percent_on_sale), and current_value.
+    
+    The average invested is computed via the average_amount() helper using the 'amount' field.
+    If any required field is missing (i.e. price_on_purchase, price_today/price_on_sale), that row is skipped.
+    """
+    c = conn.cursor()
+    c.execute("""
+        SELECT purchase_ptr_id, purchase_transaction_number, status, amount,
+               price_on_purchase, price_7d, price_30d, price_today, price_on_sale
+        FROM transactions_analytics
+    """)
+    rows = c.fetchall()
+    updated_count = 0
+
+    for row in rows:
+        (purchase_ptr_id, purchase_txn_num, status, amount_str,
+         price_on_purchase, price_7d, price_30d, price_today, price_on_sale) = row
+        
+        # We require price_on_purchase.
+        if price_on_purchase is None:
+            continue
+
+        # Calculate percent_7d and percent_30d if available.
+        percent_7d = ((price_7d - price_on_purchase) / price_on_purchase * 100) if price_7d is not None else None
+        percent_30d = ((price_30d - price_on_purchase) / price_on_purchase * 100) if price_30d is not None else None
+        
+        # Use average_amount() to get the average invested value.
+        avg_invested = average_amount(amount_str)
+        if avg_invested is None:
+            continue
+
+        # Depending on status, compute percent_today or percent_on_sale,
+        # then net_profit and current_value.
+        if status.strip().lower() == "open":
+            if price_today is None:
+                continue
+            percent_today = ((price_today - price_on_purchase) / price_on_purchase * 100)
+            percent_on_sale = None
+            net_profit = avg_invested * (percent_today / 100)
+            current_value = avg_invested + net_profit
+        elif status.strip().lower() == "closed":
+            if price_on_sale is None:
+                continue
+            percent_on_sale = ((price_on_sale - price_on_purchase) / price_on_purchase * 100)
+            percent_today = None
+            net_profit = avg_invested * (percent_on_sale / 100)
+            current_value = avg_invested + net_profit
+        else:
+            continue
+
+        c.execute("""
+            UPDATE transactions_analytics
+            SET percent_7d = ?,
+                percent_30d = ?,
+                percent_today = ?,
+                percent_on_sale = ?,
+                net_profit = ?,
+                current_value = ?
+            WHERE purchase_ptr_id = ? AND purchase_transaction_number = ?
+        """, (
+            percent_7d,
+            percent_30d,
+            percent_today,
+            percent_on_sale,
+            net_profit,
+            current_value,
+            purchase_ptr_id,
+            purchase_txn_num
+        ))
+        updated_count += 1
+
+    conn.commit()
+    print(f"Updated calculations for {updated_count} transactions in transactions_analytics.")
 
 
 # Example usage:
@@ -238,3 +437,22 @@ if __name__ == "__main__":
     # Then, use those matches to populate the transactions_analytics table.
     populate_transactions_analytics_from_matches(conn, matches)
     print("Debug matching complete. Check 'matched_transactions.log' for details and verify transactions_analytics table.")
+    # Fetch tickers from YFinance
+    overall_start_date = datetime(2010, 1, 1)
+    overall_end_date = datetime.utcnow() + timedelta(days=30)
+    print("Overall Start Date:", overall_start_date)
+    print("Overall End Date:", overall_end_date)
+    ticker_histories = fetch_all_ticker_histories(conn, overall_start_date, overall_end_date)
+    
+    # Print tickers with historical data
+    for ticker, hist in ticker_histories.items():
+        print(f"{ticker}: {hist.shape[0]} rows")
+
+    # Update transactions_analytics with price data
+    update_transactions_prices(conn, ticker_histories)
+    print("Price data updated successfully.")
+
+    # Update transactions_analytics with calculated values
+    update_transactions_analytics_calculations(conn)
+    print("Calculated values updated successfully.")
+

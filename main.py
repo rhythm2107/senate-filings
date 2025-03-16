@@ -3,12 +3,12 @@ from modules.scraper_filings import scrape_filings
 from modules.scraper_transactions import scrape_transactions
 from modules.notify_system import send_unnotified_discord_notifications
 from modules.logger import setup_logger
-from modules.db_helper import init_db, init_analytics_table
-from modules.analytics import update_analytics, init_transactions_analytics_table
+from modules.db_helper import init_db, init_analytics_table, init_transactions_analytics_table
 from modules.config import DB_NAME
 
 # Create a logger object for debugging purposes
 logger = setup_logger("main_logger", "main.log")
+logger_analytics = setup_logger("analytics", "analytics.log")
 
 # def main():
 #     # logger.info("[MAIN] Starting scrape_filings")
@@ -32,11 +32,6 @@ logger = setup_logger("main_logger", "main.log")
 
 # if __name__ == "__main__":
 #     main()
-
-import sqlite3
-from modules.config import DB_NAME
-from modules.db_helper import init_db
-from modules.analytics import init_analytics_table, update_analytics
 
 def main():
     # Connect to your database

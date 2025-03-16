@@ -321,3 +321,44 @@ def init_analytics_table(conn):
         )
     ''')
     conn.commit()
+
+def init_transactions_analytics_table(conn):
+    """
+    Creates the transactions_analytics table if it does not exist.
+    
+    The table includes:
+      - ptr_id and transaction_number as a composite primary key.
+      - senator_id: senator performing the transaction.
+      - transaction_date, ticker, amount, owner: purchase details.
+      - status: 'Closed' if a matching sale is found, 'Open' otherwise.
+      - sale_ptr_id, sale_transaction_number, sale_date: details for the matching sale (if available).
+    """
+    c = conn.cursor()
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS transactions_analytics (
+            purchase_ptr_id TEXT,
+            purchase_transaction_number INTEGER,
+            senator_id INTEGER,
+            purchase_date TEXT,
+            ticker TEXT,
+            amount TEXT,
+            owner TEXT,
+            status TEXT,
+            sale_ptr_id TEXT,
+            sale_transaction_number INTEGER,
+            sale_date TEXT,
+            price_on_purchase REAL,
+            price_7d REAL,
+            price_30d REAL,
+            price_today REAL,
+            price_on_sale REAL,
+            percent_7d REAL,
+            percent_30d REAL,
+            percent_today REAL,
+            percent_on_sale REAL,
+            net_profit REAL,
+            current_value REAL,
+            PRIMARY KEY (purchase_ptr_id, purchase_transaction_number)
+        )
+    """)
+    conn.commit()
