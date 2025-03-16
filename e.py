@@ -49,7 +49,7 @@ def debug_match_transactions_python(conn):
        WHERE LOWER(t.type) LIKE '%purchase%'
          AND LOWER(t.asset_type) = 'stock'
          AND t.ticker <> '--'
-       ORDER BY CAST(substr(t.transaction_date,7,4) || '-' || substr(t.transaction_date,1,2) || '-' || substr(t.transaction_date,4,2) AS DATE) ASC
+       ORDER BY date(substr(t.transaction_date,7,4) || '-' || substr(t.transaction_date,1,2) || '-' || substr(t.transaction_date,4,2)) ASC;
     """
     c.execute(query_purchase)
     purchases = c.fetchall()
@@ -85,9 +85,7 @@ def debug_match_transactions_python(conn):
              AND LOWER(s.type) LIKE '%sale%'
              AND LOWER(s.asset_type) = 'stock'
              AND s.ticker <> '--'
-           ORDER BY CAST(substr(s.transaction_date,7,4) || '-' ||
-                          substr(s.transaction_date,1,2) || '-' ||
-                          substr(s.transaction_date,4,2) AS DATE) ASC
+           ORDER BY date(substr(s.transaction_date,7,4) || '-' || substr(s.transaction_date,1,2) || '-' || substr(s.transaction_date,4,2)) ASC
         """
         c.execute(query_sale, (ticker, senator_id))
         sales = c.fetchall()
