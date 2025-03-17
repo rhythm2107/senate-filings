@@ -24,16 +24,38 @@ def fetch_matching_senators(partial_name: str) -> list[str]:
     return [row[0] for row in rows]
 
 def get_senator_info(name: str) -> str:
-    """Fetch analytics for a senator by exact name."""
+    """
+    Fetch analytics for a senator by their exact canonical_full_name.
+    We'll do a JOIN on senators->analytics using senator_id.
+    """
     conn = sqlite3.connect("filings.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM analytics WHERE senator_name = ?", (name,))
+    # We join on senator_id to find the analytics row.
+    # 's' = senators, 'a' = analytics
+    c.execute("""
+        SELECT a.senator_id,
+               a.total_transaction_count,
+               a.total_purchase_count,
+               a.total_value
+          FROM analytics AS a
+          JOIN senators AS s ON s.senator_id = a.senator_id
+         WHERE s.canonical_full_name = ?
+    """, (name,))
     row = c.fetchone()
     conn.close()
+
     if row:
-        return f"Analytics for Senator {name}:\nTotal Transactions: {row[1]}"
+        # row = (senator_id, total_transaction_count, total_purchase_count, total_value, ...)
+        senator_id, total_tx, purchase_count, total_val = row
+        return (
+            f"Analytics for Senator {name} (ID: {senator_id}):\n"
+            f" - Total Transactions: {total_tx}\n"
+            f" - Total Purchases: {purchase_count}\n"
+            f" - Total Value: {int(total_val):,}$"
+        )
     else:
         return f"No analytics data found for Senator {name}."
+
 
 class AutocompleteInfoCog(commands.Cog):
     def __init__(self, bot: commands.Bot):

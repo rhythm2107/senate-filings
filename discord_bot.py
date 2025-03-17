@@ -14,6 +14,8 @@ async def load_extensions():
     await bot.load_extension("cogs.senator_commands")
     await bot.load_extension("cogs.ui_examples")
     await bot.load_extension("cogs.feedback_cog")
+    await bot.load_extension("cogs.ex_info_cog")
+    await bot.load_extension("cogs.partycog")
 
 @bot.event
 async def on_ready():
