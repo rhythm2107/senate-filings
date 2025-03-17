@@ -3,14 +3,51 @@ from discord.ext import commands
 from discord import app_commands
 import sqlite3
 
-# Replace with your actual guild ID
+# Replace with your actual allowed guild ID
 ALLOWED_GUILD_IDS = {1247226569869627582}
 GUILD = discord.Object(id=1247226569869627582)
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Define your slash commands normally
+@bot.event
+async def on_ready():
+    # Clear global commands first
+    try:
+        global_clear = await bot.tree.clear_commands(guild=None)  # global clear
+        if global_clear is not None:
+            await global_clear
+        print("Cleared global commands.")
+    except Exception as e:
+        print("Error clearing global commands:", e)
+    
+    # Clear guild-specific commands for our target guild
+    try:
+        guild_clear = bot.tree.clear_commands(guild=GUILD)
+        if guild_clear is not None:
+            await guild_clear
+        print("Cleared guild commands for guild", GUILD.id)
+    except Exception as e:
+        print("Error clearing guild commands:", e)
+    
+    # Explicitly add our commands as guild commands
+    bot.tree.add_command(info, guild=GUILD)
+    bot.tree.add_command(ping, guild=GUILD)
+    bot.tree.add_command(senatorlist, guild=GUILD)
+    bot.tree.add_command(test, guild=GUILD)
+    
+    # Sync commands for the target guild
+    try:
+        synced = await bot.tree.sync(guild=GUILD)
+        print(f"Synced {len(synced)} commands for guild {GUILD.id}")
+        cmds = bot.tree.get_commands(guild=GUILD)
+        print("Commands in guild:", [cmd.name for cmd in cmds])
+    except Exception as e:
+        print("Error syncing commands for guild:", e)
+    
+    print(f"Logged in as {bot.user}!")
+
+# Define your commands as usual
 @bot.tree.command(name="info", description="Get analytics info for a senator by senator_id")
 async def info(interaction: discord.Interaction, senator_id: int):
     if interaction.guild and interaction.guild.id not in ALLOWED_GUILD_IDS:
@@ -34,6 +71,10 @@ async def info(interaction: discord.Interaction, senator_id: int):
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("Pong!")
 
+@bot.tree.command(name="test", description="Test duplicate command")
+async def test(interaction: discord.Interaction):
+    await interaction.response.send_message("This is a duplicate command!")
+
 @bot.tree.command(name="senatorlist", description="List all senators with their ID and canonical full name")
 async def senatorlist(interaction: discord.Interaction):
     conn = sqlite3.connect("filings.db")
@@ -48,31 +89,6 @@ async def senatorlist(interaction: discord.Interaction):
         response = "\n".join(f"{row[0]}: {row[1]}" for row in rows)
     
     await interaction.response.send_message(response)
-
-@bot.event
-async def on_ready():
-    # Clear guild-specific commands for our test guild
-    try:
-        bot.tree.clear_commands(guild=GUILD)
-        print("Cleared commands for guild", GUILD.id)
-    except Exception as e:
-        print("Error clearing commands:", e)
-    
-    # Explicitly add our commands to the tree for our guild
-    bot.tree.add_command(info, guild=GUILD)
-    bot.tree.add_command(ping, guild=GUILD)
-    bot.tree.add_command(senatorlist, guild=GUILD)
-    
-    # Now sync for that guild
-    try:
-        synced = await bot.tree.sync(guild=GUILD)
-        print(f"Synced {len(synced)} commands for guild {GUILD.id}")
-        cmds = bot.tree.get_commands(guild=GUILD)
-        print("Commands in guild:", [cmd.name for cmd in cmds])
-    except Exception as e:
-        print("Error syncing commands:", e)
-    
-    print(f"Logged in as {bot.user}!")
 
 if __name__ == "__main__":
     # Replace 'your_bot_token_here' with your actual Discord bot token.
