@@ -6,50 +6,9 @@ import sqlite3
 from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_embed import build_analytics_embeds
 from bot_modules.bot_ui import AnalyticsPaginatorView
+from bot_modules.bot_db import get_party_analytics
 
-############################
-# Database / Data Retrieval
-############################
-def get_party_analytics(party_name: str):
-    """
-    Returns a row from analytics_party for the given party name,
-    or None if not found. Each row is a 21-column tuple.
-    """
-    conn = sqlite3.connect("filings.db")
-    c = conn.cursor()
-    c.execute("""
-        SELECT 
-            total_transaction_count,
-            total_purchase_count,
-            total_exchange_count,
-            total_sale_count,
-            total_stock_transactions,
-            total_other_transactions,
-            count_ownership_child,
-            count_ownership_dependent_child,
-            count_ownership_joint,
-            count_ownership_self,
-            count_ownership_spouse,
-            total_transaction_value,
-            average_transaction_amount,
-            avg_perf_7d,
-            avg_perf_30d,
-            avg_perf_current,
-            accuracy_7d,
-            accuracy_30d,
-            accuracy_current,
-            total_net_profit,
-            total_value
-        FROM analytics_party
-        WHERE party = ?
-    """, (party_name,))
-    row = c.fetchone()
-    conn.close()
-    return row  # None if not found, or a tuple with 21 columns
 
-#####################
-# The Cog
-#####################
 class PartyCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot

@@ -5,8 +5,6 @@ import sqlite3
 
 from modules.config import DISCORD_BOT_GUILD_ID
 
-GUILD_ID = DISCORD_BOT_GUILD_ID
-
 ####################
 # Mapping Columns
 ####################
@@ -126,7 +124,7 @@ class LeaderboardCog(commands.Cog):
         app_commands.Choice(name="Net Worth", value="Net Worth"),
     ]
 
-    @app_commands.guilds(discord.Object(id=GUILD_ID))
+    @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="leaderboard", description="View top 10 senators by chosen criteria.")
     @app_commands.describe(criteria="Which leaderboard to display?")
     @app_commands.choices(criteria=leaderboard_choices)

@@ -118,3 +118,5 @@ def build_analytics_embeds(name: str, row: tuple) -> list[discord.Embed]:
     embed4.add_field(name="Dep. Child", value=safe_int(count_ownership_dependent_child), inline=False)
 
     return [embed1, embed2, embed3, embed4]
+
+
