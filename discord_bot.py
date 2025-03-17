@@ -15,7 +15,6 @@ async def load_extensions():
     await bot.load_extension("cogs.slash_senatorlist")
     await bot.load_extension("cogs.slash_party")
     await bot.load_extension("cogs.slash_feedback")
-    await bot.load_extension("cogs.examples_ui")
     await bot.load_extension("cogs.slash_leaderboard")
 
 @bot.event
