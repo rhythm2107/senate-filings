@@ -33,27 +33,6 @@ class SenatorCommands(commands.Cog):
         await interaction.response.send_message(embed=embeds[0], view=view)
         view.message = await interaction.original_response()
 
-    # # Slash command: /info
-    # @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
-    # @app_commands.command(name="info", description="Get analytics info for a senator by senator_id")
-    # async def info(self, interaction: discord.Interaction, senator_id: int):
-    #     conn = sqlite3.connect("filings.db")
-    #     c = conn.cursor()
-    #     c.execute("SELECT * FROM analytics WHERE senator_id = ?", (senator_id,))
-    #     row = c.fetchone()
-    #     conn.close()
-
-    #     if row:
-    #         response = f"Analytics for Senator ID {senator_id}:\nTotal Transactions: {row[1]}"
-    #     else:
-    #         response = f"No analytics data found for Senator ID {senator_id}."
-        
-    #     await interaction.response.send_message(response)
-
-    @discord.ui.button(label="Click Me", style=discord.ButtonStyle.success)
-    async def click_me(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message("You clicked the button!", ephemeral=True)
-
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorCommands(bot))

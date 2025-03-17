@@ -9,10 +9,6 @@ def get_party_analytics(party_name: str) -> str:
     Fetch aggregated analytics from the 'analytics_party' table for the given party.
     Returns a nicely formatted string or a 'not found' message.
     """
-    if party_name == 'Democratic Party':
-        party_name = 'Democratic'
-    elif party_name == 'Republican Party':
-        party_name = 'Republican'
 
     conn = sqlite3.connect("filings.db")
     c = conn.cursor()
@@ -111,8 +107,8 @@ class PartyCog(commands.Cog):
     @app_commands.describe(party="Pick a political party.")
     @app_commands.choices(
         party=[
-            app_commands.Choice(name="Democratic Party", value="Democratic Party"),
-            app_commands.Choice(name="Republican Party", value="Republican Party"),
+            app_commands.Choice(name="Democratic Party", value="Democratic"),
+            app_commands.Choice(name="Republican Party", value="Republican"),
         ]
     )
     async def party(self, interaction: discord.Interaction, party: str):
