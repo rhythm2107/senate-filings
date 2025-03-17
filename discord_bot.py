@@ -14,8 +14,8 @@ async def load_extensions():
     await bot.load_extension("cogs.slash_senator")
     await bot.load_extension("cogs.slash_party")
     await bot.load_extension("cogs.slash_feedback")
-    await bot.load_extension("cogs.ex_info_cog")
-    await bot.load_extension("cogs.partycog")
+    await bot.load_extension("cogs.examples_ui")
+    await bot.load_extension("cogs.examples_info")
 
 @bot.event
 async def on_ready():

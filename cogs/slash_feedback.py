@@ -40,7 +40,7 @@ class FeedbackModal(discord.ui.Modal, title="User Feedback"):
         logging.info(f"Feedback from {user_tag}: {self.feedback.value}")
 
         # 2) Send to a private dev channel
-        dev_channel = interaction.client.get_channel(DISCORD_BOT_DEV_CHANNEL_ID)
+        dev_channel = await interaction.client.fetch_channel(DISCORD_BOT_DEV_CHANNEL_ID)
         if dev_channel:
             await dev_channel.send(
                 content=(
