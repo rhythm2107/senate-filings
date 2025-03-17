@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from modules.config import DISCORD_BOT_GUILD_ID
 
 # Replace with the actual guild ID for testing
-GUILD_ID = 123456789012345678
+GUILD_ID = DISCORD_BOT_GUILD_ID
 
 class UIExamples(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -79,6 +80,33 @@ class MySelect(discord.ui.Select):
             discord.SelectOption(label="Option A", description="First option"),
             discord.SelectOption(label="Option B", description="Second option"),
             discord.SelectOption(label="Option C", description="Third option"),
+            discord.SelectOption(label="Option D", description="Third option"),
+            discord.SelectOption(label="Option E", description="Third option"),
+            discord.SelectOption(label="Option F", description="Third option"),
+            discord.SelectOption(label="Option G", description="Third option"),
+            discord.SelectOption(label="Option H", description="Third option"),
+            discord.SelectOption(label="Option J", description="Third option"),
+            discord.SelectOption(label="Option K", description="Third option"),
+            discord.SelectOption(label="Option L", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
+            # discord.SelectOption(label="Option C", description="Third option"),
         ]
         super().__init__(
             placeholder="Choose an option...",

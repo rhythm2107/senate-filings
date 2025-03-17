@@ -13,6 +13,7 @@ bot = commands.Bot(command_prefix=DISCORD_BOT_CMD_PREFIX, intents=intents)
 async def load_extensions():
     await bot.load_extension("cogs.senator_commands")
     await bot.load_extension("cogs.ui_examples")
+    await bot.load_extension("cogs.feedback_cog")
 
 @bot.event
 async def on_ready():
