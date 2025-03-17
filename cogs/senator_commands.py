@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import sqlite3
 import math
+from modules.config import DISCORD_BOT_GUILD_ID
 
 def get_senators():
     conn = sqlite3.connect("filings.db")
@@ -85,7 +86,8 @@ class SenatorCommands(commands.Cog):
         view.message = await interaction.original_response()
 
     # Slash command: /info
-    @app_commands.command(name="info", description="Get analytics info for a senator by senator_id")
+    @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
+    @app_commands.command(name="infos", description="Get analytics info for a senator by senator_id")
     async def info(self, interaction: discord.Interaction, senator_id: int):
         conn = sqlite3.connect("filings.db")
         c = conn.cursor()
@@ -100,23 +102,18 @@ class SenatorCommands(commands.Cog):
         
         await interaction.response.send_message(response)
 
-    # Slash command: /ping
-    @app_commands.command(name="ping", description="Check the bot's response time")
-    async def ping(self, interaction: discord.Interaction):
-        await interaction.response.send_message("Pong!")
-
-    # Optional: Setup method to add commands to the guild immediately (if needed)
-    @commands.Cog.listener()
-    async def on_ready(self):
-        # If you want these commands to be guild-specific during development:
-        guild = discord.Object(id=1247226569869627582)
-        try:
-            # Register the cog's app commands for the guild
-            self.bot.tree.copy_global_to(guild=guild)
-            await self.bot.tree.sync(guild=guild)
-            print("Synced senator commands to guild", guild.id)
-        except Exception as e:
-            print("Error syncing senator commands:", e)
+    # # Optional: Setup method to add commands to the guild immediately (if needed)
+    # @commands.Cog.listener()
+    # async def on_ready(self):
+    #     # If you want these commands to be guild-specific during development:
+    #     guild = discord.Object(id=1247226569869627582)
+    #     try:
+    #         # Register the cog's app commands for the guild
+    #         self.bot.tree.copy_global_to(guild=guild)
+    #         await self.bot.tree.sync(guild=guild)
+    #         print("Synced senator commands to guild", guild.id)
+    #     except Exception as e:
+    #         print("Error syncing senator commands:", e)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorCommands(bot))
