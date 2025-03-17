@@ -141,27 +141,27 @@ def build_analytics_embeds(name: str, row: tuple) -> list[discord.Embed]:
     embed3.add_field(
         name="Purchases",
         value=f"{total_purchase_count:,}",
-        inline=True
+        inline=False
     )
     embed3.add_field(
         name="Sales",
         value=f"{total_sale_count:,}",
-        inline=True
+        inline=False
     )
     embed3.add_field(
         name="Exchanges",
         value=f"{total_exchange_count:,}",
-        inline=True
+        inline=False
     )
     embed3.add_field(
         name="Stock Transactions",
         value=f"{total_stock_transactions:,}",
-        inline=True
+        inline=False
     )
     embed3.add_field(
         name="Other Transactions",
         value=f"{total_other_transactions:,}",
-        inline=True
+        inline=False
     )
 
     # ---------- PAGE 4 ----------
@@ -170,10 +170,10 @@ def build_analytics_embeds(name: str, row: tuple) -> list[discord.Embed]:
         description="**Ownership**",
         color=discord.Color.blue()
     )
-    embed4.add_field(name="Self", value=f"{count_ownership_self:,}", inline=True)
-    embed4.add_field(name="Spouse", value=f"{count_ownership_spouse:,}", inline=True)
-    embed4.add_field(name="Joint", value=f"{count_ownership_joint:,}", inline=True)
-    embed4.add_field(name="Child", value=f"{count_ownership_child:,}", inline=True)
-    embed4.add_field(name="Dep. Child", value=f"{count_ownership_dependent_child:,}", inline=True)
+    embed4.add_field(name="Self", value=f"{count_ownership_self:,}", inline=False)
+    embed4.add_field(name="Spouse", value=f"{count_ownership_spouse:,}", inline=False)
+    embed4.add_field(name="Joint", value=f"{count_ownership_joint:,}", inline=False)
+    embed4.add_field(name="Child", value=f"{count_ownership_child:,}", inline=False)
+    embed4.add_field(name="Dep. Child", value=f"{count_ownership_dependent_child:,}", inline=False)
 
     return [embed1, embed2, embed3, embed4]
