@@ -4,17 +4,15 @@ from discord import app_commands
 import sqlite3
 
 from modules.config import DISCORD_BOT_GUILD_ID
-# Import your universal embed builder & paginator
-from bot_modules.bot_embed import build_analytics_embeds
-from bot_modules.bot_ui import AnalyticsPaginatorView
+from bot_modules.bot_embed import build_analytics_embeds  # your universal 4-page embed builder
+from bot_modules.bot_ui import AnalyticsPaginatorView     # your universal paginator
 
 GUILD_ID = DISCORD_BOT_GUILD_ID
 
 def fetch_matching_senators(partial_name: str) -> list[str]:
     """
-    Query the DB for up to 25 senator names that match partial_name
-    and have a non-NULL total_value in analytics.
-    (Adjust or remove the total_value IS NOT NULL filter if needed.)
+    Query up to 25 senator names matching partial_name. We only filter out
+    if total_value is NULL. (Or you can remove that filter entirely if you like.)
     """
     conn = sqlite3.connect("filings.db")
     c = conn.cursor()
@@ -33,9 +31,8 @@ def fetch_matching_senators(partial_name: str) -> list[str]:
 
 def get_senator_analytics(name: str):
     """
-    Return the same 21 columns as we do for 'analytics_party', in the same order,
-    but for a single senator. If row not found, return None.
-    The row must match the exact 21 columns to pass into build_analytics_embeds.
+    Return the same 21 columns. If some are NULL, we won't block the entire row.
+    We'll do row-based handling in the embed-building function.
     """
     conn = sqlite3.connect("filings.db")
     c = conn.cursor()
@@ -62,51 +59,47 @@ def get_senator_analytics(name: str):
             a.accuracy_current,
             a.total_net_profit,
             a.total_value
-        FROM analytics AS a
-        JOIN senators AS s ON s.senator_id = a.senator_id
-        WHERE s.canonical_full_name = ?
+          FROM analytics AS a
+          JOIN senators AS s ON s.senator_id = a.senator_id
+         WHERE s.canonical_full_name = ?
     """, (name,))
     row = c.fetchone()
     conn.close()
-
-    return row  # None if not found, else 21 columns
+    return row  # This can contain NULL in some columns.
 
 class SenatorAnalyticsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @app_commands.guilds(discord.Object(id=GUILD_ID))
-    @app_commands.command(name="senator", description="Get senator analytics with name-based autocomplete in a 4-page embed.")
+    @app_commands.command(name="senator", description="View 4-page analytics for a senator by name.")
     @app_commands.describe(senator_name="The senator's name")
     async def senator_cmd(self, interaction: discord.Interaction, senator_name: str):
-        """
-        /senator <name>
-        If found, build 4-page analytics embed + paginator for that senator.
-        """
+        # fetch the row
         row = get_senator_analytics(senator_name)
         if not row:
             await interaction.response.send_message(f"No analytics data found for Senator '{senator_name}'.", ephemeral=True)
             return
 
-        # Build the 4-page embed, passing e.g. "Senator John Smith" as the name
-        embeds = build_analytics_embeds(f"Senator {senator_name}", row)
+        # build 4 pages, passing "Senator {name}" to the title
+        # BUT we also must handle if some columns are NULL, so let's do that now:
+        # We'll transform that row into a "safe" row that is guaranteed to be numeric or N/A placeholders.
+        safe_row = tuple(x if x is not None else 0 for x in row)
+        # or pass the row as-is if your universal builder function handles None. 
+        # We'll see next how to handle it inside build_analytics_embeds.
+
+        embeds = build_analytics_embeds(f"Senator {senator_name}", safe_row)
         view = AnalyticsPaginatorView(embeds, author_id=interaction.user.id)
 
-        # Send first page
         await interaction.response.send_message(embed=embeds[0], view=view)
-        # Store message reference for editing
         view.message = await interaction.original_response()
 
-    # Autocomplete
     @senator_cmd.autocomplete("senator_name")
     async def senator_name_autocomplete(
         self,
         interaction: discord.Interaction,
         current: str
     ) -> list[app_commands.Choice[str]]:
-        """
-        Called as user types in the 'senator_name' param, returning up to 25 matches that have a non-NULL total_value.
-        """
         matches = fetch_matching_senators(current)
         return [
             app_commands.Choice(name=name, value=name)
