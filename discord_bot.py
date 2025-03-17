@@ -12,10 +12,10 @@ bot = commands.Bot(command_prefix=DISCORD_BOT_CMD_PREFIX, intents=intents)
 
 async def load_extensions():
     await bot.load_extension("cogs.slash_senator")
+    await bot.load_extension("cogs.slash_senatorlist")
     await bot.load_extension("cogs.slash_party")
     await bot.load_extension("cogs.slash_feedback")
     await bot.load_extension("cogs.examples_ui")
-    await bot.load_extension("cogs.examples_info")
 
 @bot.event
 async def on_ready():
