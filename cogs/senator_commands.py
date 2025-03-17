@@ -50,5 +50,10 @@ class SenatorCommands(commands.Cog):
         
         await interaction.response.send_message(response)
 
+    @discord.ui.button(label="Click Me", style=discord.ButtonStyle.success)
+    async def click_me(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message("You clicked the button!", ephemeral=True)
+
+
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorCommands(bot))
