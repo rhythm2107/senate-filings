@@ -1,4 +1,5 @@
 import sqlite3
+from bot_modules.bot_utilis import get_stock_requirement_columns
 
 def get_senators():
     """
@@ -111,3 +112,30 @@ def get_party_analytics(party_name: str):
     conn.close()
     return row  # None if not found, or a tuple with 21 columns
 
+def fetch_leaderboard(db_column: str) -> list[tuple[str, float]]:
+    """
+    Query the top 10 from analytics, joined with senators,
+    sorted descending by db_column. If db_column is in the set
+    that requires total_stock_transactions >= 30, we add that WHERE filter.
+    """
+    stock_req = get_stock_requirement_columns()
+
+    where_clause = ""
+    if db_column in stock_req:
+        where_clause = "WHERE a.total_stock_transactions >= 30"
+
+    query = f"""
+        SELECT s.canonical_full_name, a.{db_column}
+          FROM analytics a
+          JOIN senators s ON s.senator_id = a.senator_id
+          {where_clause}
+         ORDER BY a.{db_column} DESC
+         LIMIT 10
+    """
+
+    conn = sqlite3.connect("filings.db")
+    c = conn.cursor()
+    c.execute(query)
+    rows = c.fetchall()
+    conn.close()
+    return rows  # e.g. [("John Doe", 12345.67), ...]
