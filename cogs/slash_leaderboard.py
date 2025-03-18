@@ -8,13 +8,15 @@ from bot_modules.bot_db import fetch_leaderboard
 from bot_modules.bot_utilis import (
     get_leaderboard_choices,
     get_leaderboard_column_map,
-    format_leaderboard_value
+    format_leaderboard_value,
+    in_designated_channel
 )
 
 class LeaderboardCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    @in_designated_channel()
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="leaderboard", description="View top 10 senators by chosen criteria.")
     @app_commands.describe(criteria="Which leaderboard to display?")

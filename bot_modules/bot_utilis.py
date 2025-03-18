@@ -1,4 +1,7 @@
 from discord import app_commands
+import discord
+from discord.ext import commands
+from modules.config import DISCORD_BOT_CMD_CHANNEL_ID
 
 
 # Functions returning mappings
@@ -65,3 +68,17 @@ def format_leaderboard_value(value: float, db_column: str) -> str:
 
     # fallback => .2f with commas
     return f"{value:,.2f}"
+
+
+# Decorator for checking if the command is used in a designated channel
+def in_designated_channel():
+    async def predicate(interaction: discord.Interaction) -> bool:
+        if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
+            return True
+        # If not, send an ephemeral message and prevent command execution.
+        await interaction.response.send_message(
+            "This command can only be used in the designated bot-command channel.",
+            ephemeral=True
+        )
+        return False
+    return app_commands.check(predicate)

@@ -7,11 +7,13 @@ from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_db import get_senators
 from bot_modules.bot_embed import create_embed_senator_list
 from bot_modules.bot_ui import PaginatorView
+from bot_modules.bot_utilis import in_designated_channel
 
 class SenatorCommands(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    @in_designated_channel() # Check if the command is used in the designated channel
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(
         name="senatorlist",
