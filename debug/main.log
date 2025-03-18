@@ -2933,3 +2933,74 @@
 2025-03-16 23:02:18 | INFO     | [MAIN] Starting update_senators_analytics
 2025-03-16 23:02:21 | INFO     | [MAIN] Starting update_senators_analytics_left
 2025-03-16 23:44:40 | INFO     | [MAIN] Starting update_party_analytics
+2025-03-18 14:09:54 | INFO     | [MAIN] Starting scrape_filings
+2025-03-18 14:09:56 | INFO     | Starting data fetch...
+2025-03-18 14:09:56 | DEBUG    | [DEBUG] Total records according to first response: 16
+2025-03-18 14:09:56 | DEBUG    | [DEBUG] Fetching records starting at 0...
+2025-03-18 14:09:57 | DEBUG    | [DEBUG] Page start: 0, Expected rows: 100, Received rows: 16
+2025-03-18 14:09:57 | DEBUG    | [DEBUG] Total filings collected so far: 16
+2025-03-18 14:09:59 | INFO     | Fetched a total of 16 filings.
+2025-03-18 14:09:59 | DEBUG    | Senators tables (senators, senator_aliases) created/initialized if they did not exist.
+2025-03-18 14:09:59 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=0ecd733e-1fab-440d-8a2f-71359cca6abe. Manual review needed.
+2025-03-18 14:09:59 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=0ecd733e-1fab-440d-8a2f-71359cca6abe). Status: 204
+2025-03-18 14:09:59 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=d1a16ba7-a2e2-4595-93ba-103e2691a881. Manual review needed.
+2025-03-18 14:10:00 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=d1a16ba7-a2e2-4595-93ba-103e2691a881). Status: 204
+2025-03-18 14:10:00 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=d14bebeb-66dc-4496-895d-29f50bc58a38. Manual review needed.
+2025-03-18 14:10:00 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=d14bebeb-66dc-4496-895d-29f50bc58a38). Status: 204
+2025-03-18 14:10:00 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=6e9cb2de-25bb-4a40-bd2c-dc54d5ca61d4. Manual review needed.
+2025-03-18 14:10:01 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=6e9cb2de-25bb-4a40-bd2c-dc54d5ca61d4). Status: 204
+2025-03-18 14:10:01 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=72f1d203-c3c1-4662-b396-b41fa5843fc7. Manual review needed.
+2025-03-18 14:10:01 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=72f1d203-c3c1-4662-b396-b41fa5843fc7). Status: 204
+2025-03-18 14:10:01 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=729e28d1-3a1d-44c2-ba9b-860e0a028d5e. Manual review needed.
+2025-03-18 14:10:02 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=729e28d1-3a1d-44c2-ba9b-860e0a028d5e). Status: 204
+2025-03-18 14:10:02 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=ca36f858-b61b-4aeb-bfc0-ea39fcb7c49b. Manual review needed.
+2025-03-18 14:10:02 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=ca36f858-b61b-4aeb-bfc0-ea39fcb7c49b). Status: 204
+2025-03-18 14:10:02 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=d4a34cac-6cad-43d3-9717-76547392cd9e. Manual review needed.
+2025-03-18 14:10:03 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=d4a34cac-6cad-43d3-9717-76547392cd9e). Status: 204
+2025-03-18 14:10:03 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=01ae5f71-06c2-475a-a377-33a792c424cf. Manual review needed.
+2025-03-18 14:10:03 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=01ae5f71-06c2-475a-a377-33a792c424cf). Status: 204
+2025-03-18 14:10:03 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=41a80df2-ff94-4929-af57-7b52e8f84ffd. Manual review needed.
+2025-03-18 14:10:04 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=41a80df2-ff94-4929-af57-7b52e8f84ffd). Status: 204
+2025-03-18 14:10:04 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=093e129f-717e-421d-bb43-254f787f99ae. Manual review needed.
+2025-03-18 14:10:04 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=093e129f-717e-421d-bb43-254f787f99ae). Status: 204
+2025-03-18 14:10:04 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=149efb93-8a88-4a9a-b4cc-e24bf882a820. Manual review needed.
+2025-03-18 14:10:05 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=149efb93-8a88-4a9a-b4cc-e24bf882a820). Status: 204
+2025-03-18 14:10:05 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=27e544c2-ba66-4097-bb4f-8897224fa0a8. Manual review needed.
+2025-03-18 14:10:05 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=27e544c2-ba66-4097-bb4f-8897224fa0a8). Status: 204
+2025-03-18 14:10:05 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=3e4aaff1-b717-43b2-994c-43a10710f4f7. Manual review needed.
+2025-03-18 14:10:06 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=3e4aaff1-b717-43b2-994c-43a10710f4f7). Status: 204
+2025-03-18 14:10:06 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=1bb88a35-2b6d-4bb2-a266-3e58c8e27dec. Manual review needed.
+2025-03-18 14:10:06 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=1bb88a35-2b6d-4bb2-a266-3e58c8e27dec). Status: 204
+2025-03-18 14:10:06 | INFO     | Unknown senator name: ATD SENATOR, 2245638 for ptr_id=da3b8369-dcb2-40da-b4fe-93158a263e96. Manual review needed.
+2025-03-18 14:10:07 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR, 2245638' (ptr_id=da3b8369-dcb2-40da-b4fe-93158a263e96). Status: 204
+2025-03-18 14:10:07 | INFO     | Data insertion complete.
+2025-03-18 14:10:09 | INFO     | [MAIN] Starting scrape_transactions
+2025-03-18 14:10:11 | DEBUG    | Init_transaction_table has been called.
+2025-03-18 14:10:11 | DEBUG    | Init_transaction_table succeeded.
+2025-03-18 14:10:11 | INFO     | Found 0 new filings to process.
+2025-03-18 14:10:11 | INFO     | Inserted a total of 0 new transaction records.
+2025-03-18 14:10:13 | INFO     | [MAIN] Starting process_transactions_analytics
+2025-03-18 14:10:15 | INFO     | [MAIN] Starting update_senators_analytics
+2025-03-18 14:10:18 | INFO     | [MAIN] Starting update_party_analytics
+2025-03-18 14:10:21 | INFO     | [MAIN] Starting send_unnotified_discord_notifications
+2025-03-18 14:10:21 | INFO     | Found 0 unnotified transactions.
+2025-03-18 14:10:21 | INFO     | Total new notifications sent: 0
+2025-03-18 14:11:45 | INFO     | [MAIN] Starting scrape_filings
+2025-03-18 14:11:46 | INFO     | Starting data fetch...
+2025-03-18 14:11:46 | DEBUG    | [DEBUG] Total records according to first response: 16
+2025-03-18 14:11:46 | DEBUG    | [DEBUG] Fetching records starting at 0...
+2025-03-18 14:11:46 | DEBUG    | [DEBUG] Page start: 0, Expected rows: 100, Received rows: 16
+2025-03-18 14:11:46 | DEBUG    | [DEBUG] Total filings collected so far: 16
+2025-03-18 14:11:48 | INFO     | Fetched a total of 16 filings.
+2025-03-18 14:11:48 | DEBUG    | Senators tables (senators, senator_aliases) created/initialized if they did not exist.
+2025-03-18 14:11:48 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=0ecd733e-1fab-440d-8a2f-71359cca6abe. Manual review needed.
+2025-03-18 14:11:49 | INFO     | Debug notification sent for unknown senator alias 'ATD SENATOR' (ptr_id=0ecd733e-1fab-440d-8a2f-71359cca6abe). Status: 204
+2025-03-18 14:11:49 | INFO     | Unknown senator name: ATD SENATOR for ptr_id=d1a16ba7-a2e2-4595-93ba-103e2691a881. Manual review needed.
+2025-03-18 14:13:05 | INFO     | [MAIN] Starting scrape_filings
+2025-03-18 14:13:06 | INFO     | Starting data fetch...
+2025-03-18 14:13:06 | DEBUG    | [DEBUG] Total records according to first response: 16
+2025-03-18 14:13:06 | DEBUG    | [DEBUG] Fetching records starting at 0...
+2025-03-18 14:13:07 | DEBUG    | [DEBUG] Page start: 0, Expected rows: 100, Received rows: 16
+2025-03-18 14:13:07 | DEBUG    | [DEBUG] First row: ['ATD', 'Senator', 'Alexander, Lamar (Senator)', '<a href="/search/view/ptr/0ecd733e-1fab-440d-8a2f-71359cca6abe/" target="_blank">Periodic Transaction Report for 07/22/2021</a>', '07/22/2021']
+2025-03-18 14:13:07 | DEBUG    | [DEBUG] Last row: ['ATD', 'Senator, 2245638', 'Alexander, Lamar (Senator)', '<a href="/search/view/ptr/da3b8369-dcb2-40da-b4fe-93158a263e96/" target="_blank">Periodic Transaction Report for 02/13/2017</a>', '02/13/2017']
+2025-03-18 14:13:07 | DEBUG    | [DEBUG] Total filings collected so far: 16

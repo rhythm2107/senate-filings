@@ -52,8 +52,8 @@ def fetch_page(session, headers, payload, start, expected_length, url):
             total_records = int(response_json.get('recordsTotal', 0))
             logger.debug(f"[DEBUG] Page start: {start}, Expected rows: {expected_length}, Received rows: {len(page_data)}")
             if page_data:
-                # logger.debug(f"[DEBUG] First row: {page_data[0]}")
-                # logger.debug(f"[DEBUG] Last row: {page_data[-1]}")
+                logger.debug(f"[DEBUG] First row: {page_data[0]}")
+                logger.debug(f"[DEBUG] Last row: {page_data[-1]}")
                 pass
             # If not the last page and we received fewer rows than expected, retry.
             if len(page_data) < expected_length and (start + expected_length) < total_records:

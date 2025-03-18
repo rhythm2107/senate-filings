@@ -14,31 +14,31 @@ logger = setup_logger("main_logger", "main.log")
 logger_analytics = setup_logger("analytics", "analytics.log")
 
 def main():
-    # logger.info("[MAIN] Starting scrape_filings")
-    # scrape_filings()
-    # time.sleep(2)
+    logger.info("[MAIN] Starting scrape_filings")
+    scrape_filings()
+    time.sleep(2)
 
-    # logger.info("[MAIN] Starting scrape_transactions")
-    # scrape_transactions()
-    # time.sleep(2)
+    logger.info("[MAIN] Starting scrape_transactions")
+    scrape_transactions()
+    time.sleep(2)
 
     conn = init_db("filings.db") # Rename to DB_NAME constant later after debugging is finished
 
-    # logger.info("[MAIN] Starting process_transactions_analytics")
-    # process_transactions_analytics(conn)
-    # time.sleep(2)
+    logger.info("[MAIN] Starting process_transactions_analytics")
+    process_transactions_analytics(conn)
+    time.sleep(2)
 
-    # logger.info("[MAIN] Starting update_senators_analytics")
-    # update_senators_analytics(conn)
-    # time.sleep(2)
+    logger.info("[MAIN] Starting update_senators_analytics")
+    update_senators_analytics(conn)
+    time.sleep(2)
     
     logger.info("[MAIN] Starting update_party_analytics")
     update_party_analytics(conn)
     time.sleep(2)
 
-    # logger.info("[MAIN] Starting send_unnotified_discord_notifications")
-    # send_unnotified_discord_notifications()
-    # time.sleep(2)
+    logger.info("[MAIN] Starting send_unnotified_discord_notifications")
+    send_unnotified_discord_notifications()
+    time.sleep(2)
 
 if __name__ == "__main__":
     main()
