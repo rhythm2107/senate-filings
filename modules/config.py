@@ -17,6 +17,7 @@ DISCORD_BOT_CMD_CHANNEL_ID = int(os.getenv("DISCORD_BOT_CMD_CHANNEL_ID"))
 SUBSCRIBE_VIP_ROLE_ID = int(os.getenv("SUBSCRIBE_VIP_ROLE_ID"))
 SUBSCRIBE_LIFETIME_ROLE_ID = int(os.getenv("SUBSCRIBE_LIFETIME_ROLE_ID"))
 SUBSCRIBE_INFO_CHANNEL_ID = int(os.getenv("SUBSCRIBE_INFO_CHANNEL_ID"))
+KOFI_SHOP_STORE_LINK = os.getenv("KOFI_SHOP_STORE_LINK")
 DB_NAME = os.getenv("DB_NAME", "filings.db")  # Provide a default fallback if not found
 USE_DATE_FILTER = os.getenv("USE_DATE_FILTER", "False").lower() == "true"
 DATE_FILTER_DAYS = int(os.getenv("DATE_FILTER_DAYS", "7"))

@@ -5,7 +5,8 @@ from modules.config import (
     DISCORD_BOT_GUILD_ID,
     SUBSCRIBE_VIP_ROLE_ID,
     SUBSCRIBE_LIFETIME_ROLE_ID,
-    SUBSCRIBE_INFO_CHANNEL_ID
+    SUBSCRIBE_INFO_CHANNEL_ID,
+    KOFI_SHOP_STORE_LINK
 )
 from bot_modules.bot_utilis import in_designated_channel
 
@@ -32,7 +33,7 @@ class SubscribeCog(commands.Cog):
                 "permanent access to all of our services, including our analytics website *(in development)* "
                 "and any future datasets and analytics.\n\n"
                 "As our service grows, the monthly subscription costs may change.\n"
-                f"Read more about the benefits in {subscribe_channel_mention}."
+                f"Read more about the benefits in {subscribe_channel_mention} channel or [here]({KOFI_SHOP_STORE_LINK})!"
             ),
             color=discord.Color.green()
         )
