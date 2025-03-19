@@ -4,7 +4,7 @@ from modules.scraper_transactions import scrape_transactions
 from modules.notify_system import send_unnotified_discord_notifications
 from modules.logger import setup_logger
 from modules.db_helper import init_db, init_analytics_table
-from modules.config import DB_NAME
+from modules.config import DB_NAME, SCRIPT_FREQUENCY_SECONDS
 from modules.analytics_txmatch import process_transactions_analytics
 from modules.analytics_senators import update_senators_analytics
 from modules.analytics_party import update_party_analytics
@@ -40,5 +40,10 @@ def main():
     send_unnotified_discord_notifications()
     time.sleep(2)
 
+    # Wait for 3 hour before running the loop again
+    time.sleep(SCRIPT_FREQUENCY_SECONDS)
+
 if __name__ == "__main__":
-    main()
+    while True:
+        logger.info("Starting loop of main()")
+        main()
