@@ -1,5 +1,6 @@
 import sqlite3
 from bot_modules.bot_utilis import get_stock_requirement_columns
+from modules.config import MINIMUM_STOCK_TRANSACTIONS
 
 def get_senators():
     """
@@ -122,7 +123,7 @@ def fetch_leaderboard(db_column: str) -> list[tuple[str, float]]:
 
     where_clause = ""
     if db_column in stock_req:
-        where_clause = "WHERE a.total_stock_transactions >= 30"
+        where_clause = f"WHERE a.total_stock_transactions >= {MINIMUM_STOCK_TRANSACTIONS}"
 
     query = f"""
         SELECT s.canonical_full_name, a.{db_column}

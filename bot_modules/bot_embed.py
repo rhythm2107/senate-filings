@@ -85,12 +85,12 @@ def build_analytics_embeds(name: str, row: tuple) -> list[discord.Embed]:
         description="Performance & Accuracy",
         color=discord.Color.blue()
     )
-    embed2.add_field(name="Avg Perf (7d)", value=safe_float(avg_perf_7d, suffix="%"), inline=False)
-    embed2.add_field(name="Avg Perf (30d)", value=safe_float(avg_perf_30d, suffix="%"), inline=False)
-    embed2.add_field(name="Avg Perf (Current)", value=safe_float(avg_perf_current, suffix="%"), inline=False)
+    embed2.add_field(name="Avg Gain (7d)", value=safe_float(avg_perf_7d, suffix="%"), inline=False)
+    embed2.add_field(name="Avg Gain (30d)", value=safe_float(avg_perf_30d, suffix="%"), inline=False)
+    embed2.add_field(name="Avg Gain (All Time)", value=safe_float(avg_perf_current, suffix="%"), inline=False)
     embed2.add_field(name="Accuracy (7d)", value=safe_float(accuracy_7d, suffix="%"), inline=False)
     embed2.add_field(name="Accuracy (30d)", value=safe_float(accuracy_30d, suffix="%"), inline=False)
-    embed2.add_field(name="Accuracy (Current)", value=safe_float(accuracy_current, suffix="%"), inline=False)
+    embed2.add_field(name="Accuracy (All Time)", value=safe_float(accuracy_current, suffix="%"), inline=False)
 
     # Page 3
     embed3 = discord.Embed(

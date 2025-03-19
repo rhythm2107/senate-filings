@@ -14,12 +14,12 @@ def get_leaderboard_column_map() -> dict[str, str]:
         "Total Volume": "total_transaction_value",
         "Total Transactions": "total_transaction_count",
         "Average Transaction": "average_transaction_amount",
-        "Avg. % Growth 7 Days": "avg_perf_7d",
-        "Avg. % Growth 30 Days": "avg_perf_30d",
-        "Avg. % Growth Currently": "avg_perf_current",
-        "Accuracy 7 Days": "accuracy_7d",
-        "Accuracy 30 Days": "accuracy_30d",
-        "Accuracy Currently": "accuracy_current",
+        "Average Gain (7 Days)": "avg_perf_7d",
+        "Average Gain (30 Days)": "avg_perf_30d",
+        "Average Gain (All Time)": "avg_perf_current",
+        "Accuracy (7 Days)": "accuracy_7d",
+        "Accuracy (30 Days)": "accuracy_30d",
+        "Accuracy (All Time)": "accuracy_current",
         "Net Worth": "total_value",
     }
 
