@@ -7,6 +7,9 @@ This project is a comprehensive web scraper and Discord bot designed to:
 - Store filings and transactions in a database for further analytics.
 - Provide interactive analytics and insights directly via Discord through advanced slash commands.
 
+![List of Discord slash commands](assets/slash-list.png)
+![Demo of Discord slash commands](assets/slash-demo.gif)
+
 ---
 
 ## ⚙️ Tech Stack
