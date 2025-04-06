@@ -82,3 +82,10 @@ def in_designated_channel():
         )
         return False
     return app_commands.check(predicate)
+
+# Define a custom check function for required roles
+def has_required_role(interaction: discord.Interaction) -> bool:
+    # List of allowed role names
+    allowed_roles = {"Admin", "Moderator"}
+    # Ensure the interaction's user has at least one of the allowed roles
+    return any(role.name in allowed_roles for role in interaction.user.roles)
