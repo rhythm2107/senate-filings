@@ -3,7 +3,8 @@ from discord.ext import commands
 from discord import app_commands
 import sqlite3
 
-from modules.config import DISCORD_BOT_GUILD_ID
+from modules.config import DISCORD_BOT_GUILD_ID, SUBSCRIBE_VIP_ROLE_ID, DISCORD_VIP_CMD_CHANNEL_ID, SUBSCRIBE_INFO_CHANNEL_ID
+from bot_modules.bot_exceptions import WrongChannelError, MissingVIPRoleError
 from bot_modules.bot_db import fetch_leaderboard
 from bot_modules.bot_utilis import (
     get_leaderboard_choices,
@@ -55,6 +56,28 @@ class LeaderboardCog(commands.Cog):
 
         # 5) Send
         await interaction.response.send_message(embed=embed)
+
+    @leaderboard_cmd.error
+    async def leaderboard_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        """
+        Distinguish which custom error was raised so we can send a specific message.
+        """
+        if isinstance(error, WrongChannelError):
+            message = (
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. You must use it here: <#{DISCORD_VIP_CMD_CHANNEL_ID}>"
+            )
+        elif isinstance(error, MissingVIPRoleError):
+            message = (
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
+            )
+        else:
+            raise error  # Some other error we didn't handle
+
+        # Now send the ephemeral message
+        if interaction.response.is_done():
+            await interaction.followup.send(message, ephemeral=True)
+        else:
+            await interaction.response.send_message(message, ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(LeaderboardCog(bot))

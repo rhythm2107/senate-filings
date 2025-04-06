@@ -3,7 +3,8 @@ from discord.ext import commands
 from discord import app_commands
 import sqlite3
 
-from modules.config import DISCORD_BOT_GUILD_ID
+from modules.config import DISCORD_BOT_GUILD_ID, SUBSCRIBE_VIP_ROLE_ID, DISCORD_VIP_CMD_CHANNEL_ID, SUBSCRIBE_INFO_CHANNEL_ID
+from bot_modules.bot_exceptions import WrongChannelError, MissingVIPRoleError
 from bot_modules.bot_embed import build_analytics_embeds
 from bot_modules.bot_ui import AnalyticsPaginatorView
 from bot_modules.bot_db import get_party_analytics
@@ -46,6 +47,28 @@ class PartyCog(commands.Cog):
         await interaction.response.send_message(embed=embeds[0], view=view)
         # store the message so we can update it
         view.message = await interaction.original_response()
+
+    @party.error
+    async def party_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        """
+        Distinguish which custom error was raised so we can send a specific message.
+        """
+        if isinstance(error, WrongChannelError):
+            message = (
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. You must use it here: <#{DISCORD_VIP_CMD_CHANNEL_ID}>"
+            )
+        elif isinstance(error, MissingVIPRoleError):
+            message = (
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
+            )
+        else:
+            raise error  # Some other error we didn't handle
+
+        # Now send the ephemeral message
+        if interaction.response.is_done():
+            await interaction.followup.send(message, ephemeral=True)
+        else:
+            await interaction.response.send_message(message, ephemeral=True)
 
 async def setup(bot: commands.Bot):
     """
