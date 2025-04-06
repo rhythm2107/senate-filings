@@ -24,3 +24,7 @@ DB_NAME = os.getenv("DB_NAME", "filings.db")  # Provide a default fallback if no
 USE_DATE_FILTER = os.getenv("USE_DATE_FILTER", "False").lower() == "true"
 DATE_FILTER_DAYS = int(os.getenv("DATE_FILTER_DAYS", "7"))
 PROXY = os.getenv("PROXY")
+
+# Retrieve the environment variables for allowed roles
+allowed_role_ids_str = os.getenv("ALLOWED_ROLE_IDS", "")
+ALLOWED_ROLE_IDS = {int(role_id.strip()) for role_id in allowed_role_ids_str.split(",") if role_id.strip()}
