@@ -1,10 +1,13 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 import asyncio
 from modules.config import (
     DISCORD_BOT_GUILD_ID,
     DISCORD_BOT_TOKEN,
-    DISCORD_BOT_CMD_PREFIX
+    DISCORD_BOT_CMD_PREFIX,
+    SUBSCRIBE_VIP_ROLE_ID,
+    SUBSCRIBE_INFO_CHANNEL_ID
 )
 
 intents = discord.Intents.default()
@@ -27,6 +30,24 @@ async def on_ready():
     except Exception as e:
         print("Error syncing commands:", e)
     print("Bot is ready")
+
+# Global error handler for app commands:
+@bot.tree.error
+async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
+    """
+    A global error handler for all app_commands (slash commands).
+    """
+    if isinstance(error, app_commands.CheckFailure):
+        # For example, user doesn't have the required role
+        msg = f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>",
+        if interaction.response.is_done():
+            await interaction.followup.send(msg, ephemeral=True)
+        else:
+            await interaction.response.send_message(msg, ephemeral=True)
+    else:
+        # Log or handle other errors
+        raise error
+
 
 async def main():
     async with bot:

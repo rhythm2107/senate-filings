@@ -7,12 +7,13 @@ from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_embed import build_analytics_embeds  # universal 4-page embed builder
 from bot_modules.bot_ui import AnalyticsPaginatorView     # universal paginator
 from bot_modules.bot_db import get_senator_analytics, fetch_matching_senators
-from bot_modules.bot_utilis import in_designated_channel
+from bot_modules.bot_utilis import in_designated_channel, has_required_role
 
 class SenatorAnalyticsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    @app_commands.check(has_required_role)
     @in_designated_channel()
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="senator", description="View 4-page analytics for a senator by name.")

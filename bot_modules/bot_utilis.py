@@ -1,7 +1,7 @@
 from discord import app_commands
 import discord
 from discord.ext import commands
-from modules.config import DISCORD_BOT_CMD_CHANNEL_ID
+from modules.config import DISCORD_BOT_CMD_CHANNEL_ID, ALLOWED_ROLE_IDS
 
 
 # Functions returning mappings
@@ -85,7 +85,5 @@ def in_designated_channel():
 
 # Define a custom check function for required roles
 def has_required_role(interaction: discord.Interaction) -> bool:
-    # List of allowed role names
-    allowed_roles = {"Admin", "Moderator"}
     # Ensure the interaction's user has at least one of the allowed roles
-    return any(role.name in allowed_roles for role in interaction.user.roles)
+    return any(role.id in ALLOWED_ROLE_IDS for role in interaction.user.roles)
