@@ -8,13 +8,13 @@ from modules.config import (
     SUBSCRIBE_INFO_CHANNEL_ID,
     KOFI_SHOP_STORE_LINK
 )
-from bot_modules.bot_utilis import in_designated_channel
+from bot_modules.bot_utilis import in_bot_commands_channel
 
 class SubscribeCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @in_designated_channel()
+    @in_bot_commands_channel()
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="subscribe", description="Learn how to subscribe for detailed analytics.")
     async def subscribe(self, interaction: discord.Interaction):

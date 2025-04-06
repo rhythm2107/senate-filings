@@ -7,7 +7,7 @@ from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_embed import build_analytics_embeds  # universal 4-page embed builder
 from bot_modules.bot_ui import AnalyticsPaginatorView     # universal paginator
 from bot_modules.bot_db import get_senator_analytics, fetch_matching_senators
-from bot_modules.bot_utilis import in_vip_commands_channel, has_required_role
+from bot_modules.bot_utilis import in_vip_commands_channel, has_required_role, handle_vip_check_failure
 
 class SenatorAnalyticsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -44,6 +44,15 @@ class SenatorAnalyticsCog(commands.Cog):
             app_commands.Choice(name=name, value=name)
             for name in matches
         ]
+    
+    # Attach an error handler for this command
+    @senator_cmd.error
+    async def senator_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, app_commands.CheckFailure):
+            # Use the helper function
+            await handle_vip_check_failure(interaction)
+        else:
+            raise error
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorAnalyticsCog(bot))

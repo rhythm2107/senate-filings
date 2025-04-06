@@ -1,7 +1,12 @@
 from discord import app_commands
 import discord
 from discord.ext import commands
-from modules.config import DISCORD_BOT_CMD_CHANNEL_ID, ALLOWED_ROLE_IDS, DISCORD_VIP_CMD_CHANNEL_ID
+from modules.config import (
+    DISCORD_BOT_CMD_CHANNEL_ID,
+    DISCORD_VIP_CMD_CHANNEL_ID,
+    SUBSCRIBE_INFO_CHANNEL_ID,
+    SUBSCRIBE_VIP_ROLE_ID,
+    ALLOWED_ROLE_IDS)
 
 
 # Functions returning mappings
@@ -70,18 +75,18 @@ def format_leaderboard_value(value: float, db_column: str) -> str:
     return f"{value:,.2f}"
 
 
-# # Decorator for checking if the command is used in a designated channel
-def in_designated_channel():
-    async def predicate(interaction: discord.Interaction) -> bool:
-        if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
-            return True
-        # If not, send an ephemeral message and prevent command execution.
-        await interaction.response.send_message(
-            "This command can only be used in the designated bot-command channel.",
-            ephemeral=True
-        )
-        return False
-    return app_commands.check(predicate)
+# # # Decorator for checking if the command is used in a designated channel
+# def in_designated_channel():
+#     async def predicate(interaction: discord.Interaction) -> bool:
+#         if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
+#             return True
+#         # If not, send an ephemeral message and prevent command execution.
+#         await interaction.response.send_message(
+#             "This command can only be used in the designated bot-command channel.",
+#             ephemeral=True
+#         )
+#         return False
+#     return app_commands.check(predicate)
 
 def in_bot_commands_channel():
     """Decorator that restricts command usage to the regular bot-commands channel."""
@@ -111,3 +116,14 @@ def in_vip_commands_channel():
 def has_required_role(interaction: discord.Interaction) -> bool:
     # Ensure the interaction's user has at least one of the allowed roles
     return any(role.id in ALLOWED_ROLE_IDS for role in interaction.user.roles)
+
+async def handle_vip_check_failure(interaction: discord.Interaction):
+    """
+    Sends or follows up with a standard ephemeral message indicating that
+    the command is VIP-only.
+    """
+    msg = f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
+    if interaction.response.is_done():
+        await interaction.followup.send(msg, ephemeral=True)
+    else:
+        await interaction.response.send_message(msg, ephemeral=True)
