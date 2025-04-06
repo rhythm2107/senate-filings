@@ -19,26 +19,32 @@ def main():
     time.sleep(2)
 
     logger.info("[MAIN] Starting scrape_transactions")
-    scrape_transactions()
+    scrape_tx = scrape_transactions()
     time.sleep(2)
 
-    conn = init_db("filings.db") # Rename to DB_NAME constant later after debugging is finished
+    if scrape_tx:
+        logger.info("[MAIN] New transactions found. Initializing analytics & notifications.")
 
-    logger.info("[MAIN] Starting process_transactions_analytics")
-    process_transactions_analytics(conn)
-    time.sleep(2)
+        conn = init_db("filings.db") # Rename to DB_NAME constant later after debugging is finished
 
-    logger.info("[MAIN] Starting update_senators_analytics")
-    update_senators_analytics(conn)
-    time.sleep(2)
-    
-    logger.info("[MAIN] Starting update_party_analytics")
-    update_party_analytics(conn)
-    time.sleep(2)
+        logger.info("[MAIN] Starting process_transactions_analytics")
+        process_transactions_analytics(conn)
+        time.sleep(2)
 
-    logger.info("[MAIN] Starting send_unnotified_discord_notifications")
-    send_unnotified_discord_notifications()
-    time.sleep(2)
+        logger.info("[MAIN] Starting update_senators_analytics")
+        update_senators_analytics(conn)
+        time.sleep(2)
+        
+        logger.info("[MAIN] Starting update_party_analytics")
+        update_party_analytics(conn)
+        time.sleep(2)
+
+        logger.info("[MAIN] Starting send_unnotified_discord_notifications")
+        send_unnotified_discord_notifications()
+        time.sleep(2)
+
+    else:
+        logger.info("[MAIN] No new transactions found. Waiting for next cycle...")
 
     # Wait for 3 hour before running the loop again
     time.sleep(SCRIPT_FREQUENCY_SECONDS)

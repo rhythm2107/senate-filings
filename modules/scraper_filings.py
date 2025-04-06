@@ -24,6 +24,7 @@ from modules.db_helper import (
 logger = logging.getLogger("main_logger")
 
 if USE_DATE_FILTER:
+    print(USE_DATE_FILTER)
     submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
 else:
     # When not filtering, you could use an earlier date or an empty string.
@@ -79,6 +80,7 @@ def fetch_filings(session, headers, payload_base, expected_length=100):
         logger.debug(f"[DEBUG] Failed to retrieve initial data, status: {response.status_code}")
         return []
     data = response.json()
+    print(data)
     total_records = int(data.get('recordsTotal', 0))
     logger.debug(f"[DEBUG] Total records according to first response: {total_records}")
     filings = []
@@ -169,6 +171,8 @@ def scrape_filings():
         'first_name': '',
         'last_name': ''
     }
+
+    print(payload_base)
     
     logger.info("Starting data fetch...")
     filings_data = fetch_filings(session, headers, payload_base)

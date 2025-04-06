@@ -151,3 +151,5 @@ def scrape_transactions():
     
     logger.info(f"Inserted a total of {total_new_transactions} new transaction records.")
     conn.close()
+
+    return True if total_new_transactions else False
