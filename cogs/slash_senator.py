@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import sqlite3
 
-from modules.config import DISCORD_BOT_GUILD_ID
+from modules.config import DISCORD_BOT_GUILD_ID, SUBSCRIBE_VIP_ROLE_ID, DISCORD_VIP_CMD_CHANNEL_ID, SUBSCRIBE_INFO_CHANNEL_ID
 from bot_modules.bot_embed import build_analytics_embeds  # universal 4-page embed builder
 from bot_modules.bot_ui import AnalyticsPaginatorView     # universal paginator
 from bot_modules.bot_db import get_senator_analytics, fetch_matching_senators
@@ -53,13 +53,11 @@ class SenatorAnalyticsCog(commands.Cog):
         """
         if isinstance(error, WrongChannelError):
             message = (
-                "You used this command in the wrong channel. "
-                "Please switch to <#YOUR_VIP_CHANNEL>!"
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. You must use it here: <#{DISCORD_VIP_CMD_CHANNEL_ID}>"
             )
         elif isinstance(error, MissingVIPRoleError):
             message = (
-                "You do not have the VIP role required for this command. "
-                "Consider subscribing!"
+                f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
             )
         else:
             raise error  # Some other error we didn't handle
