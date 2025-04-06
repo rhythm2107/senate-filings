@@ -1,7 +1,7 @@
 from discord import app_commands
 import discord
 from discord.ext import commands
-from modules.config import DISCORD_BOT_CMD_CHANNEL_ID, ALLOWED_ROLE_IDS
+from modules.config import DISCORD_BOT_CMD_CHANNEL_ID, ALLOWED_ROLE_IDS, DISCORD_VIP_CMD_CHANNEL_ID
 
 
 # Functions returning mappings
@@ -70,7 +70,7 @@ def format_leaderboard_value(value: float, db_column: str) -> str:
     return f"{value:,.2f}"
 
 
-# Decorator for checking if the command is used in a designated channel
+# # Decorator for checking if the command is used in a designated channel
 def in_designated_channel():
     async def predicate(interaction: discord.Interaction) -> bool:
         if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
@@ -78,6 +78,30 @@ def in_designated_channel():
         # If not, send an ephemeral message and prevent command execution.
         await interaction.response.send_message(
             "This command can only be used in the designated bot-command channel.",
+            ephemeral=True
+        )
+        return False
+    return app_commands.check(predicate)
+
+def in_bot_commands_channel():
+    """Decorator that restricts command usage to the regular bot-commands channel."""
+    async def predicate(interaction: discord.Interaction) -> bool:
+        if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
+            return True
+        await interaction.response.send_message(
+            f"This command can only be used in <#{DISCORD_BOT_CMD_CHANNEL_ID}>.",
+            ephemeral=True
+        )
+        return False
+    return app_commands.check(predicate)
+
+def in_vip_commands_channel():
+    """Decorator that restricts command usage to the VIP channel."""
+    async def predicate(interaction: discord.Interaction) -> bool:
+        if interaction.channel and interaction.channel.id == DISCORD_VIP_CMD_CHANNEL_ID:
+            return True
+        await interaction.response.send_message(
+            f"This is a VIP command and can only be used in <#{DISCORD_VIP_CMD_CHANNEL_ID}>.",
             ephemeral=True
         )
         return False

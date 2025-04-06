@@ -9,7 +9,7 @@ from bot_modules.bot_utilis import (
     get_leaderboard_choices,
     get_leaderboard_column_map,
     format_leaderboard_value,
-    in_designated_channel,
+    in_vip_commands_channel,
     has_required_role
 )
 
@@ -17,7 +17,7 @@ class LeaderboardCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @in_designated_channel()
+    @in_vip_commands_channel()
     @app_commands.check(has_required_role)
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="leaderboard", description="View top 10 senators by chosen criteria.")

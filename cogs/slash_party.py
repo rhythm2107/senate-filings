@@ -7,14 +7,14 @@ from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_embed import build_analytics_embeds
 from bot_modules.bot_ui import AnalyticsPaginatorView
 from bot_modules.bot_db import get_party_analytics
-from bot_modules.bot_utilis import in_designated_channel, has_required_role
+from bot_modules.bot_utilis import in_vip_commands_channel, has_required_role
 
 
 class PartyCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @in_designated_channel()
+    @in_vip_commands_channel()
     @app_commands.check(has_required_role)
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="party", description="Show aggregated analytics for a political party.")
