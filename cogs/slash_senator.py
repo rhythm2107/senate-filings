@@ -13,8 +13,8 @@ class SenatorAnalyticsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.check(has_required_role)
     @in_designated_channel()
+    @app_commands.check(has_required_role)
     @app_commands.guilds(discord.Object(id=DISCORD_BOT_GUILD_ID))
     @app_commands.command(name="senator", description="View 4-page analytics for a senator by name.")
     @app_commands.describe(senator_name="The senator's name")

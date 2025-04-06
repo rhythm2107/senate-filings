@@ -39,7 +39,7 @@ async def on_app_command_error(interaction: discord.Interaction, error: app_comm
     """
     if isinstance(error, app_commands.CheckFailure):
         # For example, user doesn't have the required role
-        msg = f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>",
+        msg = f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
         if interaction.response.is_done():
             await interaction.followup.send(msg, ephemeral=True)
         else:
