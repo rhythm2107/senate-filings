@@ -3,11 +3,12 @@ from discord.ext import commands
 from discord import app_commands
 import math
 
-from modules.config import DISCORD_BOT_GUILD_ID
+from modules.config import DISCORD_BOT_GUILD_ID, DISCORD_BOT_CMD_CHANNEL_ID
 from bot_modules.bot_db import get_senators
 from bot_modules.bot_embed import create_embed_senator_list
 from bot_modules.bot_ui import PaginatorView
 from bot_modules.bot_utilis import in_bot_commands_channel
+from bot_modules.bot_exceptions import WrongChannelError
 
 class SenatorCommands(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -42,6 +43,21 @@ class SenatorCommands(commands.Cog):
         view = PaginatorView(embeds, author_id=interaction.user.id)
         await interaction.response.send_message(embed=embeds[0], view=view)
         view.message = await interaction.original_response()
+
+    @senatorlist.error
+    async def senatorlist_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, WrongChannelError):
+            message = (
+                f"Basic bot commands must be used here: <#{DISCORD_BOT_CMD_CHANNEL_ID}>"
+            )
+        else:
+            raise error  # Some other error we didn't handle
+
+        # Now send the ephemeral message
+        if interaction.response.is_done():
+            await interaction.followup.send(message, ephemeral=True)
+        else:
+            await interaction.response.send_message(message, ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorCommands(bot))

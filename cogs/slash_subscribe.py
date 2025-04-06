@@ -6,8 +6,10 @@ from modules.config import (
     SUBSCRIBE_VIP_ROLE_ID,
     SUBSCRIBE_LIFETIME_ROLE_ID,
     SUBSCRIBE_INFO_CHANNEL_ID,
-    KOFI_SHOP_STORE_LINK
+    KOFI_SHOP_STORE_LINK,
+    DISCORD_BOT_CMD_CHANNEL_ID
 )
+from bot_modules.bot_exceptions import WrongChannelError
 from bot_modules.bot_utilis import in_bot_commands_channel
 
 class SubscribeCog(commands.Cog):
@@ -39,6 +41,21 @@ class SubscribeCog(commands.Cog):
         )
 
         await interaction.response.send_message(embed=embed)
+
+    @subscribe.error
+    async def subscribe_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, WrongChannelError):
+            message = (
+                f"Basic bot commands must be used here: <#{DISCORD_BOT_CMD_CHANNEL_ID}>"
+            )
+        else:
+            raise error  # Some other error we didn't handle
+
+        # Now send the ephemeral message
+        if interaction.response.is_done():
+            await interaction.followup.send(message, ephemeral=True)
+        else:
+            await interaction.response.send_message(message, ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SubscribeCog(bot))
