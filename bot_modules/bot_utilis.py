@@ -88,42 +88,27 @@ def format_leaderboard_value(value: float, db_column: str) -> str:
 #         return False
 #     return app_commands.check(predicate)
 
+from bot_modules.bot_exceptions import WrongChannelError, MissingVIPRoleError
+
 def in_bot_commands_channel():
-    """Decorator that restricts command usage to the regular bot-commands channel."""
+    """Check that user is in the regular bot-commands channel."""
     async def predicate(interaction: discord.Interaction) -> bool:
-        if interaction.channel and interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID:
+        if interaction.channel and (interaction.channel.id == DISCORD_BOT_CMD_CHANNEL_ID):
             return True
-        await interaction.response.send_message(
-            f"This command can only be used in <#{DISCORD_BOT_CMD_CHANNEL_ID}>.",
-            ephemeral=True
-        )
-        return False
+        # Instead of returning False or sending a message, raise a custom exception:
+        raise WrongChannelError("This command must be used in the bot-commands channel.")
     return app_commands.check(predicate)
 
 def in_vip_commands_channel():
-    """Decorator that restricts command usage to the VIP channel."""
+    """Check that user is in the VIP channel."""
     async def predicate(interaction: discord.Interaction) -> bool:
-        if interaction.channel and interaction.channel.id == DISCORD_VIP_CMD_CHANNEL_ID:
+        if interaction.channel and (interaction.channel.id == DISCORD_VIP_CMD_CHANNEL_ID):
             return True
-        await interaction.response.send_message(
-            f"This is a VIP command and can only be used in <#{DISCORD_VIP_CMD_CHANNEL_ID}>.",
-            ephemeral=True
-        )
-        return False
+        raise WrongChannelError("This command must be used in the VIP channel.")
     return app_commands.check(predicate)
 
-# Define a custom check function for required roles
 def has_required_role(interaction: discord.Interaction) -> bool:
-    # Ensure the interaction's user has at least one of the allowed roles
-    return any(role.id in ALLOWED_ROLE_IDS for role in interaction.user.roles)
-
-async def handle_vip_check_failure(interaction: discord.Interaction):
-    """
-    Sends or follows up with a standard ephemeral message indicating that
-    the command is VIP-only.
-    """
-    msg = f"This is a <@&{SUBSCRIBE_VIP_ROLE_ID}> command. Consider subscribing here: <#{SUBSCRIBE_INFO_CHANNEL_ID}>"
-    if interaction.response.is_done():
-        await interaction.followup.send(msg, ephemeral=True)
-    else:
-        await interaction.response.send_message(msg, ephemeral=True)
+    """Check that user has at least one of the allowed VIP roles."""
+    if any(role.id in ALLOWED_ROLE_IDS for role in interaction.user.roles):
+        return True
+    raise MissingVIPRoleError("User does not have the required VIP role.")

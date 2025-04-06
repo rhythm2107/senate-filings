@@ -7,7 +7,8 @@ from modules.config import DISCORD_BOT_GUILD_ID
 from bot_modules.bot_embed import build_analytics_embeds  # universal 4-page embed builder
 from bot_modules.bot_ui import AnalyticsPaginatorView     # universal paginator
 from bot_modules.bot_db import get_senator_analytics, fetch_matching_senators
-from bot_modules.bot_utilis import in_vip_commands_channel, has_required_role, handle_vip_check_failure
+from bot_modules.bot_utilis import in_vip_commands_channel, has_required_role
+from bot_modules.bot_exceptions import WrongChannelError, MissingVIPRoleError
 
 class SenatorAnalyticsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -45,14 +46,29 @@ class SenatorAnalyticsCog(commands.Cog):
             for name in matches
         ]
     
-    # Attach an error handler for this command
     @senator_cmd.error
     async def senator_cmd_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
-        if isinstance(error, app_commands.CheckFailure):
-            # Use the helper function
-            await handle_vip_check_failure(interaction)
+        """
+        Distinguish which custom error was raised so we can send a specific message.
+        """
+        if isinstance(error, WrongChannelError):
+            message = (
+                "You used this command in the wrong channel. "
+                "Please switch to <#YOUR_VIP_CHANNEL>!"
+            )
+        elif isinstance(error, MissingVIPRoleError):
+            message = (
+                "You do not have the VIP role required for this command. "
+                "Consider subscribing!"
+            )
         else:
-            raise error
+            raise error  # Some other error we didn't handle
+
+        # Now send the ephemeral message
+        if interaction.response.is_done():
+            await interaction.followup.send(message, ephemeral=True)
+        else:
+            await interaction.response.send_message(message, ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(SenatorAnalyticsCog(bot))
