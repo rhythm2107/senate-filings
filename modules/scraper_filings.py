@@ -23,13 +23,6 @@ from modules.db_helper import (
 # Get the main_logger object
 logger = logging.getLogger("main_logger")
 
-if USE_DATE_FILTER:
-    print(USE_DATE_FILTER)
-    submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
-else:
-    # When not filtering, you could use an earlier date or an empty string.
-    submitted_start_date = '01/01/2012 00:00:00'
-
 # Extract the PTR (or paper) id using a regex pattern for a GUID.
 def extract_ptr_id(link_html):
     match = re.search(r'([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})', link_html)
@@ -96,6 +89,14 @@ def fetch_filings(session, headers, payload_base, expected_length=100):
     return filings
 
 def scrape_filings():
+    # Set submitted_start_date depending on filter settings
+    if USE_DATE_FILTER:
+        print(USE_DATE_FILTER)
+        submitted_start_date = (datetime.datetime.now() - datetime.timedelta(days=DATE_FILTER_DAYS)).strftime("%m/%d/%Y") + " 00:00:00"
+    else:
+        # When not filtering, you could use an earlier date or an empty string.
+        submitted_start_date = '01/01/2012 00:00:00'
+
     # Set up the session and headers
     session = requests.Session()
     headers = {
